@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Photo Gallery - Grace Foundation International</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Grace Foundation International (GFI)</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="donate.html">Get Involved</a></li>
+        <li><a href="gallery.html" class="active">Photo Gallery</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Photo Gallery</h2>
+    <p>Explore some of our highlights and community moments. More photos coming soon!</p>
+
+    <div class="gallery">
+      <img src="https://via.placeholder.com/400x250?text=School+Program" alt="School Program">
+      <img src="https://via.placeholder.com/400x250?text=Farming+Workshop" alt="Farming Workshop">
+      <img src="https://via.placeholder.com/400x250?text=Youth+Event" alt="Youth Event">
+      <img src="https://via.placeholder.com/400x250?text=Clean+Water+Project" alt="Water Project">
+      <img src="https://via.placeholder.com/400x250?text=Renewable+Energy+Demo" alt="Solar Panel Installation">
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Grace Foundation International. All rights reserved.</p>
+  </footer>
+</body>
+</html>
