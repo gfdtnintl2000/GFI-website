@@ -25,3 +25,23 @@
   text-align: center;
   font-weight: bold;
 }
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.2s ease;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.card p {
+  color: #555;
+}
