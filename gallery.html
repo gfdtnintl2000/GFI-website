@@ -5,19 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Photo Gallery - Grace Foundation International</title>
   <link rel="stylesheet" href="assets/style.css" />
-  <style>
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      padding: 20px;
-    }
-    .gallery img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -35,16 +22,19 @@
   </header>
 
   <main>
-    <h2>Photo Gallery</h2>
-    <p>Explore some of our highlights and community moments. More photos coming soon!</p>
+    <section class="section">
+      <h2>Our Photo Gallery</h2>
+      <p>A glimpse into the lives we touch and the communities we serve.</p>
 
-    <div class="gallery">
-      <img src="https://via.placeholder.com/400x250?text=School+Program" alt="School Program">
-      <img src="https://via.placeholder.com/400x250?text=Farming+Workshop" alt="Farming Workshop">
-      <img src="https://via.placeholder.com/400x250?text=Youth+Event" alt="Youth Event">
-      <img src="https://via.placeholder.com/400x250?text=Clean+Water+Project" alt="Water Project">
-      <img src="https://via.placeholder.com/400x250?text=Renewable+Energy+Demo" alt="Solar Panel Installation">
-    </div>
+      <div class="gallery-grid">
+        <img src="assets/images/gallery1.jpg" alt="Community event">
+        <img src="assets/images/gallery2.jpg" alt="Water project">
+        <img src="assets/images/gallery3.jpg" alt="School visit">
+        <img src="assets/images/gallery4.jpg" alt="Youth sports">
+        <img src="assets/images/gallery5.jpg" alt="Volunteer outreach">
+        <img src="assets/images/gallery6.jpg" alt="Tree planting">
+      </div>
+    </section>
   </main>
 
   <footer>
