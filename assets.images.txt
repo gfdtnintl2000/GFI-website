@@ -1,2 +1,17 @@
 <img src="assets/images/school-outreach.jpg" alt="School Outreach">
+<section class="section" style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 2rem; justify-content: center; max-width: 1000px; margin: auto;">
+  <div style="flex: 1; min-width: 280px; max-width: 350px; text-align: center;">
+    <img src="assets/images/founder.jpg" alt="Dr. Joseph Kipkemoi Ronoh" style="width: 100%; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    <p><strong>Dr. Joseph Kipkemoi Ronoh</strong><br>Founder & Director</p>
+  </div>
+
+  <div style="flex: 2; min-width: 300px; text-align: justify;">
+    <h3 style="text-align: center;">From the Founder</h3>
+    <p>Grace Foundation International was born out of a deep conviction that lasting change begins within our communities. Having witnessed firsthand the struggles of underserved families in the South Rift Region, I felt compelled to act—not out of charity, but out of solidarity.</p>
+
+    <p>Our journey began with small, hopeful steps—supporting children in school, encouraging farmers to try new ideas, and organizing simple sports events to keep the youth engaged. Over time, these seeds of effort began to grow into something more powerful: a movement of dignity, empowerment, and self-reliance.</p>
+
+    <p>At GFI, we believe that every individual has potential. Our mission is to help unlock that potential through education, sustainable livelihoods, clean energy, and compassionate partnerships. We are not just building programs—we are nurturing a future rooted in hope and human worth.</p>
+  </div>
+</section>
 
