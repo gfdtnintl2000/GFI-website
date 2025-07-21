@@ -3,49 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us - Grace Foundation International</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Gallery - Grace Foundation International</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Grace Foundation International (GFI)</h1>
-     </header>
-  <main>
-    <section class="section">
-      <h2>Contact Us</h2>
-      <p>We’d love to hear from you. Reach out for collaborations, donations, or general inquiries.</p>
-      <ul>
-        <li><strong>Email:</strong> gfdtnintl2000@gmail.com</li>
-        <li><strong>Phone:</strong> +254 722 757275</li>
-        <li><strong>Address:</strong> GFI P.O. Box 1911-20200, Kericho, Kenya</li>
-      </ul>
-      <h3>Send Us a Message</h3>
-      <form action="#" method="post">
-        <label for="name">Your Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
 
-        <label for="email">Your Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" rows="5" required></textarea><br><br>
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
-  </main>
+  <!-- Header and Navigation -->
+  <header>
+    <h1>Grace Foundation International</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="team.html">Meet Our Team</a></li>
+        <li><a href="donate.html">Get Involved</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Gallery Section -->
+  <section class="section">
+    <h2>Photo Gallery</h2>
+    <p>Take a look at some of our recent activities and impact in the community:</p>
+
+    <div class="gallery-grid">
+      <img src="assets/images/project1.jpg" alt="Community Project 1">
+      <img src="assets/images/project2.jpg" alt="Community Project 2">
+      <img src="assets/images/project3.jpg" alt="Volunteers at Work">
+      <img src="assets/images/project4.jpg" alt="Educational Outreach">
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Grace Foundation International. All rights reserved.</p>
   </footer>
+
 </body>
 </html>
-<nav class="navbar">
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About Us</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="team.html">Meet Our Team</a></li>
-    <li><a href="donate.html">Get Involved</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-
