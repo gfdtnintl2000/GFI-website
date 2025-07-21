@@ -17,6 +17,7 @@ body {
   padding: 0;
   display: inline-flex;
   gap: 2rem;
+  justify-content: center;
 }
 
 .nav-links li a {
@@ -30,7 +31,7 @@ body {
   color: #f1c40f;
 }
 
-/* === Main content styling (optional) === */
+/* Optional: style for content */
 .section {
   padding: 2rem;
   max-width: 900px;
