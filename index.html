@@ -57,10 +57,18 @@ Transforming lives through education, agriculture, renewable energy, sports, and
   }
 </style>
 
+<style>
+  /* Responsive tweak for founder section */
+  @media (max-width: 720px){
+    #founder { grid-template-columns: 1fr !important; }
+    #founder .left { max-width: 220px; margin: 0 auto 12px; }
+  }
+</style>
+
 <section id="founder" style="display:grid; grid-template-columns: 180px 1fr; gap:20px; align-items:start; background:#f7fafc; padding:16px; border:1px solid #e6eef3; border-radius:10px; margin-top:16px;">
   <!-- LEFT: photo + name/title -->
   <div class="left" style="text-align:center;">
-    <img src="/GFI-website/images/founder.jpg" alt="Dr. Joseph Kipkemoi Ronoh" 
+    <img src="/GFI-website/assets/images/founder.jpg" alt="Dr. Joseph Kipkemoi Ronoh"
          style="width:160px; height:auto; border-radius:8px; display:block; margin:0 auto 10px;">
     <div style="font-weight:700; color:#0A3D62;">Dr. Joseph Kipkemoi Ronoh</div>
     <div style="font-size:0.95rem; color:#333;">Founder &amp; Executive Director, GFI</div>
@@ -80,6 +88,8 @@ Transforming lives through education, agriculture, renewable energy, sports, and
       and transform generations.
     </p>
   </div>
+</section>
+
 </section>
 
 </section>
