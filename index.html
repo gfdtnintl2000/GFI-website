@@ -49,28 +49,39 @@ Transforming lives through education, agriculture, renewable energy, sports, and
 
  </body>
 </html>
-<section class="section light-bg" id="founder">
-  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; justify-content: center;">
-    
-    <!-- Founder Photo -->
-    <img src="assets/images/founder.jpg" alt="Founder Photo" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);" />
+<style>
+  /* Responsive tweak for founder section */
+  @media (max-width: 720px){
+    #founder { grid-template-columns: 1fr !important; }
+    #founder .left { max-width: 220px; margin: 0 auto 12px; }
+  }
+</style>
 
-    <!-- Founder Message -->
-   <section id="founder" style="display:grid; grid-template-columns: 140px 1fr; gap:16px; align-items:start; background:#f7fafc; padding:14px 16px; border-radius:8px; border:1px solid #e6eef3; margin-top:16px;">
-  <img src="/GFI-website/images/founder.jpg" alt="Dr. Joseph Kipkemoi Ronoh" style="width:140px; height:auto; border-radius:8px;">
-  <div>
+<section id="founder" style="display:grid; grid-template-columns: 180px 1fr; gap:20px; align-items:start; background:#f7fafc; padding:16px; border:1px solid #e6eef3; border-radius:10px; margin-top:16px;">
+  <!-- LEFT: photo + name/title -->
+  <div class="left" style="text-align:center;">
+    <img src="/GFI-website/images/founder.jpg" alt="Dr. Joseph Kipkemoi Ronoh" 
+         style="width:160px; height:auto; border-radius:8px; display:block; margin:0 auto 10px;">
+    <div style="font-weight:700; color:#0A3D62;">Dr. Joseph Kipkemoi Ronoh</div>
+    <div style="font-size:0.95rem; color:#333;">Founder &amp; Executive Director, GFI</div>
+  </div>
+
+  <!-- RIGHT: message -->
+  <div class="right">
     <h3 style="margin:0 0 6px 0; color:#0A3D62;">Founder’s Message</h3>
     <p style="margin:0 0 10px 0;">
       At Grace Foundation International (GFI), we believe lasting change is built on dignity, community, and shared responsibility.
       Our calling is to empower families and youth through practical, community-owned initiatives that create hope today and opportunity for tomorrow.
-      Through Green Dignity Villages, peacebuilding, scholarships, and community health outreach, we are walking alongside the South Rift communities to restore
-      livelihoods, strengthen cohesion, and uplift the most vulnerable.
+      Through Green Dignity Villages, peacebuilding, scholarships, and community health outreach, we are walking alongside the South Rift communities
+      to restore livelihoods, strengthen cohesion, and uplift the most vulnerable.
     </p>
-    <p style="margin:0 0 10px 0;">
-      We invite partners and friends who share this vision to join us. Together we can build sustainable solutions that honor people’s dignity and transform generations.
+    <p style="margin:0;">
+      We invite partners and friends who share this vision to join us. Together we can build sustainable solutions that honor people’s dignity
+      and transform generations.
     </p>
-    <p style="margin:0;"><strong>Dr. Joseph Kipkemoi Ronoh</strong><br>Founder & Executive Director, GFI</p>
   </div>
+</section>
+
 </section>
 
 </section>
