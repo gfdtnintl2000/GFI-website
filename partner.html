@@ -1,6 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<!-- In <head> -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand-emerald:#198754; /* your current green */
+    --brand-emerald-dark:#146c43;
+    --brand-gold:#f4b400;   /* warm accent */
+    --ink:#0f172a;
+    --bg:#ffffff;
+  }
+  body{ font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif; }
+
+  /* Premium CTA button */
+  .btn-premium{
+    display:inline-flex; align-items:center; gap:.55rem;
+    padding:.8rem 1.05rem; border-radius:.75rem; text-decoration:none;
+    background:linear-gradient(180deg, var(--brand-emerald) 0%, var(--brand-emerald-dark) 100%);
+    color:#fff; font-weight:700; letter-spacing:.2px; box-shadow:0 8px 20px rgba(25,135,84,.25);
+    transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    border:1px solid rgba(255,255,255,.14);
+  }
+  .btn-premium:hover{ transform:translateY(-1px); box-shadow:0 10px 22px rgba(25,135,84,.32); filter:brightness(1.02); }
+  .btn-premium:focus-visible{ outline:3px solid var(--brand-gold); outline-offset:2px; }
+
+  /* Small “PDF • 2 pages” style badge if you want it */
+  .meta-badge{
+    display:inline-flex; align-items:center; gap:.35rem;
+    font-size:.82rem; font-weight:600; color:var(--ink);
+    background:linear-gradient(180deg,#fff, #f6f6f6);
+    border:1px solid #eaeaea; border-radius:.6rem; padding:.35rem .6rem;
+  }
+
+  /* Optional card wrapper for each brief */
+  .brief-card{
+    border:1px solid #e8eceb; border-radius:1rem; padding:1rem; background:#fff;
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    box-shadow:0 1px 3px rgba(16,24,40,.06);
+  }
+  .brief-title{ font-weight:700; color:var(--ink); margin:0 0 .25rem; }
+  .brief-desc{ margin:0; color:#475569; font-size:.95rem; }
+  .brief-actions{ display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
+  .doc-icon{ width:22px; height:22px; display:inline-block; }
+</style>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Partner With Us – Grace Foundation International</title>
