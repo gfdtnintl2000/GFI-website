@@ -28,10 +28,27 @@
   </header>
 <a href="/GFI-website/partner.html">Partner With Us</a>
 
-<section id="home-hero" style="background-image:none;">
+<style>
+  #home-hero-light{
+    background:#ffffff;
+    color:#0f172a;
+    padding:3rem 0 2.5rem;
+    border-bottom:1px solid #e8eceb;
+  }
+  #home-hero-light .container{ text-align:center; }
+  #home-hero-light h1{ margin:0 0 .6rem; font-size:2.2rem; }
+  #home-hero-light p{ color:#475569; max-width:720px; margin:.3rem auto 1rem; }
+  .cta-row{ display:flex; gap:.7rem; justify-content:center; flex-wrap:wrap; }
+  .btn{ display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1rem; border-radius:.7rem; text-decoration:none; font-weight:700 }
+  .btn-primary{ background:linear-gradient(180deg,#198754,#146c43); color:#fff }
+  .btn-outline{ border:2px solid #198754; color:#198754; background:#fff }
+  .btn-outline:hover{ background:#198754; color:#fff }
+</style>
+
+<section id="home-hero-light">
   <div class="container">
     <h1>Empowering Youth, Communities & Livelihoods in Kenya</h1>
-    <p>Grace Foundation International advances education, community health, and sustainable livelihoods in the South Rift and beyond.</p>
+    <p>Grace Foundation International partners with donors to deliver measurable impact in education, health, and circular livelihoods.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="/GFI-website/donate.html">Donate</a>
       <a class="btn btn-outline" href="/GFI-website/partner.html">Partner With Us</a>
@@ -39,17 +56,8 @@
   </div>
 </section>
 
-
  </body>
 </html>
-<style>
-  /* Responsive tweak for founder section */
-  @media (max-width: 720px){
-    #founder { grid-template-columns: 1fr !important; }
-    #founder .left { max-width: 220px; margin: 0 auto 12px; }
-  }
-</style>
-
 <style>
   /* Responsive tweak for founder section */
   @media (max-width: 720px){
