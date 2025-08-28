@@ -31,10 +31,12 @@ body { min-height: 100vh; display: flex; flex-direction: column; }
 main { flex: 1; } /* pushes footer to the bottom when content is short */
 
 /* Global content container (side padding + max width) */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1rem;         /* side padding */
+ .container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 1.25rem;   /* adjust this number to taste */
+}
+
 }
 
 /* Optional: a bit more breathing room on large screens */
