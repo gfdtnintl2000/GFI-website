@@ -124,22 +124,41 @@ footer {
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-/* === Nav bar styling === */
+/* ===== Header & Nav (one row) ===== */
 .site-header {
-  background-color: green;   /* your ribbon color */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
   padding: 10px 20px;
+  background: green;           /* your ribbon */
 }
 
-.site-header .brand,
-.site-header .main-nav a {
-  color: white;              /* ✅ force text to white */
+.site-header .brand {
+  color: white;
   text-decoration: none;
-  margin-right: 14px;
-  font-weight: bold;
+  font-weight: 700;
+  white-space: nowrap;          /* keep on one line */
 }
 
-.site-header .main-nav a:hover {
-  text-decoration: underline;
-  color: #ffeb3b; /* optional: yellow hover effect for contrast */
+.main-nav {
+  display: flex;
+  gap: 16px;
+  white-space: nowrap;          /* keep links on one line on desktop */
 }
 
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.main-nav a:hover { text-decoration: underline; }
+
+/* If two navs accidentally render back-to-back, hide the 2nd (safety net) */
+.site-header .main-nav + .main-nav { display: none; }
+
+/* Mobile: allow wrapping instead of hiding overflow */
+@media (max-width: 640px) {
+  .main-nav { white-space: normal; flex-wrap: wrap; row-gap: 8px; }
+}
