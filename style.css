@@ -24,6 +24,37 @@ header {
 header h1 {
   margin-bottom: 0.5rem;
 }
+/* ===== Layout: container + sticky footer ===== */
+html, body { height: 100%; }
+body { min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1; } /* pushes footer to the bottom when content is short */
+
+/* Global content container (side padding + max width) */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;         /* side padding */
+}
+
+/* Optional: a bit more breathing room on large screens */
+@media (min-width: 1280px) {
+  .container { padding: 0 1.5rem; }
+}
+
+/* Default vertical spacing for sections */
+section { padding: 2rem 0; }
+
+/* Footer ribbon */
+.site-footer {
+  background: var(--ribbon);   /* same green ribbon */
+  color: var(--white);
+  padding: .9rem 0;
+}
+.site-footer p {
+  margin: 0;
+  text-align: center;
+}
+
 
 nav {
   margin-top: 0.5rem;
