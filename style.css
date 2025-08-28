@@ -237,7 +237,6 @@ main { flex:1; }
   .container{ padding:0 1.25rem; }
 }
 
-
 /* Hero */
 #home-hero{
   background:var(--ribbon); color:var(--white);
@@ -255,36 +254,23 @@ main { flex:1; }
 
 /* Founder section (optional polish) */
 /* Founder layout & spacing */
-.founder { padding: 2rem 0; }
+<section id="founder" class="founder">
+  <div class="container">
+    <div class="founder-grid">
+      <div class="founder-text">
+        <h2>Founder’s Message</h2>
+        <p><strong>Dr. Joseph Kipkemoi Ronoh</strong><br>Founder &amp; Executive Director, GFI</p>
+        <p>At Grace Foundation International (GFI), we believe lasting change is built on dignity, community, and shared responsibility. Our calling is to empower families and youth through practical, community-owned initiatives that create hope today and opportunity for tomorrow. Through Green Dignity Villages, peacebuilding, scholarships, and community health outreach, we are walking alongside the South Rift communities to restore livelihoods, strengthen cohesion, and uplift the most vulnerable.</p>
+        <p>We invite partners and friends who share this vision to join us. Together we can build sustainable solutions that honor people’s dignity and transform generations.</p>
+      </div>
 
-.founder .container{
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1.25rem;     /* <- more breathing room left/right */
-}
-
-.founder-grid{
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-}
-
-.founder-text{ flex: 2 1 0; }
-.founder-photo{ flex: 1 1 280px; margin: 0; }
-.founder-photo img{
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.15);
-  object-fit: cover;
-}
-
-/* Stack on small screens */
-@media (max-width: 900px){
-  .founder-grid{ flex-direction: column; }
-  .founder-photo{ order: -1; } /* photo above text on mobile (optional) */
-}
+      <figure class="founder-photo">
+        <img src="/assets/founder.jpg"
+             alt="Dr. Joseph Kipkemoi Ronoh, Founder &amp; Executive Director, Grace Foundation International">
+      </figure>
+    </div>
+  </div>
+</section>
 
   width: 100%;
   height: auto;
