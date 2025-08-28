@@ -287,4 +287,42 @@ main { flex:1; }
   .founder-grid { flex-direction: column; }
   .founder-photo { order: -1; } /* photo above text on mobile (optional) */
 }
+/* --- Founder layout (text left, photo right) --- */
+.founder { padding: 2rem 0; }
+
+/* Tighter side padding here to reduce the “indented” look */
+.founder-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 .5rem;              /* <- reduce left/right inset here */
+}
+
+/* Two-column on desktop, stacked on mobile */
+.founder-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 900px){
+  .founder-grid {
+    grid-template-columns: 1.7fr 1fr;  /* message | photo */
+    align-items: start;
+  }
+}
+
+/* Keep the message readable and not sprawling */
+.founder-text {
+  min-width: 0;
+  max-width: 72ch;               /* tidy line length */
+}
+
+/* Photo styling */
+.founder-photo { margin: 0; }
+.founder-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.15);
+  object-fit: cover;
+}
 
