@@ -29,24 +29,6 @@
 </header>
 
          </div>
-</header>
-
-<style>
-  /* Adjust selectors to match your nav markup */
-  header, .site-header { background: transparent; }
-  header a, .site-header a, nav a { color:#ffffff; }
-  header a:hover, nav a:hover { opacity:.9; }
-</style>
-
-<body>
-
-
-<style>
-  :root{
-    --maroon:#800000;    /* main background */
-    --maroon-d:#5f0000;  /* hover/depth */
-    --white:#ffffff;
-  }
 
   /* HEADER / NAV */
   .site-header{
@@ -72,17 +54,7 @@
   .nav-toggle{
     display:none; background:transparent; border:0; color:var(--white);
     font-size:1.65rem; line-height:1; cursor:pointer;
-  }
-  @media (max-width: 820px){
-    .nav-toggle{display:block}
-    .nav-links{
-      display:none; position:absolute; left:0; right:0; top:100%;
-      background:var(--maroon); border-top:1px solid rgba(255,255,255,.2);
-      padding:1rem; flex-direction:column; gap:.75rem;
-    }
-    .nav-links.open{display:flex}
-  }
-
+ 
   /* HERO (maroon with white text) */
   #home-hero{
     background:var(--maroon);
