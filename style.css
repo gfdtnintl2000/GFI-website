@@ -330,4 +330,130 @@ footer a { color: #fff; text-decoration: underline; }
 /* Extra hard override if any old rules linger */
 .gal img{ object-fit: contain !important; }
 
+}/* === Basic Layout Helpers (keep consistent across pages) === */
+:root {
+  --gfi-green: #1e7f4f;
+  --gfi-deep: #0e2d20;
+  --gfi-bg: #f8faf9;
+  --gfi-text: #14231c;
+  --card-bg: #0f1412;
+  --soft: 16px;
 }
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: var(--gfi-text);
+  background: var(--gfi-bg);
+  line-height: 1.55;
+}
+
+.container {
+  width: min(1100px, 92vw);
+  margin-inline: auto;
+}
+
+/* === Header / Nav (simple, consistent) === */
+.site-header {
+  background: var(--gfi-deep);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  align-items: center;
+  padding: 0.9rem 0;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.nav a[aria-current="page"] {
+  border-bottom: 2px solid #fff;
+}
+
+/* === Footer Ribbon === */
+.site-footer {
+  margin-top: 3rem;
+}
+
+.footer-ribbon {
+  background: var(--gfi-green);
+  color: #fff;
+  text-align: center;
+  padding: 0.85rem 0;
+  border-top: 3px solid #0f5a38;
+}
+
+/* === GALLERY OVERHAUL (.gal) === */
+
+.gal {
+  padding: 2.25rem 0 3rem;
+}
+
+.gal-container {
+  padding-inline: 0.5rem; /* small left/right inset as you requested */
+}
+
+.gal-title {
+  margin: 0 0 0.75rem 0;
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
+  color: var(--gfi-deep);
+  letter-spacing: 0.2px;
+}
+
+.gal-note {
+  margin: 0 0 1.25rem 0;
+  font-size: 0.95rem;
+  color: #41554a;
+}
+
+/* Responsive grid. Each tile is uniform in height via aspect-ratio.
+   Images are shown FULLY (no cropping) using object-fit: contain. */
+.gal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.gal-item {
+  background: #0d1110;           /* neutral “letterbox” background */
+  border-radius: 16px;
+  overflow: hidden;               /* keep rounded corners clean */
+  aspect-ratio: 3 / 2;            /* uniform tile shape (adjust to 4/3 or 16/9 if you prefer) */
+  display: grid;
+  place-items: center;            /* center the image inside */
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.gal-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;            /* <<< KEY: show full photo (no cropping) */
+  display: block;
+  background: transparent;
+  image-rendering: auto;
+  transform: translateZ(0);       /* small perf hint */
+}
+
+/* Optional hover polish */
+.gal-item:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transform: translateY(-1px);
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+/* Small screens: give a bit more breathing room */
+@media (max-width: 480px) {
+  .gal-container { padding-inline: 0.35rem; }
+  .gal-grid { gap: 10px; }
+}
+
