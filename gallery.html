@@ -73,5 +73,16 @@
   <footer class="site-footer">
     <div class="container footer-ribbon">© 2025 Grace Foundation International</div>
   </footer>
+<script>
+  document.querySelectorAll('.gal-item img').forEach(img => {
+    img.addEventListener('error', () => {
+      console.warn('❌ Failed to load:', img.src);
+    }, { once: true });
+    img.addEventListener('load', () => {
+      console.log('✅ Loaded:', img.src);
+    }, { once: true });
+  });
+</script>
+
 </body>
 </html>
