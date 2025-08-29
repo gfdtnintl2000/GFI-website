@@ -8,6 +8,30 @@
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/style.css" />
 </head>
+  <script>
+(function () {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = (document.getElementById('cf-name').value || '').trim();
+    const email = (document.getElementById('cf-email').value || '').trim();
+    const message = (document.getElementById('cf-message').value || '').trim();
+
+    const to = 'joskipro58@gmail.com';
+    const subject = `Website Contact — ${name || 'GFI Inquiry'}`;
+    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+
+    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+
+    const helper = document.getElementById('cf-helper');
+    if (helper) helper.style.display = 'block';
+  });
+})();
+</script>
+
 <body>
 
   <!-- ONE header/nav only -->
