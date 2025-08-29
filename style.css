@@ -24,6 +24,8 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 img{ max-width:100%; height:auto; display:block; }
+<link rel="stylesheet" href="/style.css">
+
 
 /* Links (body) */
 a{ color: var(--brand); text-decoration: none; }
@@ -627,7 +629,46 @@ body {
   text-shadow:0 2px 3px rgba(0,0,0,.75);
   background:linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,.35), transparent);
   pointer-events:none;
+}/* === Header / Nav hardening === */
+:root {
+  --gfi-deep: #0e2d20;
 }
+
+.container {
+  width: min(1100px, 92vw);
+  margin-inline: auto;
+}
+
+.site-header {
+  position: sticky;       /* stays at top while scrolling */
+  top: 0;
+  z-index: 1000;          /* above page content */
+  background: var(--gfi-deep);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  align-items: center;
+  padding: 0.9rem 0;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  opacity: 0.96;
+}
+
+.nav a[aria-current="page"] {
+  border-bottom: 2px solid #fff;
+}
+
+/* Safety: ensure page sections don't overlap the header */
+body { margin: 0; }
+section, main { position: relative; z-index: 1; }
+
 .contact-list { list-style: none; padding: 0; margin: 0; }
 .contact-list li { margin: 0.4rem 0; }
 
