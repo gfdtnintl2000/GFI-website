@@ -274,46 +274,60 @@ footer a { color: #fff; text-decoration: underline; }
   display:block; margin:0 auto 2rem; padding:.5rem 1rem;
   border-radius:10px; border:0; cursor:pointer;
 }
-/* ===== GALLERY: force full photo, no cropping ===== */
+/* ===== GALLERY OVERHAUL (scoped with .gal to avoid conflicts) ===== */
 
-/* If you're using the .frame wrapper I suggested */
-.gallery-body .frame{
-  position: relative;
-  width: 100%;
-  background: #f3f5f7;
-  border-radius: 14px;
-  overflow: hidden;                /* safe; image will fit inside */
-}
+/* Center the gallery area */
+.gal .container { max-width: 1100px; margin: 0 auto; padding: 0 .75rem; }
 
-/* Make the image fit INSIDE the frame (no heads cut off) */
-.gallery-body .frame img{
-  position: absolute;
-  inset: 0;                        /* pin to all sides */
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;  /* show the entire image */
-  object-position: center center !important;
-}
-
-/* Grid spacing (keep) */
-.gallery-grid{
+/* Responsive grid */
+.gal-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.25rem;
 }
 
-/* ===== Fallbacks if some tiles DON'T use .frame ===== */
-
-/* Kill any previous "cover/crop" rules */
-.gallery-body .card-media img,
-.gallery-body figure img,
-.gallery-body img{
-  object-fit: contain !important;
+/* Card */
+.gal-item{
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  overflow:hidden;
 }
 
-/* Ensure non-frame images don't blow up or clip */
-.gallery-body .card-media img,
-.gallery-body figure img{
+/* Caption */
+.gal-cap{
+  padding:.6rem .8rem .8rem;
+  font-size:.95rem;
+  line-height:1.3;
+  color:#555;
+}
+
+/* The “no-crop” frame: always show the entire image */
+.gal-frame{
+  position: relative;
+  width: 100%;
+  background:#f3f5f7;
+  overflow: hidden;           /* safe: image will fit inside */
+}
+
+/* Aspect ratios for neat, uniform tiles (optional) */
+.gal-ratio-4x3 { aspect-ratio: 4 / 3; }
+.gal-ratio-3x2 { aspect-ratio: 3 / 2; }
+.gal-ratio-16x9{ aspect-ratio:16 / 9; }
+
+/* Never crop heads: the key rules */
+.gal-frame img{
+  position: absolute;
+  inset: 0;
+  margin: auto;               /* keep centered */
   max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
   height: auto !important;
+  object-fit: contain !important;  /* show entire photo */
+  object-position: center center !important;
+}
+/* Extra hard override if any old rules linger */
+.gal img{ object-fit: contain !important; }
+
 }
