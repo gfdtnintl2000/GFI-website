@@ -617,4 +617,15 @@ body {
   </script>
 </body>
 </html>
+.gal-item { position: relative; }
+.gal-item img { width:100%; height:100%; object-fit:contain; display:block; }
+
+.gal-item figcaption{
+  position:absolute; left:0; right:0; bottom:0;
+  padding:12px 14px;
+  color:#fff; font-weight:600; font-size:0.98rem;
+  text-shadow:0 2px 3px rgba(0,0,0,.75);
+  background:linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,.35), transparent);
+  pointer-events:none;
+}
 
