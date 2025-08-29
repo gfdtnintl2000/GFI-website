@@ -4,34 +4,10 @@
   <meta charset="utf-8" />
   <title>Contact — Grace Foundation International</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Load order: the file that loads LAST wins -->
+  <!-- Load order: style.css last -->
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/style.css" />
 </head>
-  <script>
-(function () {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const name = (document.getElementById('cf-name').value || '').trim();
-    const email = (document.getElementById('cf-email').value || '').trim();
-    const message = (document.getElementById('cf-message').value || '').trim();
-
-    const to = 'joskipro58@gmail.com';
-    const subject = `Website Contact — ${name || 'GFI Inquiry'}`;
-    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
-
-    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-
-    const helper = document.getElementById('cf-helper');
-    if (helper) helper.style.display = 'block';
-  });
-})();
-</script>
-
 <body>
 
   <!-- ONE header/nav only -->
@@ -57,7 +33,6 @@
       </div>
     </section>
 
-    <!-- Put all page content INSIDE main; no extra navs here -->
     <section class="contact-body">
       <div class="container two-col">
         <!-- Left column -->
@@ -71,29 +46,24 @@
             <a class="btn btn-outline" href="/partner.html">Partner With Us</a>
           </p>
         </div>
-<form id="contact-form">
-  <p><label>Name<br><input id="cf-name" type="text" name="name" required></label></p>
-  <p><label>Email<br><input id="cf-email" type="email" name="email" required></label></p>
-  <p><label>Message<br><textarea id="cf-message" name="message" rows="6" required></textarea></label></p>
-  <p><button class="btn btn-primary" type="submit" id="cf-send">Send</button></p>
-  <p id="cf-helper" style="font-size:.9rem; opacity:.85; display:none;">
-    Opening your email app… If nothing happens, email us directly at
-    <a href="mailto:joskipro58@gmail.com">joskipro58@gmail.com</a>.
-  </p>
-</form>
-<div class="readable">
-  <h2>Send a Message</h2>
-  <form id="contact-form">
-    <p><label>Name<br><input id="cf-name" type="text" name="name" required></label></p>
-    <p><label>Email<br><input id="cf-email" type="email" name="email" required></label></p>
-    <p><label>Message<br><textarea id="cf-message" name="message" rows="6" required></textarea></label></p>
-    <p><button class="btn btn-primary" type="submit" id="cf-send">Send</button></p>
-    <p id="cf-helper" style="font-size:.9rem; opacity:.85; display:none;">
-      Opening your email app… If nothing happens, email us directly at
-      <a href="mailto:joskipro58@gmail.com">joskipro58@gmail.com</a>.
-    </p>
-  </form>
-</div>
+
+        <!-- Right column — ONE form only -->
+        <div class="readable">
+          <h2>Send a Message</h2>
+          <form id="contact-form" novalidate>
+            <p><label>Name<br><input id="cf-name" type="text" name="name" required></label></p>
+            <p><label>Email<br><input id="cf-email" type="email" name="email" required></label></p>
+            <p><label>Message<br><textarea id="cf-message" name="message" rows="6" required></textarea></label></p>
+            <p><button class="btn btn-primary" type="submit" id="cf-send">Send</button></p>
+            <p id="cf-helper" style="font-size:.9rem; opacity:.85; display:none;">
+              Opening your email… If nothing happens, email us directly at
+              <a href="mailto:joskipro58@gmail.com">joskipro58@gmail.com</a>.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- ONE footer only -->
   <footer>
@@ -101,6 +71,49 @@
       <p>© 2025 Grace Foundation International. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Script: makes the SEND button open email (default app or Gmail) -->
+  <script>
+  (function () {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    // Toggle this to use Gmail compose instead of default mail app
+    const USE_GMAIL = false; // set to true if you prefer Gmail compose
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = (document.getElementById('cf-name').value || '').trim();
+      const email = (document.getElementById('cf-email').value || '').trim();
+      const message = (document.getElementById('cf-message').value || '').trim();
+
+      // Basic client-side checks
+      if (!name || !email || !message) {
+        alert("Please fill in your name, email, and message.");
+        return;
+      }
+
+      const to = 'joskipro58@gmail.com';
+      const subject = `Website Contact — ${name || 'GFI Inquiry'}`;
+      const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+
+      let href;
+      if (USE_GMAIL) {
+        // Opens Gmail compose in a new tab (requires the user to be logged in)
+        href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(href, '_blank', 'noopener');
+      } else {
+        // Opens the default email app
+        href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = href;
+      }
+
+      const helper = document.getElementById('cf-helper');
+      if (helper) helper.style.display = 'block';
+    });
+  })();
+  </script>
 
 </body>
 </html>
