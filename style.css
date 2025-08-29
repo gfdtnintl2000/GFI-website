@@ -1,473 +1,158 @@
+/* ===========================
+   Grace Foundation International — style.css (clean build)
+   =========================== */
 
-/* Reset some default styles */
-body, h1, h2, p, ul {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-header {
-  background-color: #005f73;
-  color: white;
-  padding: 1rem 0;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-header h1 {
-  margin-bottom: 0.5rem;
-}
-/* ===== Layout: container + sticky footer ===== */
-html, body { height: 100%; }
-body { min-height: 100vh; display: flex; flex-direction: column; }
-main { flex: 1; } /* pushes footer to the bottom when content is short */
-
-/* Global content container (side padding + max width) */
- .container{
-  max-width:1100px;
-  margin:0 auto;
-  padding:0 1.25rem;   /* adjust this number to taste */
-}
-
-}
-
-/* Optional: a bit more breathing room on large screens */
-@media (min-width: 1280px) {
-  .container { padding: 0 1.5rem; }
-}
-
-/* Default vertical spacing for sections */
-section { padding: 2rem 0; }
-
-/* Footer ribbon */
-.site-footer {
-  background: var(--ribbon);   /* same green ribbon */
-  color: var(--white);
-  padding: .9rem 0;
-}
-.site-footer p {
-  margin: 0;
-  text-align: center;
-}
-
-
-nav {
-  margin-top: 0.5rem;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  padding: 0.5rem 0;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
-
-.nav-links a:hover {
-  text-decoration: underline;
-}
-
-.hero {
-  background: url('assets/images/hero.jpg') no-repeat center center/cover;
-  color: white;
-  text-align: center;
-  padding: 4rem 1rem;
-  background-color: #0a9396; /* fallback color */
-}
-
-.hero h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.hero .btn {
-  background-color: #94d2bd;
-  color: #000;
-  padding: 0.7rem 1.5rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.hero .btn:hover {
-  background-color: #e9d8a6;
-}
-
-.section {
-  padding: 2rem;
-  max-width: 900px;
-  margin: auto;
-  text-align: center;
-}
-
-.light-bg {
-  background-color: #f1f1f1;
-}
-
-footer {
-  background-color: #005f73;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
-}
-.founder-section {
-  padding: 2rem;
-  background-color: #f9f9f9;
-  max-width: 1000px;
-  margin: auto;
-}
-
-.founder-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.founder-text {
-  flex: 1 1 60%;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.founder-photo {
-  flex: 1 1 30%;
-  text-align: center;
-}
-
-.founder-photo img {
-  width: 100%;
-  max-width: 250px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-/* ===== Header & Nav (one row) ===== */
-.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 10px 20px;
-  background: green;           /* your ribbon */
-}
-
-.site-header .brand {
-  color: white;
-  text-decoration: none;
-  font-weight: 700;
-  white-space: nowrap;          /* keep on one line */
-}
-
-.main-nav {
-  display: flex;
-  gap: 16px;
-  white-space: nowrap;          /* keep links on one line on desktop */
-}
-
-.main-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.main-nav a:hover { text-decoration: underline; }
-
-/* If two navs accidentally render back-to-back, hide the 2nd (safety net) */
-.site-header .main-nav + .main-nav { display: none; }
-
-/* Mobile: allow wrapping instead of hiding overflow */
-@media (max-width: 640px) {
-  .main-nav { white-space: normal; flex-wrap: wrap; row-gap: 8px; }
-}
+/* Theme tokens */
 :root{
-  --ribbon:#1b5e20;  /* green */
-  --white:#fff;
-  --maroon:#800000;  /* optional alt color */
+  --brand: #7a0f1e;        /* maroon ribbon & accents */
+  --ink: #1b1b1b;          /* body text */
+  --muted: #555;           /* secondary text */
+  --bg: #ffffff;           /* page background */
+  --radius: 14px;
+  --shadow: 0 6px 18px rgba(0,0,0,.06);
 }
 
-/* Header & Nav */
-.site-header{
-  position:sticky; top:0; z-index:1000;
-  background:var(--ribbon); color:var(--white);
-  box-shadow:0 2px 10px rgba(0,0,0,.15);
+/* Base */
+*{ box-sizing: border-box; }
+html, body{ margin:0; padding:0; }
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.nav-row{
-  max-width:1100px; margin:0 auto; padding:.6rem 0;
-  display:flex; flex-direction:column; align-items:center; gap:8px;
+img{ max-width:100%; height:auto; display:block; }
+
+/* Links (body) */
+a{ color: var(--brand); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+/* Layout helpers */
+.container{ max-width:1100px; margin:0 auto; padding:0 .75rem; }
+.readable{ max-width:900px; margin:0 auto; line-height:1.7; }
+.page-hero{ padding:2rem 0 1rem; }
+.page-hero h1{ margin:0; }
+
+/* ===========================
+   Header / Nav
+   =========================== */
+header{
+  background: var(--brand);
+  color:#fff;
 }
-.site-header a{ color:var(--white); text-decoration:none; font-weight:600; }
-.brand{
-  font-weight:900; font-size:1.8rem; text-transform:uppercase;
-  letter-spacing:1px; white-space:nowrap;
-}
-.main-nav{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
-.main-nav a:hover{ text-decoration:underline; }
-
-/* Safety net against accidental duplicates */
-.site-header + .site-header { display:none; }
-.site-header .main-nav + .main-nav { display:none; }
-
-/* Layout & margins */
-html, body { height:100%; }
-body { min-height:100vh; display:flex; flex-direction:column; }
-main { flex:1; }
-
-/* Global content container */
-.container{
-  max-width:1100px;
-  margin:0 auto;
-  padding:0 1rem;    /* increased from 0 .5rem */
-}
-@media (min-width:1280px){
-  .container{ padding:0 1.25rem; }
-}
-
-/* Hero */
-#home-hero{
-  background:var(--ribbon); color:var(--white);
-  padding:3rem 0 2.5rem; text-align:center;
-}
-#home-hero h1{ margin:0 0 .6rem; font-size:2.2rem; color:var(--white); }
-#home-hero p{ margin:.3rem auto 1rem; max-width:720px; color:#f7f7f7; }
-.cta-row{ display:flex; gap:.7rem; justify-content:center; flex-wrap:wrap; }
-
-/* Buttons */
-.btn{ display:inline-flex; align-items:center; gap:.5rem;
-      padding:.7rem 1rem; border-radius:.7rem; text-decoration:none; font-weight:700; }
-.btn-solid{ background:var(--white); color:var(--ribbon); }
-.btn-solid:hover{ filter:brightness(.96); }
-
-/* Founder section (optional polish) */
-/* Founder layout & spacing */
-<section id="founder" class="founder">
-  <div class="container">
-    <div class="founder-grid">
-      <div class="founder-text">
-        <h2>Founder’s Message</h2>
-        <p><strong>Dr. Joseph Kipkemoi Ronoh</strong><br>Founder &amp; Executive Director, GFI</p>
-        <p>At Grace Foundation International (GFI), we believe lasting change is built on dignity, community, and shared responsibility. Our calling is to empower families and youth through practical, community-owned initiatives that create hope today and opportunity for tomorrow. Through Green Dignity Villages, peacebuilding, scholarships, and community health outreach, we are walking alongside the South Rift communities to restore livelihoods, strengthen cohesion, and uplift the most vulnerable.</p>
-        <p>We invite partners and friends who share this vision to join us. Together we can build sustainable solutions that honor people’s dignity and transform generations.</p>
-      </div>
-
-      <figure class="founder-photo">
-        <img src="/assets/founder.jpg"
-             alt="Dr. Joseph Kipkemoi Ronoh, Founder &amp; Executive Director, Grace Foundation International">
-      </figure>
-    </div>
-  </div>
-</section>
-
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.15);
-  object-fit: cover;
+header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:.75rem 0;
 }
 
-/* Stack on small screens */
-@media (max-width: 900px){
-  .founder-grid { flex-direction: column; }
-  .founder-photo { order: -1; } /* photo above text on mobile (optional) */
-}
-/* --- Founder layout (text left, photo right) --- */
-.founder { padding: 2rem 0; }
-
-/* Tighter side padding here to reduce the “indented” look */
-.founder-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 .5rem;              /* <- reduce left/right inset here */
-}
-
-/* Two-column on desktop, stacked on mobile */
-.founder-grid {
-  display: grid;
-  gap: 1.5rem;
-}
-@media (min-width: 900px){
-  .founder-grid {
-    grid-template-columns: 1.7fr 1fr;  /* message | photo */
-    align-items: start;
-  }
-}/* ===== Founder Section ===== */
-.founder { padding: 2rem 0; }
-
-.founder-container {
-  /* slightly tighter side padding so text isn't “hugging” the edge */
-  padding: 0 .5rem;
-}
-
-.founder-grid {
-  display: grid;
-  grid-template-columns: 1.7fr 1fr; /* text wider than photo */
-  gap: 1.25rem;
-  align-items: start;
-  max-width: 1100px;           /* keeps line length readable */
-  margin: 0 auto;              /* centers the whole block */
-}
-
-.founder-text {
-  text-align: left;
-  line-height: 1.7;
-}
-
-.founder-photo {
-  text-align: center;
-}
-
-.founder-photo img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.08);
-}
-
-.founder-caption {
-  margin-top: .5rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-/* Mobile: stack with photo below the text */
-@media (max-width: 800px) {
-  .founder-grid {
-    grid-template-columns: 1fr;
-  }
-  .founder-photo {
-    order: 2;
-  }
-  .founder-text {
-    order: 1;
-  }
-}
-
-
-/* Keep the message readable and not sprawling */
-.founder-text {
-  min-width: 0;
-  max-width: 72ch;               /* tidy line length */
-}
-
-/* Photo styling */
-.founder-photo { margin: 0; }
-.founder-photo img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.15);
-  object-fit: cover;
-}
-/* ===== Founder Section (safe, minimal) ===== */
-.founder { padding: 2rem 0; }
-
-.founder-container { padding: 0 .5rem; }
-
-.founder-grid {
-  display: grid;
-  grid-template-columns: 1.7fr 1fr; /* text wider than photo */
-  gap: 1.25rem;
-  align-items: start;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.founder-text { text-align: left; line-height: 1.7; }
-
-.founder-photo img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.08);
-}
-
-.founder-caption {
-  margin-top: .5rem;
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-/* Mobile: stack; photo below text */
-@media (max-width: 800px) {
-  .founder-grid { grid-template-columns: 1fr; }
-}
-.page-hero { padding: 2rem 0 1rem; }
-.page-hero h1 { margin: 0; }
-.readable { max-width: 900px; margin: 0 auto; line-height: 1.7; }
-.main-nav a.active { font-weight: 700; text-decoration: underline; }
-/* Hide any accidental nav duplicated inside the About page body */
-.about-body nav,
-.about-body .main-nav {
-  display: none;
-}
-/* Header site title */
-header .logo {
-  color: #fff !important;     /* force white on the maroon ribbon */
-  font-weight: 800;            /* bold */
-  text-decoration: none;       /* no underline */
-  letter-spacing: .02em;
-  display: inline-block;
-}
-
-/* keep it white on hover/visited/focus */
+/* Site title */
+header .logo,
+header .logo:link,
 header .logo:visited,
 header .logo:hover,
-header .logo:focus {
-  color: #fff !important;
-  text-decoration: none;
+header .logo:active{
+  color:#fff !important;
+  font-weight:800;
+  font-size: clamp(1.25rem, 2vw + .5rem, 1.75rem);
+  line-height:1.2;
+  text-decoration:none;
+  text-transform:none; /* keep Title Case as typed */
+  letter-spacing:.02em;
+  text-shadow:0 1px 2px rgba(0,0,0,.25);
+  display:inline-block;
 }
-/* Projects layout */
-.page-hero { padding: 2rem 0 1rem; }
-.page-hero h1 { margin: 0; }
 
-/* Card grid */
-.cards {
-  display: grid;
+/* Main nav */
+.main-nav{ display:flex; flex-wrap:wrap; gap:.75rem; }
+.main-nav a{
+  color:#fff;
+  padding:.25rem .35rem;
+  border-radius:8px;
+}
+.main-nav a:hover{ background: rgba(255,255,255,.12); text-decoration:none; }
+.main-nav a.active{ font-weight:700; text-decoration: underline; }
+
+/* ===========================
+   Buttons
+   =========================== */
+.btn{ display:inline-block; padding:.65rem 1rem; border-radius:10px; text-decoration:none; }
+.btn-primary{ background:var(--brand); color:#fff; }
+.btn-outline{ border:1px solid var(--brand); color:var(--brand); background:#fff; }
+.btn + .btn{ margin-left:.5rem; }
+
+/* ===========================
+   Cards / Grids (Projects, Team, Gallery)
+   =========================== */
+.cards{
+  display:grid;
   grid-template-columns: repeat( auto-fit, minmax(280px, 1fr) );
-  gap: 1.25rem;
+  gap:1.25rem;
+}
+.card{
+  background:#fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+.card-media img{ width:100%; height:auto; }
+.card-body{ padding:1rem 1.1rem 1.2rem; }
+.card-body h2{ margin:0 0 .5rem; font-size:1.125rem; line-height:1.3; }
+
+/* Team profiles */
+.profile{ text-align:center; }
+.profile img{
+  width:120px; height:120px; object-fit:cover;
+  border-radius:999px; margin:1rem auto .5rem;
+}
+.profile .role{ font-weight:600; margin-top:.25rem; }
+
+/* ===========================
+   Founder section (Home)
+   =========================== */
+.founder{ padding:2rem 0; }
+.founder-container{ padding:0 .5rem; }
+.founder-grid{
+  display:grid;
+  grid-template-columns: 1.7fr 1fr; /* text wider than photo */
+  gap:1.25rem;
+  align-items:start;
+  max-width:1100px;
+  margin:0 auto;
+}
+.founder-text{ text-align:left; line-height:1.7; }
+.founder-photo{ text-align:center; }
+.founder-photo img{
+  width:100%; height:auto; border-radius:12px;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
+.founder-caption{ margin-top:.5rem; font-weight:600; line-height:1.35; }
+
+/* ===========================
+   Contact layout
+   =========================== */
+.two-col{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:1.25rem;
 }
 
-/* Card styling */
-.card {
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.06);
-  overflow: hidden;
-}
+/* ===========================
+   Footer
+   =========================== */
+footer{ padding:2rem 0 2.5rem; }
+footer p{ margin:0; text-align:center; }
 
-.card-media img {
-  display: block;
-  width: 100%;
-  height: auto;
+/* ===========================
+   Responsive
+   =========================== */
+@media (max-width: 900px){
+  .two-col{ grid-template-columns:1fr; }
 }
-
-.card-body {
-  padding: 1rem 1.1rem 1.2rem;
+@media (max-width: 800px){
+  .founder-grid{ grid-template-columns:1fr; }
 }
-
-.card-body h2 {
-  margin: 0 0 .5rem;
-  font-size: 1.125rem;
-  line-height: 1.3;
-}
-
