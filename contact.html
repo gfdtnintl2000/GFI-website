@@ -2,104 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>Contact — Grace Foundation International</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GFI — Page Title</title>
-
-  <!-- IMPORTANT: one canonical stylesheet; keep it at repo root as /style.css -->
+  <!-- Load order: the file that loads LAST wins -->
+  <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/style.css" />
-
-  <!-- DO NOT add a <base> tag. It breaks paths when switching domains. -->
-</head>
-<body>
-  <header class="site-header">
-    <a class="brand" href="/">Grace Foundation International</a>
-    <nav class="main-nav">
-      <a href="/">Home</a>
-      <a href="/about.html">About Us</a>
-      <a href="/projects.html">Projects</a>
-      <a href="/partner.html">Partner With Us</a>
-      <a href="/team.html">Meet Our Team</a>
-      <a href="/gallery.html">Gallery</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <!-- page content starts here -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us - Grace Foundation International</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .contact-info {
-      max-width: 600px;
-      margin: auto;
-      text-align: left;
-      background-color: #ffffff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    .contact-info h3 {
-      margin-top: 1rem;
-      color: #005f73;
-    }
-
-    .contact-info p {
-      margin-bottom: 1rem;
-    }
-  </style>
 </head>
 <body>
 
-  <!-- Header and Navigation -->
+  <!-- ONE header/nav only -->
   <header>
-    <h1>Grace Foundation International</h1>
-<!-- GFI Simple Nav -->
-<div id="gfi-nav" style="background:#0A3D62; padding:10px 12px; text-align:center;">
-  <a href="/" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">Home</a>
-  <a href="/about.html" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">About Us</a>
-  <a href="/projects.html" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">Projects</a>
-  <a href="/partner.html" style="color:#FFD24D; font-weight:800; margin:0 10px; text-decoration:none;">Partner With Us</a>
-  <a href="/team.html" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">Meet Our Team</a>
-  <a href="/gallery.html" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">Gallery</a>
-  <a href="/contact.html" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">Contact</a>
-</div>
+    <div class="container">
+      <a class="logo" href="/">Grace Foundation International</a>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="/about.html">About Us</a>
+        <a href="/projects.html">Projects</a>
+        <a href="/partner.html">Partner With Us</a>
+        <a href="/team.html">Meet Our Team</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/contact.html" class="active">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Contact Section -->
-  <section class="section">
-    <h2>Contact Us</h2>
-    <p>We’d love to hear from you! Whether you want to partner, donate, or learn more about our work, feel free to reach out using the information below:</p>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Contact</h1>
+      </div>
+    </section>
 
-    <div class="contact-info">
-      <h3>Postal Address:</h3>
-      <p>Grace Foundation International<br>
-         P.O. Box 1911-20200<br>
-         Kericho, Kenya</p>
+    <!-- Put all page content INSIDE main; no extra navs here -->
+    <section class="contact-body">
+      <div class="container two-col">
+        <!-- Left column -->
+        <div class="readable">
+          <h2>Reach Us</h2>
+          <p><strong>Address:</strong> P.O. Box 1911 – 20200, Kenya</p>
+          <p><strong>Email:</strong> <a href="mailto:joskipro58@gmail.com">joskipro58@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+254722757275">(+254) 722 757 275</a></p>
+          <p>
+            <a class="btn btn-primary" href="mailto:joskipro58@gmail.com">Email Us</a>
+            <a class="btn btn-outline" href="/partner.html">Partner With Us</a>
+          </p>
+        </div>
 
-      <h3>Phone:</h3>
-      <p>+254 722 757275</p>
+        <!-- Right column -->
+        <div class="readable">
+          <h2>Send a Message</h2>
+          <!-- Basic mailto form (no extra nav/footer inside!) -->
+          <form action="mailto:joskipro58@gmail.com" method="post" enctype="text/plain">
+            <p><label>Name<br><input type="text" name="name" required></label></p>
+            <p><label>Email<br><input type="email" name="email" required></label></p>
+            <p><label>Message<br><textarea name="message" rows="6" required></textarea></label></p>
+            <p><button class="btn btn-primary" type="submit">Send</button></p>
+          </form>
+          <p style="font-size:.9rem; opacity:.8;">(Tip: For a hosted form later, you can switch to Formspree or Netlify Forms.)</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-      <h3>Email:</h3>
-      <p><a href="mailto:gfdtnintl2000@gmail.com">gfdtnintl2000@gmail.com</a></p>
-
-      <h3>Social Media:</h3>
-      <p>Facebook: <a href="#">facebook.com/GraceFoundationKE</a><br>
-         Twitter/X: <a href="#">@GraceFdnKE</a></p>
-    </div>
-  </section>
-
-  <!-- Footer -->
+  <!-- ONE footer only -->
   <footer>
-    <p>&copy; 2025 Grace Foundation International. All rights reserved.</p>
+    <div class="container">
+      <p>© 2025 Grace Foundation International. All rights reserved.</p>
+    </div>
   </footer>
 
 </body>
 </html>
-  <!-- page content ends here -->
-  
