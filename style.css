@@ -420,4 +420,20 @@ main { flex:1; }
 .about-body .main-nav {
   display: none;
 }
+/* Header site title */
+header .logo {
+  color: #fff !important;     /* force white on the maroon ribbon */
+  font-weight: 800;            /* bold */
+  text-decoration: none;       /* no underline */
+  letter-spacing: .02em;
+  display: inline-block;
+}
+
+/* keep it white on hover/visited/focus */
+header .logo:visited,
+header .logo:hover,
+header .logo:focus {
+  color: #fff !important;
+  text-decoration: none;
+}
 
