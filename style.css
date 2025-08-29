@@ -191,3 +191,11 @@ footer a { color: #fff; text-decoration: underline; }
 
 /* Ensure containers always center content */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 .75rem; }
+/* Tidy intro line */
+.lead { margin-top: .5rem; opacity: .9; }
+
+/* Safety: hide any accidental nav inside the gallery section */
+.gallery-body nav, .gallery-body .main-nav { display: none !important; }
+
+/* Ensure all pages’ content is centered with breathing room */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 .75rem; }
