@@ -199,3 +199,78 @@ footer a { color: #fff; text-decoration: underline; }
 
 /* Ensure all pages’ content is centered with breathing room */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 .75rem; }
+/* ===== Gallery: no cropping, always show full image ===== */
+.gallery-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+/* Card look */
+.gallery-item{
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  overflow:hidden;
+}
+.gallery-item figcaption{
+  padding:.6rem .8rem .8rem;
+  font-size:.95rem;
+  line-height:1.3;
+  color:#555;
+}
+
+/* The magic: a frame that letterboxes the whole image (no cropping) */
+.frame{
+  display:flex; align-items:center; justify-content:center;
+  width:100%;
+  background:#f3f5f7;
+  border-radius:14px 14px 0 0;
+  overflow:hidden;
+}
+.frame img{
+  max-width:100%;
+  max-height:100%;
+  width:auto; height:auto;
+  object-fit: contain;        /* never crop */
+}
+
+/* Common aspect ratios for consistent tiles */
+.ratio-4x3{ aspect-ratio: 4 / 3; }
+.ratio-3x2{ aspect-ratio: 3 / 2; }
+.ratio-16x9{ aspect-ratio: 16 / 9; }
+.ratio-21x9{ aspect-ratio: 21 / 9; } /* wide hero banner */
+
+/* Optional hero photo spacing */
+.gallery-hero{ margin-bottom: 1.25rem; }
+.gallery-hero .frame{
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+
+/* ===== Lightbox (click to enlarge, still no cropping) ===== */
+.lightbox{
+  border:none; padding:0; max-width: 92vw; max-height: 90vh;
+  background: rgba(0,0,0,.875);
+  color:#fff;
+}
+.lightbox::backdrop{ background: rgba(0,0,0,.5); }
+
+.lightbox img{
+  display:block;
+  max-width: 90vw; max-height: 80vh;
+  width:auto; height:auto;
+  object-fit: contain;  /* show entire image */
+  margin: 4vh auto 0;
+  border-radius: 8px;
+}
+
+.lightbox p{
+  text-align:center; margin:.75rem auto 1rem; opacity:.9;
+  max-width: 80ch;
+}
+
+#lb-close{
+  display:block; margin:0 auto 2rem; padding:.5rem 1rem;
+  border-radius:10px; border:0; cursor:pointer;
+}
