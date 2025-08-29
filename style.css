@@ -274,3 +274,46 @@ footer a { color: #fff; text-decoration: underline; }
   display:block; margin:0 auto 2rem; padding:.5rem 1rem;
   border-radius:10px; border:0; cursor:pointer;
 }
+/* ===== GALLERY: force full photo, no cropping ===== */
+
+/* If you're using the .frame wrapper I suggested */
+.gallery-body .frame{
+  position: relative;
+  width: 100%;
+  background: #f3f5f7;
+  border-radius: 14px;
+  overflow: hidden;                /* safe; image will fit inside */
+}
+
+/* Make the image fit INSIDE the frame (no heads cut off) */
+.gallery-body .frame img{
+  position: absolute;
+  inset: 0;                        /* pin to all sides */
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;  /* show the entire image */
+  object-position: center center !important;
+}
+
+/* Grid spacing (keep) */
+.gallery-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ===== Fallbacks if some tiles DON'T use .frame ===== */
+
+/* Kill any previous "cover/crop" rules */
+.gallery-body .card-media img,
+.gallery-body figure img,
+.gallery-body img{
+  object-fit: contain !important;
+}
+
+/* Ensure non-frame images don't blow up or clip */
+.gallery-body .card-media img,
+.gallery-body figure img{
+  max-width: 100% !important;
+  height: auto !important;
+}
