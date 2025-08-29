@@ -411,4 +411,8 @@ main { flex:1; }
 @media (max-width: 800px) {
   .founder-grid { grid-template-columns: 1fr; }
 }
+.page-hero { padding: 2rem 0 1rem; }
+.page-hero h1 { margin: 0; }
+.readable { max-width: 900px; margin: 0 auto; line-height: 1.7; }
+.main-nav a.active { font-weight: 700; text-decoration: underline; }
 
