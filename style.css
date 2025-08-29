@@ -183,3 +183,11 @@ footer a { color: #fff; text-decoration: underline; }
   color: #fff !important;
   text-decoration: underline;
 }
+/* Make intro line nicely sized and centered within the container */
+.lead { margin-top: .5rem; opacity: .9; }
+
+/* Safety: hide any accidental nav inside the team section */
+.team-body nav, .team-body .main-nav { display: none !important; }
+
+/* Ensure containers always center content */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 .75rem; }
