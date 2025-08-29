@@ -415,4 +415,9 @@ main { flex:1; }
 .page-hero h1 { margin: 0; }
 .readable { max-width: 900px; margin: 0 auto; line-height: 1.7; }
 .main-nav a.active { font-weight: 700; text-decoration: underline; }
+/* Hide any accidental nav duplicated inside the About page body */
+.about-body nav,
+.about-body .main-nav {
+  display: none;
+}
 
