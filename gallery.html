@@ -2,94 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>Gallery — Grace Foundation International</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GFI — Page Title</title>
-
-  <!-- IMPORTANT: one canonical stylesheet; keep it at repo root as /style.css -->
+  <!-- Load order: style.css last -->
+  <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/style.css" />
-
-  <!-- DO NOT add a <base> tag. It breaks paths when switching domains. -->
-</head>
-<body>
-  <header class="site-header">
-    <a class="brand" href="/">Grace Foundation International</a>
-    <nav class="main-nav">
-      <a href="/">Home</a>
-      <a href="/about.html">About Us</a>
-      <a href="/projects.html">Projects</a>
-      <a href="/partner.html">Partner With Us</a>
-      <a href="/team.html">Meet Our Team</a>
-      <a href="/gallery.html">Gallery</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <!-- page content starts here -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery - Grace Foundation International</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      padding: 1rem;
-    }
-    .gallery-grid img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-  </style>
 </head>
 <body>
 
-  <!-- Header and Navigation -->
+  <!-- ONE header/nav only -->
   <header>
-    <h1>Grace Foundation International</h1>
-<!-- GFI Simple Nav -->
-<div id="gfi-nav" style="background:#0A3D62; padding:10px 12px; text-align:center;">
-  <a href="/" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">Home</a>
-  <a href="/about.html" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">About Us</a>
-  <a href="/projects.html" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">Projects</a>
-  <a href="/partner.html" style="color:#FFD24D; font-weight:800; margin:0 10px; text-decoration:none;">Partner With Us</a>
-  <a href="/team.html" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">Meet Our Team</a>
-  <a href="/gallery.html" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">Gallery</a>
-  <a href="/contact.html" style="color:#ffffff; font-weight:700; margin:0 10px; text-decoration:none;">Contact</a>
-</div>
-
+    <div class="container">
+      <a class="logo" href="/">Grace Foundation International</a>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="/about.html">About Us</a>
+        <a href="/projects.html">Projects</a>
+        <a href="/partner.html">Partner With Us</a>
+        <a href="/team.html">Meet Our Team</a>
+        <a href="/gallery.html" class="active">Gallery</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Gallery Section -->
-  <section class="section">
-    <h2>Photo Gallery</h2>
-    <p>Take a look at some of our recent activities and impact in the community:</p>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Photo Gallery</h1>
+        <p class="lead">Take a look at some of our recent activities and community impact.</p>
+      </div>
+    </section>
 
-    <div class="gallery-grid">
-      <img src="assets/images/project1.jpg" alt="Community Project 1">
-      <img src="assets/images/project2.jpg" alt="Community Project 2">
-      <img src="assets/images/project3.jpg" alt="Volunteers at Work">
-      <img src="assets/images/project4.jpg" alt="Educational Outreach">
+    <!-- ONE gallery body; no extra navs or headings inside -->
+    <section class="gallery-body">
+      <div class="container cards">
+        <!-- Replace image paths with your real photos as needed -->
+        <figure class="card card-media">
+          <img src="/assets/images/education1.jpg" alt="Community Project 1">
+        </figure>
+
+        <figure class="card card-media">
+          <img src="/assets/images/education2.jpg" alt="Community Project 2">
+        </figure>
+
+        <!-- Sample placeholders — duplicate and change src/alt as you add photos -->
+        <figure class="card card-media">
+          <img src="/assets/images/education1.jpg" alt="Volunteers at Work">
+        </figure>
+
+        <figure class="card card-media">
+          <img src="/assets/images/education2.jpg" alt="Educational Outreach">
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- ONE footer only -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Grace Foundation International. All rights reserved.</p>
     </div>
-  </section>
-
-</body>
-</html>
-<div class="gallery-grid">
-  <img src="assets/images/project1.jpg" alt="...">
-  ...
-</div>
-<footer class="site-footer">
-  <div class="container">
-    <p>© 2025 Grace Foundation International. All rights reserved.</p>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
