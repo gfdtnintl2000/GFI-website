@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <!-- Top Navigation (keep consistent across pages) -->
   <header class="site-header">
     <nav class="nav container">
       <a href="/">Home</a>
@@ -20,69 +19,143 @@
     </nav>
   </header>
 
-  <!-- GALLERY -->
   <section id="gallery" class="gal">
     <div class="container gal-container">
       <h1 class="gal-title">Gallery</h1>
-
       <p class="gal-note">
-        Tip: We’ve set the gallery to <em>show the entire photo</em> without cropping (no cut heads!).
-        Images will letterbox if needed to preserve everyone in the frame.
+        Tip: We show the entire photo without cropping (no cut heads!). Images may letterbox to keep everyone in frame.
       </p>
-<div class="gal-grid">
-  <figure class="gal-item">
-    <a href="/assets/gallery/photo1.jpg" class="lightbox-link">
-      <img src="/assets/gallery/photo1.jpg" alt="Community outreach visit" loading="lazy">
-    </a>
-  </figure>
 
-  <figure class="gal-item">
-    <a href="/assets/gallery/photo2.jpg" class="lightbox-link">
-      <img src="/assets/gallery/photo2.jpg" alt="Youth sports activity" loading="lazy">
-    </a>
-  </figure>
+      <div class="gal-grid">
+        <!--
+          IMPORTANT:
+          - data-name is the base filename (no folder, no extension).
+          - The script below will try common folders/extensions automatically.
+          - If one image has a known working URL (e.g., from Projects page),
+            paste it into data-exact to force that path for that ONE image.
+        -->
 
-  <figure class="gal-item">
-    <a href="/assets/gallery/photo3.jpg" class="lightbox-link">
-      <img src="/assets/gallery/photo3.jpg" alt="Health awareness event" loading="lazy">
-    </a>
-  </figure>
+        <figure class="gal-item" data-name="photo1">
+          <img alt="Community outreach visit">
+          <figcaption>Community outreach visit</figcaption>
+        </figure>
 
-  <figure class="gal-item">
-    <a href="/assets/gallery/photo4.jpg" class="lightbox-link">
-      <img src="/assets/gallery/photo4.jpg" alt="Tree planting day" loading="lazy">
-    </a>
-  </figure>
+        <figure class="gal-item" data-name="photo2">
+          <img alt="Youth sports activity">
+          <figcaption>Youth sports activity</figcaption>
+        </figure>
 
-  <figure class="gal-item">
-    <a href="/assets/gallery/scholarships.jpg" class="lightbox-link">
-      <img src="/assets/gallery/scholarships.jpg" alt="GFI Founder with Mogonjet sec. school students supported by GFI courtesy of Lift the Lid." loading="lazy">
-    </a>
-  </figure>
+        <figure class="gal-item" data-name="photo3">
+          <img alt="Health awareness event">
+          <figcaption>Health awareness event</figcaption>
+        </figure>
 
-  <figure class="gal-item">
-    <a href="/assets/gallery/photo6.jpg" class="lightbox-link">
-      <img src="/assets/gallery/photo6.jpg" alt="Community clean-up" loading="lazy">
-    </a>
-  </figure>
-</div>
+        <figure class="gal-item" data-name="photo4">
+          <img alt="Tree planting day">
+          <figcaption>Tree planting day</figcaption>
+        </figure>
 
+        <!-- Scholarships image: if you know its exact working URL from Projects,
+             paste it into data-exact below and it will be used directly. -->
+        <figure class="gal-item" data-name="scholarships"
+                data-exact="">
+          <img alt="GFI Founder with Mogonjet sec. school students supported by GFI courtesy of Lift the Lid.">
+          <figcaption>GFI Founder with Mogonjet sec. school students supported by GFI courtesy of Lift the Lid.</figcaption>
+        </figure>
+
+        <figure class="gal-item" data-name="photo6">
+          <img alt="Community clean-up">
+          <figcaption>Community clean-up</figcaption>
+        </figure>
+      </div>
+    </div>
   </section>
 
-  <!-- Footer (same across pages) -->
   <footer class="site-footer">
     <div class="container footer-ribbon">© 2025 Grace Foundation International</div>
   </footer>
-<script>
-  document.querySelectorAll('.gal-item img').forEach(img => {
-    img.addEventListener('error', () => {
-      console.warn('❌ Failed to load:', img.src);
-    }, { once: true });
-    img.addEventListener('load', () => {
-      console.log('✅ Loaded:', img.src);
-    }, { once: true });
-  });
-</script>
 
+  <!-- Lightbox overlay (only used if/when an image successfully loads) -->
+  <div class="lightbox-overlay" id="lightbox" hidden>
+    <img alt="">
+  </div>
+
+  <script>
+    // Try to auto-resolve real image URLs by testing common folders & extensions.
+    // This avoids 404s when you’re unsure whether it’s /assets/, /images/, etc.,
+    // and whether it's .jpg/.JPG/.jpeg/.png/.webp
+
+    const CANDIDATE_DIRS = [
+      "assets/gallery/", "assets/images/", "assets/",
+      "images/", "/assets/gallery/", "/assets/images/", "/assets/", "/images/"
+    ];
+    const CANDIDATE_EXTS = [".jpg", ".JPG", ".jpeg", ".png", ".webp"];
+
+    function resolveImageForItem(figure) {
+      const img = figure.querySelector("img");
+      const name = figure.dataset.name;                 // e.g., "photo1"
+      const exact = figure.dataset.exact?.trim();       // exact known URL (optional)
+
+      // If an exact URL is provided, try it first and only.
+      const queue = exact
+        ? [exact]
+        : CANDIDATE_DIRS.flatMap(d => CANDIDATE_EXTS.map(ext => d + name + ext));
+
+      // Try each candidate until one loads.
+      let resolved = null;
+
+      const tryNext = () => {
+        if (!queue.length) {
+          // Mark as missing
+          figure.classList.add("gal-missing");
+          img.removeAttribute("src");
+          console.warn("Image not found for:", name);
+          return;
+        }
+        const candidate = queue.shift();
+
+        const tester = new Image();
+        tester.onload = () => {
+          resolved = candidate;
+          img.src = resolved;
+          figure.classList.add("gal-loaded");
+          enableLightbox(figure, resolved);
+        };
+        tester.onerror = tryNext;
+        tester.src = candidate;
+      };
+
+      tryNext();
+    }
+
+    function enableLightbox(figure, url) {
+      // Click to open large view only when image truly exists; no broken links.
+      figure.style.cursor = "zoom-in";
+      figure.addEventListener("click", () => openLightbox(url), { once: true });
+    }
+
+    function openLightbox(url) {
+      const overlay = document.getElementById("lightbox");
+      const overlayImg = overlay.querySelector("img");
+      overlayImg.src = url;
+      overlay.hidden = false;
+
+      const close = () => {
+        overlay.hidden = true;
+        overlayImg.removeAttribute("src");
+        overlay.removeEventListener("click", close);
+        document.removeEventListener("keydown", onEsc);
+      };
+      const onEsc = (e) => { if (e.key === "Escape") close(); };
+
+      overlay.addEventListener("click", close);
+      document.addEventListener("keydown", onEsc);
+    }
+
+    // Resolve all items on load
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".gal-item").forEach(resolveImageForItem);
+    });
+  </script>
 </body>
 </html>
