@@ -632,4 +632,16 @@ section, main { position: relative; z-index: 1; }
 .contact-list { list-style: none; padding: 0; margin: 0; }
 .contact-list li { margin: 0.4rem 0; }
 }
+/* ===== STICKY FOOTER (global) ===== */
+html, body { height: 100%; }
+body {
+  min-height: 100svh;            /* cover full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1 0 auto; }          /* main grows to push footer down */
+.site-footer { margin-top: auto; } /* footer stays at the bottom */
+
+/* Optional: avoid margin-collapsing pulling the footer upward */
+#gallery-page { padding-bottom: 1rem; }
 
