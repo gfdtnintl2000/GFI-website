@@ -631,4 +631,9 @@ section, main { position: relative; z-index: 1; }
 
 .contact-list { list-style: none; padding: 0; margin: 0; }
 .contact-list li { margin: 0.4rem 0; }
+/* DEBUG: outline gallery boundaries (TEMP—remove after) */
+.gal-grid { outline: 2px dashed #9aa; }
+.gal .container > *:not(.gal-title):not(.gal-subtitle):not(.gal-grid) {
+  outline: 2px solid red; /* anything outside the grid shows in red */
+}
 
