@@ -275,47 +275,7 @@ footer a { color: #fff; text-decoration: underline; }
   display:block; margin:0 auto 2rem; padding:.5rem 1rem;
   border-radius:10px; border:0; cursor:pointer;
 }
-/* ===== GALLERY OVERHAUL (scoped with .gal to avoid conflicts) ===== */
-
-<!-- GALLERY SECTION (replace your old gallery block with this) -->
-<section id="gallery" class="gal">
-  <div class="container">
-    <h1 class="gal-title">Gallery</h1>
-    <p class="gal-subtitle">Moments from our work with communities in Kenya</p>
-
-    <div class="gal-grid">
-      <!-- EXAMPLE ITEMS: replace src paths with your real images under /assets/gallery/ -->
-      <figure class="gal-item">
-        <img src="/assets/gallery/education-outreach-01.jpg" alt="Students receiving scholarships" loading="lazy" />
-        <figcaption>Education Outreach</figcaption>
-      </figure>
-
-      <figure class="gal-item">
-        <img src="/assets/gallery/health-camp-01.jpg" alt="Mobile health camp in South Rift" loading="lazy" />
-        <figcaption>Mobile Health Camp</figcaption>
-      </figure>
-
-      <figure class="gal-item">
-        <img src="/assets/gallery/avocado-farmers-01.jpg" alt="Avocado farmer training session" loading="lazy" />
-        <figcaption>Farmer Training</figcaption>
-      </figure>
-
-      <figure class="gal-item">
-        <img src="/assets/gallery/sports-program-01.jpg" alt="Community sports program" loading="lazy" />
-        <figcaption>Sports for Peace</figcaption>
-      </figure>
-
-      <figure class="gal-item">
-        <img src="/assets/gallery/green-dignity-01.jpg" alt="Green Dignity Villages planning meeting" loading="lazy" />
-        <figcaption>Green Dignity Villages</figcaption>
-      </figure>
-
-      <!-- Duplicate <figure> blocks as needed for more photos -->
-    </div>
-  </div>
-</section>
-
-
+/
 }/* === Basic Layout Helpers (keep consistent across pages) === */
 :root {
   --gfi-green: #1e7f4f;
@@ -378,63 +338,83 @@ body {
   border-top: 3px solid #0f5a38;
 }
 
-/* === GALLERY OVERHAUL (.gal) === */
+/* ===== GALLERY (NO-CROP MASONRY) ===== */
 
 .gal {
-  padding: 2.25rem 0 3rem;
+  padding: 2.5rem 0 3.5rem;
+  background: #fafafa;
 }
 
-.gal-container {
-  padding-inline: 0.5rem; /* small left/right inset as you requested */
+.gal .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .gal-title {
-  margin: 0 0 0.75rem 0;
-  font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
-  color: var(--gfi-deep);
-  letter-spacing: 0.2px;
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  line-height: 1.2;
+  margin: 0 0 .25rem;
+  font-weight: 700;
+  color: #133a1c; /* GFI green tone */
+  text-align: center;
 }
 
-.gal-note {
-  margin: 0 0 1.25rem 0;
-  font-size: 0.95rem;
-  color: #41554a;
+.gal-subtitle {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  color: #4a4a4a;
+  font-size: 0.98rem;
 }
 
-/* Responsive grid. Each tile is uniform in height via aspect-ratio.
-   Images are shown FULLY (no cropping) using object-fit: contain. */
+/* Masonry via CSS multi-columns: preserves original aspect ratio (no cropping) */
 .gal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
+  column-gap: 1rem;
+  /* default: 1 column on very small screens */
+  columns: 1;
 }
 
+@media (min-width: 640px) {
+  .gal-grid { columns: 2; }
+}
+@media (min-width: 900px) {
+  .gal-grid { columns: 3; }
+}
+@media (min-width: 1200px) {
+  .gal-grid { columns: 4; }
+}
+
+/* Each item must avoid breaking between columns */
 .gal-item {
-  background: #0d1110;           /* neutral “letterbox” background */
-  border-radius: 16px;
-  overflow: hidden;               /* keep rounded corners clean */
-  aspect-ratio: 3 / 2;            /* uniform tile shape (adjust to 4/3 or 16/9 if you prefer) */
-  display: grid;
-  place-items: center;            /* center the image inside */
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  break-inside: avoid;
+  margin: 0 0 1rem;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 1px 6px rgba(0,0,0,.06);
+  overflow: hidden;
 }
 
+/* Images: full width, auto height => no cropping */
 .gal-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;            /* <<< KEY: show full photo (no cropping) */
   display: block;
-  background: transparent;
-  image-rendering: auto;
-  transform: translateZ(0);       /* small perf hint */
+  width: 100%;
+  height: auto;   /* key: keep aspect ratio */
+  vertical-align: middle;
 }
 
-/* Optional hover polish */
+/* Caption */
+.gal-item figcaption {
+  padding: .65rem .8rem;
+  font-size: .92rem;
+  color: #2b2b2b;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Optional: subtle hover lift */
 .gal-item:hover {
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  transform: translateY(-1px);
-  transition: box-shadow 160ms ease, transform 160ms ease;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
 /* Small screens: give a bit more breathing room */
