@@ -1,3 +1,14 @@
+<script>
+  (function () {
+    if (location.hostname.endsWith('github.io')) {
+      var newUrl = 'https://gfintl.org' +
+        location.pathname.replace(/\/GFI-website/, '') +
+        location.search + location.hash;
+      location.replace(newUrl);
+    }
+  })();
+</script>
+
 <!doctype html>
 <html lang="en">
 <head>
