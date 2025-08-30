@@ -32,55 +32,42 @@
       <a href="/contact.html">Contact</a>
     </nav>
   </header>
+<section id="gallery" class="gal">
+  <div class="container">
+    <h1 class="gal-title">Gallery</h1>
+    <p class="gal-subtitle">Moments from our work with communities in Kenya</p>
 
-  <section id="gallery" class="gal">
-    <div class="container gal-container">
-      <h1 class="gal-title">Gallery</h1>
-      <p class="gal-note">
-        Tip: We show the entire photo without cropping (no cut heads!). Images may letterbox to keep everyone in frame.
-      </p>
+    <div class="gal-grid">
+      <!-- EXAMPLE ITEMS: replace src paths with your real images under /assets/gallery/ -->
+      <figure class="gal-item">
+        <img src="/assets/gallery/education-outreach-01.jpg" alt="Students receiving scholarships" loading="lazy" />
+        <figcaption>Education Outreach</figcaption>
+      </figure>
 
-      <div class="gal-grid">
-        <!--
-          IMPORTANT:
-          - data-name is the base filename (no folder, no extension).
-          - The script below will try common folders/extensions automatically.
-          - If one image has a known working URL (e.g., from Projects page),
-            paste it into data-exact to force that path for that ONE image.
-        -->
+      <figure class="gal-item">
+        <img src="/assets/gallery/health-camp-01.jpg" alt="Mobile health camp in South Rift" loading="lazy" />
+        <figcaption>Mobile Health Camp</figcaption>
+      </figure>
 
-        <figure class="gal-item" data-name="photo1">
-          <img alt="Community outreach visit">
-          <figcaption>Community outreach visit</figcaption>
-        </figure>
+      <figure class="gal-item">
+        <img src="/assets/gallery/avocado-farmers-01.jpg" alt="Avocado farmer training session" loading="lazy" />
+        <figcaption>Farmer Training</figcaption>
+      </figure>
 
-        <figure class="gal-item" data-name="photo2">
-          <img alt="Youth sports activity">
-          <figcaption>Youth sports activity</figcaption>
-        </figure>
+      <figure class="gal-item">
+        <img src="/assets/gallery/sports-program-01.jpg" alt="Community sports program" loading="lazy" />
+        <figcaption>Sports for Peace</figcaption>
+      </figure>
 
-        <figure class="gal-item" data-name="photo3">
-          <img alt="Health awareness event">
-          <figcaption>Health awareness event</figcaption>
-        </figure>
+      <figure class="gal-item">
+        <img src="/assets/gallery/green-dignity-01.jpg" alt="Green Dignity Villages planning meeting" loading="lazy" />
+        <figcaption>Green Dignity Villages</figcaption>
+      </figure>
+      </div>
+  </div>
+</section>
 
-        <figure class="gal-item" data-name="photo4">
-          <img alt="Tree planting day">
-          <figcaption>Tree planting day</figcaption>
-        </figure>
-
-        <!-- Scholarships image: if you know its exact working URL from Projects,
-             paste it into data-exact below and it will be used directly. -->
-        <figure class="gal-item" data-name="scholarships"
-                data-exact="">
-          <img alt="GFI Founder with Mogonjet sec. school students supported by GFI courtesy of Lift the Lid.">
-          <figcaption>GFI Founder with Mogonjet sec. school students supported by GFI courtesy of Lift the Lid.</figcaption>
-        </figure>
-
-        <figure class="gal-item" data-name="photo6">
-          <img alt="Community clean-up">
-          <figcaption>Community clean-up</figcaption>
-        </figure>
+  
       </div>
     </div>
   </section>
