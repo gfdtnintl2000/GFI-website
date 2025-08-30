@@ -12,7 +12,6 @@
   --shadow: 0 6px 18px rgba(0,0,0,.06);
 }
 
-/* Base */
 *{ box-sizing: border-box; }
 html, body{ margin:0; padding:0; }
 body{
@@ -278,59 +277,44 @@ footer a { color: #fff; text-decoration: underline; }
 }
 /* ===== GALLERY OVERHAUL (scoped with .gal to avoid conflicts) ===== */
 
-/* Center the gallery area */
-.gal .container { max-width: 1100px; margin: 0 auto; padding: 0 .75rem; }
+<!-- GALLERY SECTION (replace your old gallery block with this) -->
+<section id="gallery" class="gal">
+  <div class="container">
+    <h1 class="gal-title">Gallery</h1>
+    <p class="gal-subtitle">Moments from our work with communities in Kenya</p>
 
-/* Responsive grid */
-.gal-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.25rem;
-}
+    <div class="gal-grid">
+      <!-- EXAMPLE ITEMS: replace src paths with your real images under /assets/gallery/ -->
+      <figure class="gal-item">
+        <img src="/assets/gallery/education-outreach-01.jpg" alt="Students receiving scholarships" loading="lazy" />
+        <figcaption>Education Outreach</figcaption>
+      </figure>
 
-/* Card */
-.gal-item{
-  background:#fff;
-  border-radius:14px;
-  box-shadow:0 6px 18px rgba(0,0,0,.06);
-  overflow:hidden;
-}
+      <figure class="gal-item">
+        <img src="/assets/gallery/health-camp-01.jpg" alt="Mobile health camp in South Rift" loading="lazy" />
+        <figcaption>Mobile Health Camp</figcaption>
+      </figure>
 
-/* Caption */
-.gal-cap{
-  padding:.6rem .8rem .8rem;
-  font-size:.95rem;
-  line-height:1.3;
-  color:#555;
-}
+      <figure class="gal-item">
+        <img src="/assets/gallery/avocado-farmers-01.jpg" alt="Avocado farmer training session" loading="lazy" />
+        <figcaption>Farmer Training</figcaption>
+      </figure>
 
-/* The “no-crop” frame: always show the entire image */
-.gal-frame{
-  position: relative;
-  width: 100%;
-  background:#f3f5f7;
-  overflow: hidden;           /* safe: image will fit inside */
-}
+      <figure class="gal-item">
+        <img src="/assets/gallery/sports-program-01.jpg" alt="Community sports program" loading="lazy" />
+        <figcaption>Sports for Peace</figcaption>
+      </figure>
 
-/* Aspect ratios for neat, uniform tiles (optional) */
-.gal-ratio-4x3 { aspect-ratio: 4 / 3; }
-.gal-ratio-3x2 { aspect-ratio: 3 / 2; }
-.gal-ratio-16x9{ aspect-ratio:16 / 9; }
+      <figure class="gal-item">
+        <img src="/assets/gallery/green-dignity-01.jpg" alt="Green Dignity Villages planning meeting" loading="lazy" />
+        <figcaption>Green Dignity Villages</figcaption>
+      </figure>
 
-/* Never crop heads: the key rules */
-.gal-frame img{
-  position: absolute;
-  inset: 0;
-  margin: auto;               /* keep centered */
-  max-width: 100% !important;
-  max-height: 100% !important;
-  width: auto !important;
-  height: auto !important;
-  object-fit: contain !important;  /* show entire photo */
-  object-position: center center !important;
-}
-/* Extra hard override if any old rules linger */
-.gal img{ object-fit: contain !important; }
+      <!-- Duplicate <figure> blocks as needed for more photos -->
+    </div>
+  </div>
+</section>
+
 
 }/* === Basic Layout Helpers (keep consistent across pages) === */
 :root {
