@@ -366,24 +366,20 @@ body {
   color: #4a4a4a;
   font-size: 0.98rem;
 }
-
-/* Masonry via CSS multi-columns: preserves original aspect ratio (no cropping) */
 .gal-grid {
-  column-gap: 1rem;
-  /* default: 1 column on very small screens */
-  columns: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
-
 @media (min-width: 640px) {
-  .gal-grid { columns: 2; }
+  .gal-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 900px) {
-  .gal-grid { columns: 3; }
+  .gal-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (min-width: 1200px) {
-  .gal-grid { columns: 4; }
+  .gal-grid { grid-template-columns: repeat(4, 1fr); }
 }
-
 /* Each item must avoid breaking between columns */
 .gal-item {
   break-inside: avoid;
