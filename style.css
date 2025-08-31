@@ -644,4 +644,133 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
 
 /* Optional: avoid margin-collapsing pulling the footer upward */
 #gallery-page { padding-bottom: 1rem; }
+/* --- Gallery Layout --- */
+.section { padding: 2rem 0; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+.section-title { font-size: 2rem; margin-bottom: .5rem; }
+.section-lead { color: #555; margin-bottom: 1.25rem; }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 1024px) {
+  .gallery-grid { grid-template-columns: repeat(8, 1fr); }
+}
+@media (max-width: 640px) {
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.album-card {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+  text-align: left;
+}
+.album-card:hover,
+.album-card:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  outline: none;
+}
+
+.album-thumb {
+  position: relative;
+  aspect-ratio: 4 / 3;          /* consistent tiles */
+  background: #000;             /* letterbox background */
+}
+.album-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;          /* <— shows the WHOLE photo (no cropping) */
+  display: block;
+}
+
+.album-meta {
+  padding: .75rem .9rem 1rem;
+}
+.album-meta h3 {
+  margin: 0 0 .3rem;
+  font-size: 1.05rem;
+}
+.album-meta .count {
+  font-size: .9rem;
+  color: #777;
+}
+
+/* --- Lightbox --- */
+.lightbox[aria-hidden="true"] { display: none; }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.9);
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  grid-template-rows: 60px 1fr 60px;
+  z-index: 9999;
+}
+
+.lb-close {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  align-self: center;
+  justify-self: center;
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lb-nav {
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  align-self: center;
+  justify-self: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+}
+.lb-prev { grid-column: 1 / 2; grid-row: 2 / 3; }
+.lb-next { grid-column: 3 / 4; grid-row: 2 / 3; }
+
+.lb-stage {
+  grid-column: 1 / 4;
+  grid-row: 2 / 3;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  gap: .75rem;
+}
+#lb-image {
+  max-width: 96vw;
+  max-height: 72vh;
+  object-fit: contain;          /* <— again: never crop */
+  border-radius: 10px;
+  background: #000;
+}
+.lb-caption {
+  color: #ddd;
+  font-size: .95rem;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .lightbox {
+    grid-template-columns: 48px 1fr 48px;
+    grid-template-rows: 48px 1fr 48px;
+  }
+  #lb-image { max-height: 65vh; }
+}
 
