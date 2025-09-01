@@ -933,5 +933,11 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   display: block;
   border-radius: 0.5rem;
 }
+.gallery-modal { position: fixed; inset: 0; display: none; z-index: 1000; }
+.gallery-modal.open { display: block; }
+.gallery-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+.gallery-dialog { position: absolute; top:5%; left:5%; right:5%; background:#fff; border-radius:1rem; padding:1rem; max-height:90vh; overflow:hidden; }
+.gallery-rail { overflow:auto; display:grid; gap:1rem; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); padding:0 .5rem 1rem; max-height:calc(90vh - 3rem); }
+.gallery-item img { width:100%; height:auto; object-fit:contain; display:block; border-radius:.5rem; }
 
 
