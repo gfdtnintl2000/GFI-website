@@ -1061,4 +1061,7 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   border-color: rgba(255,255,255,0.25);
 }
 .gal .album-card.on-maroon .album-thumb { background: rgba(255,255,255,0.12); }
+/* Enforce stacked layout for album cards */
+.gal .album-card { display: flex !important; flex-direction: column !important; }
+.gal .album-thumb, .gal .album-meta { width: 100%; }
 
