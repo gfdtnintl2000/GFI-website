@@ -48,27 +48,29 @@
   function next() { i = (i + 1) % images.length; render(); }
   function prev() { i = (i - 1 + images.length) % images.length; render(); }
 
-  // NEW: tolerant parser for data-images (supports '|' or ',' and filters junk)
-  function parseImages(attr) {
-    if (!attr) return [];
-    return attr
-      .split(/[|,]/)               // allow | or , separators
-      .map(s => s.trim())
-      .filter(Boolean)
-      .filter(s => /\.(jpe?g|png|webp|gif|svg)$/i.test(s)); // keep only image-like URLs
-  }
+// NEW: tolerant parser for data-images (supports '|' or ',' and filters junk)
+function parseImages(attr) {
+  if (!attr) return [];
+  return attr
+    .split(/[|,]/)               // allow | or , separators
+    .map(s => s.trim())
+    .filter(Boolean)
+    .filter(s => /\.(jpe?g|png|webp|gif|svg)$/i.test(s)); // keep only image-like URLs
+}
 
-  qsa('.album-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const title = card.getAttribute('data-title');
-      const imgs = parseImages(card.getAttribute('data-images'));
-      if (imgs.length) {
-        openViewer(title, imgs);
-      } else {
-        alert('No valid images found for this album. Please check data-images paths.');
-      }
-    });
+// Use parseImages() in the album click handler:
+qsa('.album-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const title = card.getAttribute('data-title');
+    const imgs = parseImages(card.getAttribute('data-images'));
+    if (imgs.length) {
+      openViewer(title, imgs);
+    } else {
+      alert('No valid images found for this album. Please check data-images paths.');
+    }
   });
+});
+
 
   viewer.addEventListener('click', (e) => {
     if (e.target.matches('[data-close], .viewer-backdrop')) closeViewer();
