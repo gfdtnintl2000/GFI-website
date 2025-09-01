@@ -1064,4 +1064,43 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
 /* Enforce stacked layout for album cards */
 .gal .album-card { display: flex !important; flex-direction: column !important; }
 .gal .album-thumb, .gal .album-meta { width: 100%; }
+/* ===== Projects: Education Outreach hero ===== */
+.project-hero {
+  position: relative;
+  margin: 1rem 0 0.5rem;
+}
+.project-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Overlay title on top of the image */
+.project-hero .hero-title {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(123, 17, 33, 0.92); /* maroon band with slight transparency */
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.2;
+  border-radius: 8px;
+}
+
+/* Caption below the image: italic and smaller */
+.hero-caption {
+  margin: 0.5rem 0 1.25rem;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #374151; /* slate-700 */
+}
+
+/* Small screens tweak */
+@media (max-width: 480px) {
+  .project-hero .hero-title { font-size: 1rem; }
+}
 
