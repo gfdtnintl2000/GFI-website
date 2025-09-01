@@ -1153,4 +1153,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   font-size: .95rem;
   color: #374151;
 }
+.project-media img { display:block; width:100%; height:auto; border-radius:12px; }
+.project-caption { margin:.5rem 0 1.25rem; font-style:italic; font-size:.95rem; color:#374151; }
 
