@@ -49,6 +49,17 @@
     </figcaption>
   </figure>
 </section>
+<script>
+  (function() {
+    const fig = document.querySelector('#education-outreach .project-media');
+    if (!fig) return;
+    const img = fig.querySelector('img');
+    const cap = fig.querySelector('.project-caption');
+    if (!img || !cap) return;
+    cap.style.display = 'none';
+    img.addEventListener('load', () => { cap.style.display = ''; }, { once: true });
+  })();
+</script>
 
         <article class="card">
           <div class="card-body">
