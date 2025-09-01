@@ -7,43 +7,85 @@
 <link rel="stylesheet" href="/style.css">
 
 </head>
-  <script>
-(function () {
-  const modal = document.querySelector('.gallery-modal');
-  const titleEl = modal.querySelector('.gallery-title');
-  const rail = modal.querySelector('.gallery-rail');
+<script>
+(function() {
+  const qs = (s, el=document) => el.querySelector(s);
+  const qsa = (s, el=document) => Array.from(el.querySelectorAll(s));
+  const viewer = qs('.gal-viewer');
+  const imgEl = qs('.viewer-image', viewer);
+  const titleEl = qs('.viewer-title', viewer);
+  const indexEl = qs('.viewer-index', viewer);
+  const prevBtn = qs('.viewer-prev', viewer);
+  const nextBtn = qs('.viewer-next', viewer);
 
-  function openAlbum(btn) {
-    const title = btn.getAttribute('data-title') || 'Album';
-    const images = (btn.getAttribute('data-images') || '')
-      .split(',')
-      .map(s => s.trim())
-      .filter(Boolean);
+  let images = [];
+  let i = 0;
 
-    rail.innerHTML = images.map(src => `
-      <figure class="gallery-item">
-        <img src="${src}" alt="${title}">
-      </figure>
-    `).join('');
-
-    titleEl.textContent = title;
-    modal.classList.add('open');
+  function openViewer(title, list) {
+    images = list;
+    i = 0;
+    titleEl.textContent = title || 'Album';
+    render();
+    viewer.classList.add('open');
+    viewer.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
 
-  document.addEventListener('click', (e) => {
-    const card = e.target.closest('.album-card');
-    if (card) {
-      e.preventDefault();
-      openAlbum(card);
-    }
-    if (e.target.matches('[data-close]')) {
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
-    }
+  function closeViewer() {
+    viewer.classList.remove('open');
+    viewer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function render() {
+    if (!images.length) return;
+    imgEl.src = images[i];
+    imgEl.alt = titleEl.textContent + ' photo ' + (i+1);
+    indexEl.textContent = (i+1) + ' / ' + images.length;
+    imgEl.style.objectFit = 'contain';
+  }
+
+  function next() { i = (i + 1) % images.length; render(); }
+  function prev() { i = (i - 1 + images.length) % images.length; render(); }
+
+  // NEW: tolerant parser for data-images (supports '|' or ',' and filters junk)
+  function parseImages(attr) {
+    if (!attr) return [];
+    return attr
+      .split(/[|,]/)               // allow | or , separators
+      .map(s => s.trim())
+      .filter(Boolean)
+      .filter(s => /\.(jpe?g|png|webp|gif|svg)$/i.test(s)); // keep only image-like URLs
+  }
+
+  qsa('.album-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const title = card.getAttribute('data-title');
+      const imgs = parseImages(card.getAttribute('data-images'));
+      if (imgs.length) {
+        openViewer(title, imgs);
+      } else {
+        alert('No valid images found for this album. Please check data-images paths.');
+      }
+    });
   });
+
+  viewer.addEventListener('click', (e) => {
+    if (e.target.matches('[data-close], .viewer-backdrop')) closeViewer();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!viewer.classList.contains('open')) return;
+    if (e.key === 'Escape') closeViewer();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
 })();
 </script>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   // 1) Ensure a modal exists (create if missing)
