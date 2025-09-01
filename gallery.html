@@ -28,79 +28,56 @@
   </div>
 </section>
 
-<!-- GALLERY GRID -->
-<section class="section">
-  <div class="container">
-    <div class="gallery-grid">
-<button
-  class="album-card"
-  data-album="agriculture"
-  data-title="Agriculture & Livelihoods"
-  data-images="/assets/gallery/agri1.jpg,/assets/gallery/agri2.jpg,/assets/gallery/agri3.jpg"
->
-  <div class="album-thumb">
-    <img src="/assets/gallery/agri1.jpg" alt="Agriculture & Livelihoods" loading="lazy">
-  </div>
-  <div class="album-meta">
-    <h3>Agriculture & Livelihoods</h3>
-    <span class="count">3 photos</span>
-  </div>
-</button>
+<!-- GALLERY SECTION -->
+<section class="gallery container">
+  <h2 class="section-title">Our Gallery</h2>
+  <div class="album-grid">
 
-     <!-- Album: Education Outreach -->
-<button
-  <!-- Album: Education Outreach -->
-<button
- <!-- Album: Education Outreach -->
-<button
-  class="album-card"
-  aria-label="Open Education Outreach album"
-  data-album="education-outreach"
-  data-title="Education Outreach"
-  data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg"
->
-  <div class="album-thumb">
-    <img src="/assets/gallery/education1.jpg" alt="Education Outreach" loading="lazy">
-  </div>
-  <div class="album-meta">
-    <h3>Education Outreach</h3>
-    <span class="count">2 photos</span>
-  </div>
-</button>
+    <!-- Album: Education Outreach -->
+    <button
+      class="album-card"
+      aria-label="Open Education Outreach album"
+      data-album="education-outreach"
+      data-title="Education Outreach"
+      data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg"
+    >
+      <div class="album-thumb">
+        <img src="/assets/gallery/education1.jpg" alt="Education Outreach" loading="lazy">
+      </div>
+      <div class="album-meta">
+        <h3>Education Outreach</h3>
+        <span class="count">2 photos</span>
+      </div>
+    </button>
 
-</button>
+    <!-- Example placeholder for another album -->
+    <button
+      class="album-card"
+      aria-label="Open Health Initiatives album"
+      data-album="health"
+      data-title="Health Initiatives"
+      data-images="/assets/gallery/health1.jpg,/assets/gallery/health2.jpg"
+    >
+      <div class="album-thumb">
+        <img src="/assets/gallery/health1.jpg" alt="Health Initiatives" loading="lazy">
+      </div>
+      <div class="album-meta">
+        <h3>Health Initiatives</h3>
+        <span class="count">2 photos</span>
+      </div>
+    </button>
 
-      <!-- Album: Health Screening (example) -->
-      <button
-        class="album-card"
-        aria-label="Open Health Screening album"
-        data-album="health-screening"
-        data-title="Health Screening"
-        data-images="/assets/gallery/health1.jpg,/assets/gallery/health2.jpg"
-      >
-        <div class="album-thumb">
-          <img src="/assets/gallery/health1.jpg" alt="Health Screening" loading="lazy">
-        </div>
-        <div class="album-meta">
-          <h3>Health Screening</h3>
-          <span class="count">2 photos</span>
-        </div>
-      </button>
-
-      <!-- Add more albums by duplicating an album-card and updating data-images -->
-    </div>
   </div>
 </section>
 
-<!-- LIGHTBOX (modal) -->
-<div id="lightbox" class="lightbox" aria-hidden="true">
-  <button class="lb-close" aria-label="Close">&times;</button>
-  <button class="lb-nav lb-prev" aria-label="Previous">&#10094;</button>
-  <div class="lb-stage">
-    <img id="lb-image" alt="">
-    <div id="lb-caption" class="lb-caption"></div>
+<!-- Modal Lightbox (hidden until clicked) -->
+<div class="gallery-modal">
+  <div class="gallery-backdrop" data-close></div>
+  <div class="gallery-dialog">
+    <button class="close-btn" aria-label="Close" data-close>&times;</button>
+    <h3 class="gallery-title"></h3>
+    <div class="gallery-rail"></div>
   </div>
-  <button class="lb-nav lb-next" aria-label="Next">&#10095;</button>
 </div>
 
 <!-- GALLERY SCRIPT -->
