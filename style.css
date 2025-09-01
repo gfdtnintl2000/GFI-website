@@ -1129,4 +1129,28 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   font-size: .95rem;
   color: #374151; /* readable slate */
 }
+/* Projects page: clean hero styles */
+.project-block.container { margin: 1.25rem auto 2rem; }
+
+.project-title {
+  margin: 0 0 .5rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+  line-height: 1.2;
+}
+
+.project-media { margin: 0; }
+
+.project-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.project-caption {
+  margin: .5rem 0 1.25rem;
+  font-style: italic;
+  font-size: .95rem;
+  color: #374151;
+}
 
