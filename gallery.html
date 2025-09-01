@@ -1,523 +1,248 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gallery • Grace Foundation International</title>
-<link rel="stylesheet" href="/style.css">
 
+  <!-- Make sure this path is correct. With gfintl.org, use a ROOT-RELATIVE path: -->
+  <link rel="stylesheet" href="/style.css">
 </head>
-<script>
-(function() {
-  const qs = (s, el=document) => el.querySelector(s);
-  const qsa = (s, el=document) => Array.from(el.querySelectorAll(s));
-  const viewer = qs('.gal-viewer');
-  const imgEl = qs('.viewer-image', viewer);
-  const titleEl = qs('.viewer-title', viewer);
-  const indexEl = qs('.viewer-index', viewer);
-  const prevBtn = qs('.viewer-prev', viewer);
-  const nextBtn = qs('.viewer-next', viewer);
-
-  let images = [];
-  let i = 0;
-
-  function openViewer(title, list) {
-    images = list;
-    i = 0;
-    titleEl.textContent = title || 'Album';
-    render();
-    viewer.classList.add('open');
-    viewer.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeViewer() {
-    viewer.classList.remove('open');
-    viewer.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  function render() {
-    if (!images.length) return;
-    imgEl.src = images[i];
-    imgEl.alt = titleEl.textContent + ' photo ' + (i+1);
-    indexEl.textContent = (i+1) + ' / ' + images.length;
-    imgEl.style.objectFit = 'contain';
-  }
-
-  function next() { i = (i + 1) % images.length; render(); }
-  function prev() { i = (i - 1 + images.length) % images.length; render(); }
-
-// NEW: tolerant parser for data-images (supports '|' or ',' and filters junk)
-function parseImages(attr) {
-  if (!attr) return [];
-  return attr
-    .split(/[|,]/)               // allow | or , separators
-    .map(s => s.trim())
-    .filter(Boolean)
-    .filter(s => /\.(jpe?g|png|webp|gif|svg)$/i.test(s)); // keep only image-like URLs
-}
-
-// Use parseImages() in the album click handler:
-qsa('.album-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const title = card.getAttribute('data-title');
-    const imgs = parseImages(card.getAttribute('data-images'));
-    if (imgs.length) {
-      openViewer(title, imgs);
-    } else {
-      alert('No valid images found for this album. Please check data-images paths.');
-    }
-  });
-});
-
-
-  viewer.addEventListener('click', (e) => {
-    if (e.target.matches('[data-close], .viewer-backdrop')) closeViewer();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (!viewer.classList.contains('open')) return;
-    if (e.key === 'Escape') closeViewer();
-    if (e.key === 'ArrowRight') next();
-    if (e.key === 'ArrowLeft') prev();
-  });
-
-  nextBtn.addEventListener('click', next);
-  prevBtn.addEventListener('click', prev);
-})();
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // 1) Ensure a modal exists (create if missing)
-  let modal = document.querySelector('.gallery-modal');
-  if (!modal) {
-    modal = document.createElement('div');
-    modal.className = 'gallery-modal';
-    modal.innerHTML = `
-      <div class="gallery-backdrop" data-close></div>
-      <div class="gallery-dialog">
-        <button class="close-btn" aria-label="Close" data-close>&times;</button>
-        <h3 class="gallery-title"></h3>
-        <div class="gallery-rail"></div>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  }
-
-  const titleEl = modal.querySelector('.gallery-title');
-  const rail = modal.querySelector('.gallery-rail');
-
-  // 2) Open album helper
-  function openAlbum(btn) {
-    const title = btn.getAttribute('data-title') || 'Album';
-    const list = (btn.getAttribute('data-images') || '')
-      .split(',')
-      .map(s => s.trim())
-      .filter(Boolean);
-
-    // Guard: no images listed
-    if (!list.length) {
-      rail.innerHTML = `<p style="padding:1rem">No images defined for this album.</p>`;
-      titleEl.textContent = title;
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      return;
-    }
-
-    // Preload + render
-    rail.innerHTML = '';
-    titleEl.textContent = title;
-
-    list.forEach(src => {
-      const fig = document.createElement('figure');
-      fig.className = 'gallery-item';
-      const img = new Image();
-      img.alt = title;
-      img.onload = () => { /* loaded successfully */ };
-      img.onerror = () => {
-        // Show a friendly message if a path is wrong
-        const note = document.createElement('figcaption');
-        note.textContent = `Could not load ${src}`;
-        note.style.color = '#b00';
-        fig.appendChild(note);
-      };
-      img.src = src;
-      fig.appendChild(img);
-      rail.appendChild(fig);
-    });
-
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  // 3) Event delegation for all album cards
-  document.addEventListener('click', (e) => {
-    const card = e.target.closest('.album-card');
-    if (card) {
-      e.preventDefault();
-      openAlbum(card);
-    }
-    if (e.target.matches('[data-close]')) {
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  });
-
-  // 4) Close on Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) {
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  });
-
-  // 5) Tiny self-test: mark cards without images (helps debugging)
-  document.querySelectorAll('.album-card').forEach(card => {
-    const imgs = (card.getAttribute('data-images') || '').split(',').map(s => s.trim()).filter(Boolean);
-    if (!imgs.length) card.title = 'No images set for this album';
-  });
-});
-</script>
-
 <body>
-<!-- ===== GALLERY SECTION (Drop-in) ===== -->
-<section id="gallery" class="gal container">
-  <header class="gal-header">
-    <h1>Gallery</h1>
-    <p>Browse our albums. Click an album to view all photos.</p>
+
+  <!-- ===== SITE HEADER / NAV ===== -->
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="/">Home</a>
+      <a href="/about.html">About Us</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/partner.html">Partner With Us</a>
+      <a href="/team.html">Meet Our Team</a>
+      <a href="/gallery.html" aria-current="page">Gallery</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
   </header>
 
-  <!-- Album grid -->
-  <div class="gal-grid" role="list">
-    <!-- Album: Education Outreach -->
-    <!-- Album: Education Outreach -->
-<button
-  class="album-card"
-  aria-label="Open Education Outreach album"
-  data-album="education-outreach"
-  data-title="Education Outreach"
-  data-images="/assets/gallery/education1.jpg|/assets/gallery/education2.jpg"
-  role="listitem"
->
-  <div class="album-thumb">
-    <img src="/assets/gallery/education1.jpg" alt="Education Outreach cover" loading="lazy">
-  </div>
-  <div class="album-meta">
-    <h3>Education Outreach</h3>
-    <span class="count">2 photos</span>
-  </div>
-</button>
-
-
-    <!-- Starter Album: Green Dignity Villages -->
-    <button
-      class="album-card"
-      aria-label="Open Green Dignity Villages album"
-      data-album="green-dignity-villages"
-      data-title="Green Dignity Villages"
-      data-images="/assets/gallery/gdv1.jpg|/assets/gallery/gdv2.jpg"
-      role="listitem"
-    >
-      <div class="album-thumb">
-        <img src="/assets/gallery/gdv1.jpg" alt="Green Dignity Villages cover" loading="lazy">
-      </div>
-      <div class="album-meta">
-        <h3>Green Dignity Villages</h3>
-        <span class="count">2+ photos</span>
-      </div>
-    </button>
-
-    <!-- Starter Album: Champions for Peaceful Community -->
-    <button
-      class="album-card"
-      aria-label="Open Champions for Peaceful Community album"
-      data-album="champions-for-peace"
-      data-title="Champions for Peaceful Community"
-      data-images="/assets/gallery/cpc1.jpg|/assets/gallery/cpc2.jpg"
-      role="listitem"
-    >
-      <div class="album-thumb">
-        <img src="/assets/gallery/cpc1.jpg" alt="Champions for Peaceful Community cover" loading="lazy">
-      </div>
-      <div class="album-meta">
-        <h3>Champions for Peaceful Community</h3>
-        <span class="count">2+ photos</span>
-      </div>
-    </button>
-
-    <!-- Starter Album: Agriculture & Livelihoods -->
-    <button
-      class="album-card"
-      aria-label="Open Agriculture & Livelihoods album"
-      data-album="agriculture"
-      data-title="Agriculture & Livelihoods"
-      data-images="/assets/gallery/agri1.jpg|/assets/gallery/agri2.jpg"
-      role="listitem"
-    >
-      <div class="album-thumb">
-        <img src="/assets/gallery/agri1.jpg" alt="Agriculture & Livelihoods cover" loading="lazy">
-      </div>
-      <div class="album-meta">
-        <h3>Agriculture & Livelihoods</h3>
-        <span class="count">2+ photos</span>
-      </div>
-    </button>
-
-    <!-- Starter Album: Health Outreach -->
-    <button
-      class="album-card"
-      aria-label="Open Health Outreach album"
-      data-album="health"
-      data-title="Health Outreach"
-      data-images="/assets/gallery/health1.jpg|/assets/gallery/health2.jpg"
-      role="listitem"
-    >
-      <div class="album-thumb">
-        <img src="/assets/gallery/health1.jpg" alt="Health Outreach cover" loading="lazy">
-      </div>
-      <div class="album-meta">
-        <h3>Health Outreach</h3>
-        <span class="count">2+ photos</span>
-      </div>
-    </button>
-
-    <!-- Starter Album: Sports & Youth -->
-    <button
-      class="album-card"
-      aria-label="Open Sports & Youth album"
-      data-album="sports"
-      data-title="Sports & Youth"
-      data-images="/assets/gallery/sports1.jpg|/assets/gallery/sports2.jpg"
-      role="listitem"
-    >
-      <div class="album-thumb">
-        <img src="/assets/gallery/sports1.jpg" alt="Sports & Youth cover" loading="lazy">
-      </div>
-      <div class="album-meta">
-        <h3>Sports & Youth</h3>
-        <span class="count">2+ photos</span>
-      </div>
-    </button>
-  </div>
-
-  <!-- Lightbox / Viewer -->
-  <div class="gal-viewer" aria-hidden="true" aria-label="Image viewer" role="dialog">
-    <div class="viewer-backdrop" data-close></div>
-    <div class="viewer-content" role="document">
-      <header class="viewer-header">
-        <h2 class="viewer-title">Album</h2>
-        <button class="viewer-close" aria-label="Close viewer" title="Close" data-close>&times;</button>
+  <!-- ===== MAIN ===== -->
+  <main>
+    <!-- ===== GALLERY SECTION ===== -->
+    <section id="gallery" class="gal container">
+      <header class="gal-header">
+        <h1>Gallery</h1>
+        <p>Browse our albums. Click an album to view all photos.</p>
       </header>
-      <div class="viewer-stage">
-        <img class="viewer-image" src="" alt="" />
+
+      <!-- Album grid -->
+      <div class="gal-grid" role="list">
+        <!-- Album: Education Outreach -->
+        <button
+          class="album-card"
+          aria-label="Open Education Outreach album"
+          data-album="education-outreach"
+          data-title="Education Outreach"
+          data-images="/assets/gallery/education1.jpg|/assets/gallery/education2.jpg"
+          role="listitem"
+        >
+          <div class="album-thumb">
+            <img src="/assets/gallery/education1.jpg" alt="Education Outreach cover" loading="lazy">
+          </div>
+          <div class="album-meta">
+            <h3>Education Outreach</h3>
+            <span class="count">2 photos</span>
+          </div>
+        </button>
+
+        <!-- Starter Album: Green Dignity Villages -->
+        <button
+          class="album-card"
+          aria-label="Open Green Dignity Villages album"
+          data-album="green-dignity-villages"
+          data-title="Green Dignity Villages"
+          data-images="/assets/gallery/gdv1.jpg|/assets/gallery/gdv2.jpg"
+          role="listitem"
+        >
+          <div class="album-thumb">
+            <img src="/assets/gallery/gdv1.jpg" alt="Green Dignity Villages cover" loading="lazy">
+          </div>
+          <div class="album-meta">
+            <h3>Green Dignity Villages</h3>
+            <span class="count">2+ photos</span>
+          </div>
+        </button>
+
+        <!-- Starter Album: Champions for Peaceful Community -->
+        <button
+          class="album-card"
+          aria-label="Open Champions for Peaceful Community album"
+          data-album="champions-for-peace"
+          data-title="Champions for Peaceful Community"
+          data-images="/assets/gallery/cpc1.jpg|/assets/gallery/cpc2.jpg"
+          role="listitem"
+        >
+          <div class="album-thumb">
+            <img src="/assets/gallery/cpc1.jpg" alt="Champions for Peaceful Community cover" loading="lazy">
+          </div>
+          <div class="album-meta">
+            <h3>Champions for Peaceful Community</h3>
+            <span class="count">2+ photos</span>
+          </div>
+        </button>
+
+        <!-- Starter Album: Agriculture & Livelihoods -->
+        <button
+          class="album-card"
+          aria-label="Open Agriculture & Livelihoods album"
+          data-album="agriculture"
+          data-title="Agriculture & Livelihoods"
+          data-images="/assets/gallery/agri1.jpg|/assets/gallery/agri2.jpg"
+          role="listitem"
+        >
+          <div class="album-thumb">
+            <img src="/assets/gallery/agri1.jpg" alt="Agriculture & Livelihoods cover" loading="lazy">
+          </div>
+          <div class="album-meta">
+            <h3>Agriculture & Livelihoods</h3>
+            <span class="count">2+ photos</span>
+          </div>
+        </button>
+
+        <!-- Starter Album: Health Outreach -->
+        <button
+          class="album-card"
+          aria-label="Open Health Outreach album"
+          data-album="health"
+          data-title="Health Outreach"
+          data-images="/assets/gallery/health1.jpg|/assets/gallery/health2.jpg"
+          role="listitem"
+        >
+          <div class="album-thumb">
+            <img src="/assets/gallery/health1.jpg" alt="Health Outreach cover" loading="lazy">
+          </div>
+          <div class="album-meta">
+            <h3>Health Outreach</h3>
+            <span class="count">2+ photos</span>
+          </div>
+        </button>
+
+        <!-- Starter Album: Sports & Youth -->
+        <button
+          class="album-card"
+          aria-label="Open Sports & Youth album"
+          data-album="sports"
+          data-title="Sports & Youth"
+          data-images="/assets/gallery/sports1.jpg|/assets/gallery/sports2.jpg"
+          role="listitem"
+        >
+          <div class="album-thumb">
+            <img src="/assets/gallery/sports1.jpg" alt="Sports & Youth cover" loading="lazy">
+          </div>
+          <div class="album-meta">
+            <h3>Sports & Youth</h3>
+            <span class="count">2+ photos</span>
+          </div>
+        </button>
       </div>
-      <footer class="viewer-footer">
-        <button class="viewer-prev" aria-label="Previous image">&larr; Prev</button>
-        <span class="viewer-index" aria-live="polite">1 / 1</span>
-        <button class="viewer-next" aria-label="Next image">Next &rarr;</button>
-      </footer>
-    </div>
-  </div>
-</section>
 
-<!-- ===== GALLERY JS (Put at end of gallery.html, just before </body>) ===== -->
-<script>
-(function() {
-  const qs = (s, el=document) => el.querySelector(s);
-  const qsa = (s, el=document) => Array.from(el.querySelectorAll(s));
-  const viewer = qs('.gal-viewer');
-  const imgEl = qs('.viewer-image', viewer);
-  const titleEl = qs('.viewer-title', viewer);
-  const indexEl = qs('.viewer-index', viewer);
-  const prevBtn = qs('.viewer-prev', viewer);
-  const nextBtn = qs('.viewer-next', viewer);
+      <!-- Lightbox / Viewer -->
+      <div class="gal-viewer" aria-hidden="true" aria-label="Image viewer" role="dialog">
+        <div class="viewer-backdrop" data-close></div>
+        <div class="viewer-content" role="document">
+          <header class="viewer-header">
+            <h2 class="viewer-title">Album</h2>
+            <button class="viewer-close" aria-label="Close viewer" title="Close" data-close>&times;</button>
+          </header>
+          <div class="viewer-stage">
+            <img class="viewer-image" src="" alt="" />
+          </div>
+          <footer class="viewer-footer">
+            <button class="viewer-prev" aria-label="Previous image">&larr; Prev</button>
+            <span class="viewer-index" aria-live="polite">1 / 1</span>
+            <button class="viewer-next" aria-label="Next image">Next &rarr;</button>
+          </footer>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  let images = [];
-  let i = 0;
-
-  function openViewer(title, list) {
-    images = list;
-    i = 0;
-    titleEl.textContent = title || 'Album';
-    render();
-    viewer.classList.add('open');
-    viewer.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeViewer() {
-    viewer.classList.remove('open');
-    viewer.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  function render() {
-    if (!images.length) return;
-    imgEl.src = images[i];
-    imgEl.alt = titleEl.textContent + ' photo ' + (i+1);
-    indexEl.textContent = (i+1) + ' / ' + images.length;
-    // Ensure full people visible:
-    imgEl.style.objectFit = 'contain';
-  }
-
-  function next() { i = (i + 1) % images.length; render(); }
-  function prev() { i = (i - 1 + images.length) % images.length; render(); }
-
-  qsa('.album-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const title = card.getAttribute('data-title');
-      const imgs = (card.getAttribute('data-images') || '')
-        .split('|')
-        .map(s => s.trim())
-        .filter(Boolean);
-      if (imgs.length) openViewer(title, imgs);
-    });
-  });
-
-  viewer.addEventListener('click', (e) => {
-    if (e.target.matches('[data-close], .viewer-backdrop')) closeViewer();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (!viewer.classList.contains('open')) return;
-    if (e.key === 'Escape') closeViewer();
-    if (e.key === 'ArrowRight') next();
-    if (e.key === 'ArrowLeft') prev();
-  });
-
-  nextBtn.addEventListener('click', next);
-  prevBtn.addEventListener('click', prev);
-})();
-</script>
-
-  <!-- Lightbox overlay (only used if/when an image successfully loads) -->
-  <div class="lightbox-overlay" id="lightbox" hidden>
-    <img alt="">
-  </div>
-
+  <!-- ===== GALLERY JS (keep just before </body>) ===== -->
   <script>
-    // Try to auto-resolve real image URLs by testing common folders & extensions.
-    // This avoids 404s when you’re unsure whether it’s /assets/, /images/, etc.,
-    // and whether it's .jpg/.JPG/.jpeg/.png/.webp
+  (function() {
+    const qs  = (s, el=document) => el.querySelector(s);
+    const qsa = (s, el=document) => Array.from(el.querySelectorAll(s));
+    const viewer   = qs('.gal-viewer');
+    const imgEl    = qs('.viewer-image', viewer);
+    const titleEl  = qs('.viewer-title', viewer);
+    const indexEl  = qs('.viewer-index', viewer);
+    const prevBtn  = qs('.viewer-prev', viewer);
+    const nextBtn  = qs('.viewer-next', viewer);
 
-    const CANDIDATE_DIRS = [
-      "assets/gallery/", "assets/images/", "assets/",
-      "images/", "/assets/gallery/", "/assets/images/", "/assets/", "/images/"
-    ];
-    const CANDIDATE_EXTS = [".jpg", ".JPG", ".jpeg", ".png", ".webp"];
+    let images = [];
+    let i = 0;
 
-    function resolveImageForItem(figure) {
-      const img = figure.querySelector("img");
-      const name = figure.dataset.name;                 // e.g., "photo1"
-      const exact = figure.dataset.exact?.trim();       // exact known URL (optional)
-
-      // If an exact URL is provided, try it first and only.
-      const queue = exact
-        ? [exact]
-        : CANDIDATE_DIRS.flatMap(d => CANDIDATE_EXTS.map(ext => d + name + ext));
-
-      // Try each candidate until one loads.
-      let resolved = null;
-
-      const tryNext = () => {
-        if (!queue.length) {
-          // Mark as missing
-          figure.classList.add("gal-missing");
-          img.removeAttribute("src");
-          console.warn("Image not found for:", name);
-          return;
-        }
-        const candidate = queue.shift();
-
-        const tester = new Image();
-        tester.onload = () => {
-          resolved = candidate;
-          img.src = resolved;
-          figure.classList.add("gal-loaded");
-          enableLightbox(figure, resolved);
-        };
-        tester.onerror = tryNext;
-        tester.src = candidate;
-      };
-
-      tryNext();
-    }
-
-    function enableLightbox(figure, url) {
-      // Click to open large view only when image truly exists; no broken links.
-      figure.style.cursor = "zoom-in";
-      figure.addEventListener("click", () => openLightbox(url), { once: true });
-    }
-
-    function openLightbox(url) {
-      const overlay = document.getElementById("lightbox");
-      const overlayImg = overlay.querySelector("img");
-      overlayImg.src = url;
-      overlay.hidden = false;
-
-      const close = () => {
-        overlay.hidden = true;
-        overlayImg.removeAttribute("src");
-        overlay.removeEventListener("click", close);
-        document.removeEventListener("keydown", onEsc);
-      };
-      const onEsc = (e) => { if (e.key === "Escape") close(); };
-
-      overlay.addEventListener("click", close);
-      document.addEventListener("keydown", onEsc);
-    }
-
-    // Resolve all items on load
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll(".gal-item").forEach(resolveImageForItem);
-    });
-  </script>
-<script>
-  // Simple lightbox for album buttons
-  (function () {
-    const modal = document.createElement('div');
-    modal.className = 'gallery-modal';
-    modal.innerHTML = `
-      <div class="gallery-backdrop" data-close></div>
-      <div class="gallery-dialog">
-        <button class="close-btn" aria-label="Close" data-close>&times;</button>
-        <h3 class="gallery-title"></h3>
-        <div class="gallery-rail"></div>
-      </div>
-    `;
-    document.body.appendChild(modal);
-
-    const titleEl = modal.querySelector('.gallery-title');
-    const rail = modal.querySelector('.gallery-rail');
-
-    function openAlbum(btn) {
-      const title = btn.getAttribute('data-title') || 'Album';
-      const images = (btn.getAttribute('data-images') || '').split(',').map(s => s.trim()).filter(Boolean);
-      rail.innerHTML = images.map(src => `
-        <figure class="gallery-item">
-          <img src="${src}" alt="${title}">
-        </figure>
-      `).join('');
-      titleEl.textContent = title;
-      modal.classList.add('open');
+    function openViewer(title, list) {
+      images = list;
+      i = 0;
+      titleEl.textContent = title || 'Album';
+      render();
+      viewer.classList.add('open');
+      viewer.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
 
-    document.addEventListener('click', (e) => {
-      const card = e.target.closest('.album-card');
-      if (card) {
-        e.preventDefault();
-        openAlbum(card);
-      }
-      if (e.target.matches('[data-close]')) {
-        modal.classList.remove('open');
-        document.body.style.overflow = '';
-      }
+    function closeViewer() {
+      viewer.classList.remove('open');
+      viewer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function render() {
+      if (!images.length) return;
+      imgEl.src = images[i];
+      imgEl.alt = titleEl.textContent + ' photo ' + (i+1);
+      indexEl.textContent = (i+1) + ' / ' + images.length;
+      imgEl.style.objectFit = 'contain'; // show whole people/faces
+    }
+
+    function next() { i = (i + 1) % images.length; render(); }
+    function prev() { i = (i - 1 + images.length) % images.length; render(); }
+
+    // Tolerant parser for data-images
+    function parseImages(attr) {
+      if (!attr) return [];
+      return attr
+        .split(/[|,]/)                       // allow '|' or ','
+        .map(s => s.trim())
+        .filter(Boolean)
+        .filter(s => /\.(jpe?g|png|webp|gif|svg)$/i.test(s)); // keep only image-like URLs
+    }
+
+    qsa('.album-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.getAttribute('data-title');
+        const imgs  = parseImages(card.getAttribute('data-images'));
+        if (imgs.length) {
+          openViewer(title, imgs);
+        } else {
+          alert('No valid images found for this album. Please check data-images paths.');
+        }
+      });
     });
+
+    viewer.addEventListener('click', (e) => {
+      if (e.target.matches('[data-close], .viewer-backdrop')) closeViewer();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!viewer.classList.contains('open')) return;
+      if (e.key === 'Escape') closeViewer();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
   })();
-</script>
+  </script>
 
 </body>
 </html>
