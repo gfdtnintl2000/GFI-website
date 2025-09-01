@@ -311,5 +311,50 @@
       document.querySelectorAll(".gal-item").forEach(resolveImageForItem);
     });
   </script>
+<script>
+  // Simple lightbox for album buttons
+  (function () {
+    const modal = document.createElement('div');
+    modal.className = 'gallery-modal';
+    modal.innerHTML = `
+      <div class="gallery-backdrop" data-close></div>
+      <div class="gallery-dialog">
+        <button class="close-btn" aria-label="Close" data-close>&times;</button>
+        <h3 class="gallery-title"></h3>
+        <div class="gallery-rail"></div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    const titleEl = modal.querySelector('.gallery-title');
+    const rail = modal.querySelector('.gallery-rail');
+
+    function openAlbum(btn) {
+      const title = btn.getAttribute('data-title') || 'Album';
+      const images = (btn.getAttribute('data-images') || '').split(',').map(s => s.trim()).filter(Boolean);
+      rail.innerHTML = images.map(src => `
+        <figure class="gallery-item">
+          <img src="${src}" alt="${title}">
+        </figure>
+      `).join('');
+      titleEl.textContent = title;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.album-card');
+      if (card) {
+        e.preventDefault();
+        openAlbum(card);
+      }
+      if (e.target.matches('[data-close]')) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
