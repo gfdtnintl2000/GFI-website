@@ -1052,4 +1052,13 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   /* background: #7b1121; */
   padding: 1rem 0;
 }
+/* Only cards marked .on-maroon get white text */
+.gal .album-card.on-maroon .album-meta h3,
+.gal .album-card.on-maroon .album-meta .count { color:#fff; }
+
+.gal .album-card.on-maroon {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.25);
+}
+.gal .album-card.on-maroon .album-thumb { background: rgba(255,255,255,0.12); }
 
