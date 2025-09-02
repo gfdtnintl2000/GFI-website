@@ -36,10 +36,8 @@ img{ max-width:100%; height:auto; display:block; }
 .site-footer.ribbon { background:#1c7c3a; color:#fff; margin-top:2rem; }
 .site-footer .container { padding: .75rem 0; }
 
-
 /* --- Generic container if not already present --- */
 .container { width:min(1100px, 92%); margin:0 auto; }
-
 
 <style>
 /* --- Gallery layout --- */
@@ -47,11 +45,9 @@ img{ max-width:100%; height:auto; display:block; }
 .gallery-header h1 { margin: 0 0 .25rem 0; }
 .gallery-header .muted { color: #777; font-size: .95rem; }
 
-
 .albums { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 @media (min-width: 640px) { .albums { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1024px) { .albums { grid-template-columns: 1fr 1fr 1fr; } }
-
 
 .album-card { display: grid; grid-template-rows: auto 1fr; gap: .5rem; padding: .75rem; border: 1px solid #e4e4e4; border-radius: 14px; background: #fff; cursor: pointer; text-align: left; }
 .album-card:focus-visible { outline: 3px solid #2a7; }
@@ -61,7 +57,6 @@ img{ max-width:100%; height:auto; display:block; }
 .album-meta h3 { margin: 0; font-size: 1.05rem; }
 .album-meta .count { color: #666; font-size: .9rem; }
 
-
 /* --- Lightbox --- */
 .lightbox { width: min(100%, 980px); border: none; border-radius: 16px; padding: 0; }
 .lightbox::backdrop { background: rgba(0,0,0,.65); }
@@ -70,12 +65,10 @@ img{ max-width:100%; height:auto; display:block; }
 .lightbox-body img { max-width: 100%; max-height: 70vh; object-fit: contain; background: #000; border-radius: 12px; }
 .lightbox-footer { padding: .5rem 1rem 1rem; text-align: right; color: #555; }
 
-
 .lightbox .close { background: transparent; border: none; font-size: 1.5rem; line-height: 1; cursor: pointer; }
 .lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.5); color: #fff; border: none; font-size: 2rem; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; }
 .lightbox .nav.prev { left: .5rem; }
 .lightbox .nav.next { right: .5rem; }
-
 
 /* Improve dialog support on Safari/iOS (non-modal fallback) */
 @supports not (backdrop-filter: blur(0)) { .lightbox { max-width: 100%; } }
