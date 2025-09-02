@@ -1,115 +1,63 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Projects — Grace Foundation International</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Load both in case your site uses them; whichever loads last will win -->
-  <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Projects — Grace Foundation International</title>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<header class="site-header band">
+<nav class="nav container">
+<a href="/">Home</a>
+<a href="/about.html">About Us</a>
+<a href="/projects.html" aria-current="page">Projects</a>
+<a href="/partner.html">Partner With Us</a>
+<a href="/team.html">Meet Our Team</a>
+<a href="/gallery.html">Gallery</a>
+<a href="/contact.html">Contact</a>
+</nav>
+</header>
 
-  <!-- ONE header/nav only -->
-  <header>
-    <div class="container">
-      <a class="logo" href="/">Grace Foundation International</a>
-      <nav class="main-nav">
-        <a href="/">Home</a>
-        <a href="/about.html">About Us</a>
-        <a href="/projects.html" class="active">Projects</a>
-        <a href="/partner.html">Partner With Us</a>
-        <a href="/team.html">Meet Our Team</a>
-        <a href="/gallery.html">Gallery</a>
-        <a href="/contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <h1>Our Projects</h1>
-      </div>
-    </section>
+<main id="content" class="container projects">
+<h1>Our Projects</h1>
 
-<!-- EDUCATION OUTREACH HERO (drop-in replacement) -->
-<!-- EDUCATION OUTREACH (classic layout + image fallback) -->
-<section id="education-outreach" class="project-block container">
-  <h2 class="project-title">GFI Education Outreach</h2>
 
-  <figure class="project-media">
-    <img
-      src="/assets/gallery/education2.jpg?v=4"
-      alt="GFI Education Outreach photo"
-      loading="lazy"
-    >
-    <figcaption class="project-caption">
-      <em>GFI Founder presents an electric wheelchair to Olivia Cheptoo of Mogonjet Sec. School courtesy of Lift the Lid.</em>
-    </figcaption>
-  </figure>
+<section class="project-section">
+<h2>GFI Education Outreach</h2>
+<figure class="project-figure">
+<img src="/assets/gallery/education2.jpg" alt="GFI Founder presents an electric wheelchair to Olivia Cheptoo of Mogonjet Sec. School courtesy of Lift the Lid." loading="lazy">
+<figcaption><em>GFI Founder presents an electric wheelchair to Olivia Cheptoo of Mogonjet Sec. School courtesy of Lift the Lid.</em></figcaption>
+</figure>
+<p>
+We support learners and schools with assistive devices, scholarships, and community-driven campaigns that improve access and inclusion.
+</p>
 </section>
-<script>
-  (function() {
-    const fig = document.querySelector('#education-outreach .project-media');
-    if (!fig) return;
-    const img = fig.querySelector('img');
-    const cap = fig.querySelector('.project-caption');
-    if (!img || !cap) return;
-    cap.style.display = 'none';
-    img.addEventListener('load', () => { cap.style.display = ''; }, { once: true });
-  })();
-</script>
 
-        <article class="card">
-          <div class="card-body">
-            <h2>Sustainable Agriculture</h2>
-            <p>Training farmers in climate-smart techniques, kitchen gardening, and food security practices.</p>
-          </div>
-        </article>
 
-        <article class="card">
-          <div class="card-body">
-            <h2>Green Dignity Villages</h2>
-            <p>Grace Foundation International is spearheading Green Dignity Villages — a transformative initiative that provides sustainable, affordable, and climate-smart housing to vulnerable rural communities in Kenya.</p>
-            <p>These villages integrate renewable energy, clean water, smart sanitation, and homegrown food systems into eco-friendly homes built with compressed stabilized earth blocks (CSEBs). Each unit is equipped with solar power, rainwater harvesting, composting toilets or biodigesters, and vertical gardens.</p>
-            <p>Designed for women-headed households, persons with disabilities, and climate-affected families, this initiative reimagines rural housing as a catalyst for resilience, dignity, and holistic community development.</p>
-          </div>
-        </article>
+<section class="project-section">
+<h2>Sustainable Agriculture</h2>
+<p>Training farmers in climate-smart techniques, kitchen gardening, and food security practices.</p>
+</section>
 
-        <article class="card">
-          <div class="card-body">
-            <h2>Community-Based MHPSS</h2>
-            <p>This program trains community health workers, builds peer-support groups, and reduces stigma around mental illness. It targets youth and women, integrating care into schools and clinics.</p>
-          </div>
-        </article>
 
-        <article class="card">
-          <div class="card-body">
-            <h2>Recycling Economies for Circular Livelihoods</h2>
-            <p>This initiative empowers youth and women through community recycling hubs, upcycling training, and market linkages, creating green jobs and fostering cleaner environments.</p>
-          </div>
-        </article>
+<section class="project-section">
+<h2>Green Dignity Villages</h2>
+<p>
+Grace Foundation International is spearheading Green Dignity Villages — a transformative initiative that provides sustainable, affordable, and climate‑smart housing to vulnerable rural communities in Kenya.
+</p>
+<p>
+These villages integrate renewable energy, clean water, smart sanitation, and homegrown food systems into eco‑friendly homes built with compressed stabilized earth blocks (CSEBs). Each unit is equipped with solar power, rainwater harvesting, composting toilets or biodigesters, and vertical gardens.
+</p>
+<p>Designed for women‑headed households, persons with disabilities, and climate‑affected families.</p>
+</section>
+</main>
 
-        <article class="card">
-          <div class="card-body">
-            <h2>Women &amp; Youth Economic Empowerment</h2>
-            <p>A program that strengthens financial inclusion, digital literacy, and entrepreneurship for rural women and youth through VSLAs, digital hubs, and start-up seed grants.</p>
-          </div>
-        </article>
 
-      </div>
-    </section>
-  </main>
-
-  <!-- ONE footer only -->
-
-  <footer class="site-footer">
-  <div class="container">
-    <p>© 2025 Grace Foundation International. All rights reserved.</p>
-  </div>
+<footer class="site-footer ribbon">
+<div class="container">© <span id="year-p"></span> Grace Foundation International. All Rights Reserved </div>
 </footer>
-
-
+<script>document.getElementById('year-p').textContent = new Date().getFullYear();</script>
 </body>
 </html>
