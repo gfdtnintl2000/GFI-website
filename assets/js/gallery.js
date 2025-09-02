@@ -70,3 +70,4 @@ if (e.key === 'ArrowRight') show(idx + 1);
 });
 })();
 </script>
+<script src="/assets/js/gallery.js" defer></script>
