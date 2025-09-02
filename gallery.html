@@ -78,11 +78,6 @@ Root-relative paths throughout; ensure NO <base> tag exists in <head>.
     </dialog>
   </section>
 </main>
-
-<!-- Load gallery JS at end of body for best performance -->
-<script src="/assets/js/gallery.js" defer></script>
-
-
 <!-- ===== style.css (append these rules to the end of /style.css) ===== -->
 <style>
 /* --- Gallery layout --- */
@@ -131,7 +126,7 @@ Root-relative paths throughout; ensure NO <base> tag exists in <head>.
   const btnClose = document.getElementById('lightbox-close');
   const btnPrev = dlg.querySelector('.nav.prev');
   const btnNext = dlg.querySelector('.nav.next');
-
+<script src="/assets/js/gallery.js" defer></script>
   /** Robustly parse CSV list, trimming spaces and ignoring empties */
   function parseImages(csv) {
     return (csv || '')
