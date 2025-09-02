@@ -129,3 +129,6 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation M
 ----------------------- */
 .hidden { display: none !important; }
 .center { text-align: center; }
+html, body { height: 100%; }
+body { display: flex; flex-direction: column; }
+main { flex: 1; }
