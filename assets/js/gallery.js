@@ -18,23 +18,40 @@
 
   let images = [];
   let idx = 0;
+function show(i) {
+  if (!images.length) return;
+  idx = (i + images.length) % images.length;
 
-  function show(i) {
-    if (!images.length) return;
-    idx = (i + images.length) % images.length;
-    imgEl.src = images[idx];
-    imgEl.alt = titleEl.textContent + ' — ' + (idx + 1);
+  // Show a friendly loading state while the image fetches
+  counterEl.textContent = 'Loading…';
+  imgEl.alt = titleEl.textContent + ' — ' + (idx + 1);
+  imgEl.removeAttribute('src'); // reset first
+
+  imgEl.onload = () => {
     counterEl.textContent = (idx + 1) + ' / ' + images.length;
+  };
+  imgEl.onerror = () => {
+    counterEl.textContent = 'Failed to load image';
+  };
+
+  imgEl.src = images[idx];
+}
+
+function openAlbum(card) {
+  images = parseImages(card.getAttribute('data-images'));
+  titleEl.textContent = card.getAttribute('data-title') || 'Album';
+  if (!images.length) {
+    alert('No images found for this album.');
+    return;
   }
 
-  function openAlbum(card) {
-    images = parseImages(card.getAttribute('data-images'));
-    titleEl.textContent = card.getAttribute('data-title') || 'Album';
-    if (!images.length) {
-      alert('No images found for this album.');
-      return;
-    }
-    show(0);
+  // Open the dialog FIRST, then start loading the image
+  if (typeof dlg.showModal === 'function') dlg.showModal();
+  else dlg.setAttribute('open', ''); // fallback
+
+  show(0);
+}
+
     if (typeof dlg.showModal === 'function') dlg.showModal();
     else dlg.setAttribute('open', ''); // fallback
   }
