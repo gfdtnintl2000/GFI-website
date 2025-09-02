@@ -1,3 +1,4 @@
+alert('Gallery JS loaded');
 (function() {
   const cards = document.querySelectorAll('.album-card');
   const dlg = document.getElementById('lightbox');
