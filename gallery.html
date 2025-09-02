@@ -1,53 +1,79 @@
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gallery — Grace Foundation International</title>
-<link rel="stylesheet" href="/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery — Grace Foundation International</title>
+  <!-- Root‑relative stylesheet; make sure there is NO <base> tag anywhere -->
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<!-- Top nav band -->
-<header class="site-header band">
-<nav class="nav container">
-<a href="/">Home</a>
-<a href="/about.html">About Us</a>
-<a href="/projects.html">Projects</a>
-<a href="/partner.html">Partner With Us</a>
-<a href="/team.html">Meet Our Team</a>
-<a href="/gallery.html" aria-current="page">Gallery</a>
-<a href="/contact.html">Contact</a>
-</nav>
-</header>
+  <!-- Top navigation (maroon band styles will come from style.css we add later) -->
+  <header class="site-header band">
+    <nav class="nav container">
+      <a href="/">Home</a>
+      <a href="/about.html">About Us</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/partner.html">Partner With Us</a>
+      <a href="/team.html">Meet Our Team</a>
+      <a href="/gallery.html" aria-current="page">Gallery</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
 
+  <main id="content" class="container">
+    <section id="gallery" class="gallery">
+      <header class="gallery-header">
+        <h1>Gallery</h1>
+        <p class="muted">Tap the album to view photos. Images are loaded from <code>/assets/gallery/</code>.</p>
+      </header>
 
-<!-- Main Gallery Content -->
-<main id="content" class="container">
-<section id="gallery" class="gallery">
-<header class="gallery-header">
-<h1>Gallery</h1>
-<p class="muted">Tap an album to view photos. Images are loaded from <code>/assets/gallery/</code>.</p>
-</header>
+      <!-- Minimal, bullet‑proof gallery: start with ONE album only -->
+      <div class="albums">
+        <!-- Album: Education Outreach (wire more albums later) -->
+        <button
+          class="album-card"
+          aria-label="Open Education Outreach album"
+          data-album="education-outreach"
+          data-title="Education Outreach"
+          data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg"
+        >
+          <div class="album-thumb">
+            <!-- Safe default thumbnail (change to education1.jpg if you prefer) -->
+            <img src="/assets/gallery/education2.jpg" alt="Education Outreach" loading="lazy">
+          </div>
+          <div class="album-meta">
+            <h3>Education Outreach</h3>
+            <span class="count">2 photos</span>
+          </div>
+        </button>
+      </div>
 
+      <!-- Lightbox Modal (single instance) -->
+      <dialog id="lightbox" class="lightbox" aria-modal="true">
+        <div class="lightbox-header">
+          <h2 id="lightbox-title">Album</h2>
+          <button id="lightbox-close" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="lightbox-body">
+          <button class="nav prev" aria-label="Previous">‹</button>
+          <img id="lightbox-image" alt="Album image" />
+          <button class="nav next" aria-label="Next">›</button>
+        </div>
+        <div class="lightbox-footer">
+          <span id="lightbox-counter" class="counter">1 / 1</span>
+        </div>
+      </dialog>
+    </section>
+  </main>
 
-<div class="albums">
-<!-- Album: Education Outreach (wired to two images) -->
-<button
-class="album-card"
-aria-label="Open Education Outreach album"
-data-album="education-outreach"
-data-title="Education Outreach"
-data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg"
->
-<div class="album-thumb">
-<img src="/assets/gallery/education2.jpg" alt="Education Outreach" loading="lazy">
-</div>
-<div class="album-meta">
-<h3>Education Outreach</h3>
-<span class="count">2 photos</span>
-</div>
-</button>
+  <!-- Footer (green ribbon styles will come from style.css we add later) -->
+  <footer class="site-footer ribbon">
+    <div class="container">© <span id="year"></span> Grace Foundation International</div>
+  </footer>
 
-
-<!-- Placeholder album cards (replace data-images once files exist) -->
-<button
+  <!-- Tiny helper + gallery logic loader -->
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="/assets/js/gallery.js" defer></script>
+</body>
 </html>
