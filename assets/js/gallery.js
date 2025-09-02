@@ -113,7 +113,22 @@
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openAlbum(card); }
       });
     });
+document.querySelectorAll('.project-figure img').forEach(img => {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', () => {
+    // Use the section H2 as the album title
+    const section = img.closest('section');
+    titleEl.textContent = section?.querySelector('h2')?.textContent || 'Project Photo';
 
+    // Show just this one image in the lightbox
+    images = [img.currentSrc || img.src];
+
+    if (typeof dlg.showModal === 'function') dlg.showModal();
+    else dlg.setAttribute('open', '');
+
+    show(0);
+  });
+});
     // Lightbox controls
     btnPrev && btnPrev.addEventListener('click', () => show(idx - 1));
     btnNext && btnNext.addEventListener('click', () => show(idx + 1));
