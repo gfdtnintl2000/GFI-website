@@ -15,21 +15,21 @@ Root-relative paths throughout; ensure NO <base> tag exists in <head>.
 
     <div class="albums">
       <!-- Album: Education Outreach -->
-<button
-  class="album-card"
-  aria-label="Open Education Outreach album"
-  data-album="education-outreach"
-  data-title="Education Outreach"
-  data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg"
->
-  <div class="album-thumb">
-    <img src="/assets/gallery/education1.jpg" alt="Education Outreach" loading="lazy">
-  </div>
-  <div class="album-meta">
-    <h3>Education Outreach</h3>
-    <span class="count">2 photos</span>
-  </div>
-</button>
+      <button
+        class="album-card"
+        aria-label="Open Education Outreach album"
+        data-album="education-outreach"
+        data-title="Education Outreach"
+        data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg"
+      >
+        <div class="album-thumb">
+          <img src="/assets/gallery/education1.jpg" alt="Education Outreach" loading="lazy">
+        </div>
+        <div class="album-meta">
+          <h3>Education Outreach</h3>
+          <span class="count">2 photos</span>
+        </div>
+      </button>
 
       <!-- Starter album cards (use real images later) -->
       <button
@@ -62,22 +62,27 @@ Root-relative paths throughout; ensure NO <base> tag exists in <head>.
     </div>
 
     <!-- Lightbox Modal -->
-<dialog id="lightbox" class="lightbox" aria-modal="true">
-  <div class="lightbox-header">
-    <h2 id="lightbox-title">Album</h2>
-    <button id="lightbox-close" class="close" aria-label="Close">×</button>
-  </div>
-  <div class="lightbox-body">
-    <button class="nav prev" aria-label="Previous">‹</button>
-    <img id="lightbox-image" alt="Album image" />
-    <button class="nav next" aria-label="Next">›</button>
-  </div>
-  <div class="lightbox-footer">
-    <span id="lightbox-counter" class="counter">1 / 1</span>
-  </div>
-</dialog>
+    <dialog id="lightbox" class="lightbox" aria-modal="true">
+      <div class="lightbox-header">
+        <h2 id="lightbox-title">Album</h2>
+        <button id="lightbox-close" class="close" aria-label="Close">×</button>
+      </div>
+      <div class="lightbox-body">
+        <button class="nav prev" aria-label="Previous">‹</button>
+        <img id="lightbox-image" alt="Album image" />
+        <button class="nav next" aria-label="Next">›</button>
+      </div>
+      <div class="lightbox-footer">
+        <span id="lightbox-counter" class="counter">1 / 1</span>
+      </div>
+    </dialog>
   </section>
 </main>
+
+<!-- Load gallery JS at end of body for best performance -->
+<script src="/assets/js/gallery.js" defer></script>
+
+
 <!-- ===== style.css (append these rules to the end of /style.css) ===== -->
 <style>
 /* --- Gallery layout --- */
@@ -126,6 +131,164 @@ Root-relative paths throughout; ensure NO <base> tag exists in <head>.
   const btnClose = document.getElementById('lightbox-close');
   const btnPrev = dlg.querySelector('.nav.prev');
   const btnNext = dlg.querySelector('.nav.next');
-<script src="/assets/js/gallery.js" defer></script>
+
+  /** Robustly parse CSV list, trimming spaces and ignoring empties */
+  function parseImages(csv) {
+    return (csv || '')
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+  }
+
+  /** Lightbox state */
+  let images = [];
+  let idx = 0;
+
+  function show(i) {
+    if (!images.length) return;
+    idx = (i + images.length) % images.length; // wrap around
+    imgEl.src = images[idx];
+    imgEl.alt = titleEl.textContent + ' — ' + (idx + 1);
+    counterEl.textContent = (idx + 1) + ' / ' + images.length;
+  }
+
+  function openAlbum(card) {
+    images = parseImages(card.getAttribute('data-images'));
+    titleEl.textContent = card.getAttribute('data-title') || 'Album';
+    if (!images.length) {
+      alert('No images found for this album.');
+      return;
+    }
+    show(0);
+    if (typeof dlg.showModal === 'function') dlg.showModal();
+    else dlg.setAttribute('open', ''); // fallback
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => openAlbum(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openAlbum(card); }
+    });
+  });
+
+  btnClose.addEventListener('click', () => dlg.close && dlg.close());
+  dlg.addEventListener('click', (e) => {
+    if (e.target === dlg) dlg.close && dlg.close();
+  });
+
+  btnPrev.addEventListener('click', () => show(idx - 1));
+  btnNext.addEventListener('click', () => show(idx + 1));
+  document.addEventListener('keydown', (e) => {
+    if (!dlg.open) return;
+    if (e.key === 'Escape') dlg.close && dlg.close();
+    if (e.key === 'ArrowLeft') show(idx - 1);
+    if (e.key === 'ArrowRight') show(idx + 1);
+  });
+})();
 </script>
+
+<!-- ===== FULL-PAGE FALLBACK: gallery.html =====
+Use this if your current gallery.html is missing <body> or closing tags.
+Replace the ENTIRE FILE with this known-good template, then adjust the nav links if needed.
+================================================== -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery — Grace Foundation International</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Site header/nav (adjust links to match your site) -->
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="/">Home</a>
+      <a href="/about.html">About Us</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/partner.html">Partner With Us</a>
+      <a href="/team.html">Meet Our Team</a>
+      <a href="/gallery.html" aria-current="page">Gallery</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main Gallery Content (same as earlier drop-in) -->
+  <main id="content" class="container">
+    <section id="gallery" class="gallery">
+      <header class="gallery-header">
+        <h1>Gallery</h1>
+        <p class="muted">Tap an album to view photos. Images are loaded from <code>/assets/gallery/</code>.</p>
+      </header>
+
+      <div class="albums">
+        <!-- Album: Education Outreach -->
+        <button
+          class="album-card"
+          aria-label="Open Education Outreach album"
+          data-album="education-outreach"
+          data-title="Education Outreach"
+          data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg"
+        >
+          <div class="album-thumb">
+            <img src="/assets/gallery/education1.jpg" alt="Education Outreach" loading="lazy">
+          </div>
+          <div class="album-meta">
+            <h3>Education Outreach</h3>
+            <span class="count">2 photos</span>
+          </div>
+        </button>
+
+        <!-- Starter album cards -->
+        <button
+          class="album-card"
+          aria-label="Open Sustainable Agriculture album"
+          data-album="sustainable-agriculture"
+          data-title="Sustainable Agriculture"
+          data-images="/assets/gallery/agriculture1.jpg,/assets/gallery/agriculture2.jpg"
+        >
+          <div class="album-thumb placeholder"></div>
+          <div class="album-meta">
+            <h3>Sustainable Agriculture</h3>
+            <span class="count">2+ photos</span>
+          </div>
+        </button>
+
+        <button
+          class="album-card"
+          aria-label="Open Green Dignity Villages album"
+          data-album="green-dignity-villages"
+          data-title="Green Dignity Villages"
+          data-images="/assets/gallery/gdv1.jpg,/assets/gallery/gdv2.jpg"
+        >
+          <div class="album-thumb placeholder"></div>
+          <div class="album-meta">
+            <h3>Green Dignity Villages</h3>
+            <span class="count">2+ photos</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Lightbox Modal -->
+      <dialog id="lightbox" class="lightbox" aria-modal="true">
+        <div class="lightbox-header">
+          <h2 id="lightbox-title">Album</h2>
+          <button id="lightbox-close" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="lightbox-body">
+          <button class="nav prev" aria-label="Previous">‹</button>
+          <img id="lightbox-image" alt="Album image" />
+          <button class="nav next" aria-label="Next">›</button>
+        </div>
+        <div class="lightbox-footer">
+          <span id="lightbox-counter" class="counter">1 / 1</span>
+        </div>
+      </dialog>
+    </section>
+  </main>
+
+  <!-- Scripts at the very end -->
+  <script src="/assets/js/gallery.js" defer></script>
+</body>
+</html>
 
