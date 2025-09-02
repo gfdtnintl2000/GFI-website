@@ -16,19 +16,14 @@ Root-relative paths throughout; ensure NO <base> tag exists in <head>.
     <div class="albums">
       <!-- Album: Education Outreach -->
       <button
-        class="album-card"
-        aria-label="Open Education Outreach album"
-        data-album="education-outreach"
-        data-title="Education Outreach"
-        data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg"
-      >
-        <div class="album-thumb">
-          <img src="/assets/gallery/education1.jpg" alt="Education Outreach" loading="lazy">
-        </div>
-        <div class="album-meta">
-          <h3>Education Outreach</h3>
-          <span class="count">2 photos</span>
-        </div>
+<button
+  class="album-card"
+  aria-label="Open Education Outreach album"
+  data-album="education-outreach"
+  data-title="Education Outreach"
+  data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg"
+  onclick="(function(){var d=document.getElementById('lightbox');var i=document.getElementById('lightbox-image');var t=document.getElementById('lightbox-title');var c=document.getElementById('lightbox-counter');t.textContent='Education Outreach';i.src='/assets/gallery/education1.jpg';c.textContent='1 / 2'; if(d.showModal) d.showModal(); else d.setAttribute('open','');})();"
+>
       </button>
 
       <!-- Starter album cards (use real images later) -->
