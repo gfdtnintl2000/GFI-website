@@ -25,65 +25,62 @@ body{
 img{ max-width:100%; height:auto; display:block; }
 <link rel="stylesheet" href="/style.css">
 <style>
-/* --- Header band (maroon) and nav links --- */
-.site-header.band { background: #7b1e1e; color: #fff; }
+/* --- Color tokens for consistency --- */
+:root { --maroon:#7b1e1e; --green:#1c7c3a; --white:#fff; --text:#111; }
+/* --- Header band (maroon) and nav links with strong contrast --- */
+.site-header.band { background: var(--maroon); color: var(--white); }
 .site-header .nav { display:flex; gap:1rem; align-items:center; padding:.75rem 0; }
-.site-header .nav a { color:#fff; text-decoration:none; font-weight:600; }
-.site-header .nav a[aria-current="page"] { text-decoration: underline; }
-
-
+.site-header .nav a { color: var(--white); text-decoration:none; font-weight:700; letter-spacing:.2px; opacity:.98; }
+/* show ONLY one clear indicator on the current page */
+.site-header .nav a[aria-current="page"] { text-decoration:none; border-bottom:3px solid var(--white); padding-bottom:.2rem; }
+.site-header .nav a:hover { text-decoration:underline; text-underline-offset: 3px; }
 /* --- Footer ribbon (green) --- */
-.site-footer.ribbon { background:#1c7c3a; color:#fff; margin-top:2rem; }
+.site-footer.ribbon { background: var(--green); color: var(--white); margin-top:2rem; }
 .site-footer .container { padding: .75rem 0; }
-
 /* --- Generic container if not already present --- */
 .container { width:min(1100px, 92%); margin:0 auto; }
-
-<style>
-/* --- Gallery layout --- */
+/* --- Gallery layout (keeps full people in frame) --- */
 .gallery { padding: 2rem 0; }
 .gallery-header h1 { margin: 0 0 .25rem 0; }
-.gallery-header .muted { color: #777; font-size: .95rem; }
-
-.albums { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-@media (min-width: 640px) { .albums { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1024px) { .albums { grid-template-columns: 1fr 1fr 1fr; } }
-
-.album-card { display: grid; grid-template-rows: auto 1fr; gap: .5rem; padding: .75rem; border: 1px solid #e4e4e4; border-radius: 14px; background: #fff; cursor: pointer; text-align: left; }
-.album-card:focus-visible { outline: 3px solid #2a7; }
-.album-thumb { aspect-ratio: 4/3; overflow: hidden; border-radius: 10px; background: #f5f5f5; display:flex; align-items:center; justify-content:center; }
-.album-thumb img { width: 100%; height: 100%; object-fit: contain; /* show full people, no cropping */ }
-.album-thumb.placeholder::after { content: "Image"; color: #aaa; font-size: .9rem; }
-.album-meta h3 { margin: 0; font-size: 1.05rem; }
-.album-meta .count { color: #666; font-size: .9rem; }
-
+.gallery-header .muted { color: #666; font-size: .95rem; }
+.albums { display:grid; grid-template-columns:1fr; gap:1rem; }
+@media (min-width: 640px){ .albums{ grid-template-columns:1fr 1fr; } }
+@media (min-width: 1024px){ .albums{ grid-template-columns:1fr 1fr 1fr; } }
+.album-card { display:grid; grid-template-rows:auto 1fr; gap:.5rem; padding:.75rem; border:1px solid #e4e4e4; border-radius:14px; background:#fff; cursor:pointer; text-align:left; }
+.album-card:focus-visible { outline:3px solid #2a7; }
+.album-thumb { aspect-ratio:4/3; overflow:hidden; border-radius:10px; background:#f5f5f5; display:flex; align-items:center; justify-content:center; }
+.album-thumb img { width:100%; height:100%; object-fit:contain; }
+.album-thumb.placeholder::after { content:"Image"; color:#aaa; font-size:.9rem; }
+.album-meta h3 { margin:0; font-size:1.05rem; }
+.album-meta .count { color:#666; font-size:.9rem; }
 /* --- Lightbox --- */
-.lightbox { width: min(100%, 980px); border: none; border-radius: 16px; padding: 0; }
-.lightbox::backdrop { background: rgba(0,0,0,.65); }
-.lightbox-header { display: flex; align-items: center; justify-content: space-between; padding: .75rem 1rem; border-bottom: 1px solid #eee; }
-.lightbox-body { position: relative; padding: 1rem; display: grid; place-items: center; }
-.lightbox-body img { max-width: 100%; max-height: 70vh; object-fit: contain; background: #000; border-radius: 12px; }
-.lightbox-footer { padding: .5rem 1rem 1rem; text-align: right; color: #555; }
+.lightbox { width:min(100%, 980px); border:none; border-radius:16px; padding:0; }
+.lightbox::backdrop { background:rgba(0,0,0,.65); }
+.lightbox-header { display:flex; align-items:center; justify-content:space-between; padding:.75rem 1rem; border-bottom:1px solid #eee; }
+.lightbox-body { position:relative; padding:1rem; display:grid; place-items:center; }
+.lightbox-body img { max-width:100%; max-height:70vh; object-fit:contain; background:#000; border-radius:12px; }
+.lightbox-footer { padding:.5rem 1rem 1rem; text-align:right; color:#555; }
+.lightbox .close { background:transparent; border:none; font-size:1.5rem; line-height:1; cursor:pointer; }
+.lightbox .nav { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.5); color:#fff; border:none; font-size:2rem; width:44px; height:44px; border-radius:50%; cursor:pointer; display:grid; place-items:center; }
+.lightbox .nav.prev { left:.5rem; }
+.lightbox .nav.next { right:.5rem; }
 
-.lightbox .close { background: transparent; border: none; font-size: 1.5rem; line-height: 1; cursor: pointer; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.5); color: #fff; border: none; font-size: 2rem; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; }
-.lightbox .nav.prev { left: .5rem; }
-.lightbox .nav.next { right: .5rem; }
 
-/* Improve dialog support on Safari/iOS (non-modal fallback) */
-@supports not (backdrop-filter: blur(0)) { .lightbox { max-width: 100%; } }
+/* --- Projects page --- */
+.projects h1 { margin: 1.5rem 0 1rem; }
+.project-section { margin: 1.25rem 0 2rem; }
+.project-figure { margin: 0 0 1rem; }
+.project-figure img { width:100%; height:auto; display:block; border-radius:12px; }
+.project-figure figcaption { margin-top:.5rem; color:#333; }
 </style>
-
 /* Links (body) */
 a{ color: var(--brand); text-decoration: none; }
 a:hover{ text-decoration: underline; }
-
 /* Layout helpers */
 .container{ max-width:1100px; margin:0 auto; padding:0 .75rem; }
 .readable{ max-width:900px; margin:0 auto; line-height:1.7; }
 .page-hero{ padding:2rem 0 1rem; }
 .page-hero h1{ margin:0; }
-
 /* ===========================
    Header / Nav
    =========================== */
@@ -98,7 +95,6 @@ header .container{
   gap:1rem;
   padding:.75rem 0;
 }
-
 /* Site title */
 header .logo,
 header .logo:link,
@@ -115,7 +111,6 @@ header .logo:active{
   text-shadow:0 1px 2px rgba(0,0,0,.25);
   display:inline-block;
 }
-
 /* Main nav */
 .main-nav{ display:flex; flex-wrap:wrap; gap:.75rem; }
 .main-nav a{
@@ -125,7 +120,6 @@ header .logo:active{
 }
 .main-nav a:hover{ background: rgba(255,255,255,.12); text-decoration:none; }
 .main-nav a.active{ font-weight:700; text-decoration: underline; }
-
 /* ===========================
    Buttons
    =========================== */
@@ -151,7 +145,6 @@ header .logo:active{
 .card-media img{ width:100%; height:auto; }
 .card-body{ padding:1rem 1.1rem 1.2rem; }
 .card-body h2{ margin:0 0 .5rem; font-size:1.125rem; line-height:1.3; }
-
 /* Team profiles */
 .profile{ text-align:center; }
 .profile img{
@@ -159,7 +152,6 @@ header .logo:active{
   border-radius:999px; margin:1rem auto .5rem;
 }
 .profile .role{ font-weight:600; margin-top:.25rem; }
-
 /* ===========================
    Founder section (Home)
    =========================== */
@@ -180,8 +172,7 @@ header .logo:active{
   box-shadow:0 6px 20px rgba(0,0,0,.08);
 }
 .founder-caption{ margin-top:.5rem; font-weight:600; line-height:1.35; }
-
-/* ===========================
+* ===========================
    Contact layout
    =========================== */
 .two-col{
@@ -189,13 +180,11 @@ header .logo:active{
   grid-template-columns:1.1fr 1fr;
   gap:1.25rem;
 }
-
 /* ===========================
    Footer
    =========================== */
 footer{ padding:2rem 0 2.5rem; }
 footer p{ margin:0; text-align:center; }
-
 /* ===========================
    Responsive
    =========================== */
@@ -206,7 +195,6 @@ footer p{ margin:0; text-align:center; }
   .founder-grid{ grid-template-columns:1fr; }
 }
 :root { --footer: #2e7d32; }  /* tweak the green if you like */
-
 footer {
   background: var(--footer);
   color: #fff;
@@ -216,36 +204,29 @@ footer p { margin: 0; text-align: center; }
 footer a { color: #fff; text-decoration: underline; }
 /* Footer ribbon — hard override */
 :root { --footer: #2e7d32; }  /* tweak green if you like */
-
 .site-footer {
   background: var(--footer) !important;
   color: #fff !important;
   padding: 1.25rem 0 1.5rem;
 }
-
 .site-footer p { 
   margin: 0; 
   text-align: center; 
 }
-
 .site-footer a {
   color: #fff !important;
   text-decoration: underline;
 }
 /* Make intro line nicely sized and centered within the container */
 .lead { margin-top: .5rem; opacity: .9; }
-
 /* Safety: hide any accidental nav inside the team section */
 .team-body nav, .team-body .main-nav { display: none !important; }
-
 /* Ensure containers always center content */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 .75rem; }
 /* Tidy intro line */
 .lead { margin-top: .5rem; opacity: .9; }
-
 /* Safety: hide any accidental nav inside the gallery section */
 .gallery-body nav, .gallery-body .main-nav { display: none !important; }
-
 /* Ensure all pages’ content is centered with breathing room */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 .75rem; }
 /* ===== Gallery: no cropping, always show full image ===== */
@@ -254,7 +235,6 @@ footer a { color: #fff; text-decoration: underline; }
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.25rem;
 }
-
 /* Card look */
 .gallery-item{
   background:#fff;
@@ -268,7 +248,6 @@ footer a { color: #fff; text-decoration: underline; }
   line-height:1.3;
   color:#555;
 }
-
 /* The magic: a frame that letterboxes the whole image (no cropping) */
 .frame{
   display:flex; align-items:center; justify-content:center;
@@ -283,20 +262,17 @@ footer a { color: #fff; text-decoration: underline; }
   width:auto; height:auto;
   object-fit: contain;        /* never crop */
 }
-
 /* Common aspect ratios for consistent tiles */
 .ratio-4x3{ aspect-ratio: 4 / 3; }
 .ratio-3x2{ aspect-ratio: 3 / 2; }
 .ratio-16x9{ aspect-ratio: 16 / 9; }
 .ratio-21x9{ aspect-ratio: 21 / 9; } /* wide hero banner */
-
 /* Optional hero photo spacing */
 .gallery-hero{ margin-bottom: 1.25rem; }
 .gallery-hero .frame{
   border-radius:14px;
   box-shadow:0 6px 18px rgba(0,0,0,.06);
 }
-
 /* ===== Lightbox (click to enlarge, still no cropping) ===== */
 .lightbox{
   border:none; padding:0; max-width: 92vw; max-height: 90vh;
@@ -304,7 +280,6 @@ footer a { color: #fff; text-decoration: underline; }
   color:#fff;
 }
 .lightbox::backdrop{ background: rgba(0,0,0,.5); }
-
 .lightbox img{
   display:block;
   max-width: 90vw; max-height: 80vh;
@@ -313,12 +288,10 @@ footer a { color: #fff; text-decoration: underline; }
   margin: 4vh auto 0;
   border-radius: 8px;
 }
-
 .lightbox p{
   text-align:center; margin:.75rem auto 1rem; opacity:.9;
   max-width: 80ch;
 }
-
 #lb-close{
   display:block; margin:0 auto 2rem; padding:.5rem 1rem;
   border-radius:10px; border:0; cursor:pointer;
@@ -333,9 +306,7 @@ footer a { color: #fff; text-decoration: underline; }
   --card-bg: #0f1412;
   --soft: 16px;
 }
-
 * { box-sizing: border-box; }
-
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
@@ -343,17 +314,14 @@ body {
   background: var(--gfi-bg);
   line-height: 1.55;
 }
-
 .container {
   width: min(1100px, 92vw);
   margin-inline: auto;
 }
-
 /* === Header / Nav (simple, consistent) === */
 .site-header {
   background: var(--gfi-deep);
 }
-
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -361,23 +329,19 @@ body {
   align-items: center;
   padding: 0.9rem 0;
 }
-
 .nav a {
   color: #fff;
   text-decoration: none;
   opacity: 0.95;
   font-weight: 500;
 }
-
 .nav a[aria-current="page"] {
   border-bottom: 2px solid #fff;
 }
-
 /* === Footer Ribbon === */
 .site-footer {
   margin-top: 3rem;
 }
-
 .footer-ribbon {
   background: var(--gfi-green);
   color: #fff;
@@ -385,20 +349,16 @@ body {
   padding: 0.85rem 0;
   border-top: 3px solid #0f5a38;
 }
-
 /* ===== GALLERY (NO-CROP MASONRY) ===== */
-
 .gal {
   padding: 2.5rem 0 3.5rem;
   background: #fafafa;
 }
-
 .gal .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 1rem;
 }
-
 .gal-title {
   font-size: clamp(1.75rem, 2.5vw, 2.25rem);
   line-height: 1.2;
@@ -407,7 +367,6 @@ body {
   color: #133a1c; /* GFI green tone */
   text-align: center;
 }
-
 .gal-subtitle {
   margin: 0 0 1.25rem;
   text-align: center;
@@ -437,7 +396,6 @@ body {
   box-shadow: 0 1px 6px rgba(0,0,0,.06);
   overflow: hidden;
 }
-
 /* Images: full width, auto height => no cropping */
 .gal-item img {
   display: block;
@@ -445,7 +403,6 @@ body {
   height: auto;   /* key: keep aspect ratio */
   vertical-align: middle;
 }
-
 /* Caption */
 .gal-item figcaption {
   padding: .65rem .8rem;
@@ -453,14 +410,12 @@ body {
   color: #2b2b2b;
   border-top: 1px solid #f0f0f0;
 }
-
 /* Optional: subtle hover lift */
 .gal-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,.08);
   transition: transform .2s ease, box-shadow .2s ease;
 }
-
 /* Small screens: give a bit more breathing room */
 @media (max-width: 480px) {
   .gal-container { padding-inline: 0.35rem; }
@@ -470,13 +425,11 @@ body {
 .gal { padding: 2rem 0; }
 .gal-header h1 { margin: 0 0 .5rem; font-size: clamp(1.5rem, 2.5vw, 2rem); }
 .gal-header p { color: #555; margin: 0 0 1.5rem; }
-
 .gal-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
-
 .album-card {
   display: flex;
   flex-direction: column;
@@ -495,7 +448,6 @@ body {
   box-shadow: 0 8px 24px rgba(0,0,0,.08);
   border-color: #cbd5e1;
 }
-
 .album-thumb {
   aspect-ratio: 16 / 10;
   background: #f3f4f6;
@@ -508,7 +460,6 @@ body {
   /* Thumbnails can be cover (looks tidy); full view uses contain: */
   object-fit: cover;
 }
-
 .album-meta { padding: .75rem .9rem 1rem; }
 .album-meta h3 {
   margin: 0 0 .25rem;
@@ -519,7 +470,6 @@ body {
   font-size: .85rem;
   color: #6b7280;
 }
-
 /* Viewer */
 .gal-viewer {
   position: fixed; inset: 0;
@@ -542,7 +492,6 @@ body {
 }
 .viewer-footer { border-top: 1px solid #e5e7eb; border-bottom: none; }
 .viewer-title { margin: 0; font-size: 1rem; }
-
 .viewer-close {
   border: 0; background: transparent; font-size: 1.75rem; line-height: 1;
   cursor: pointer; color: #111827;
@@ -557,7 +506,6 @@ body {
   object-fit: contain; /* KEY: show whole people/faces */
   background: #0b0b0b;
 }
-
 .viewer-prev, .viewer-next {
   border: 1px solid #e5e7eb; background: #fff; padding: .5rem .75rem;
   border-radius: .75rem; cursor: pointer;
@@ -585,14 +533,12 @@ body {
       <a href="/contact.html">Contact</a>
     </nav>
   </header>
-
   <section id="gallery" class="gal">
     <div class="container gal-container">
       <h1 class="gal-title">Gallery</h1>
       <p class="gal-note">
         Tip: We show the entire photo without cropping (no cut heads!). Images may letterbox to keep everyone in frame.
       </p>
-
       <div class="gal-grid">
         <!--
           IMPORTANT:
@@ -601,27 +547,22 @@ body {
           - If one image has a known working URL (e.g., from Projects page),
             paste it into data-exact to force that path for that ONE image.
         -->
-
         <figure class="gal-item" data-name="photo1">
           <img alt="Community outreach visit">
           <figcaption>Community outreach visit</figcaption>
         </figure>
-
         <figure class="gal-item" data-name="photo2">
           <img alt="Youth sports activity">
           <figcaption>Youth sports activity</figcaption>
         </figure>
-
         <figure class="gal-item" data-name="photo3">
           <img alt="Health awareness event">
           <figcaption>Health awareness event</figcaption>
         </figure>
-
         <figure class="gal-item" data-name="photo4">
           <img alt="Tree planting day">
           <figcaption>Tree planting day</figcaption>
         </figure>
-
         <!-- Scholarships image: if you know its exact working URL from Projects,
              paste it into data-exact below and it will be used directly. -->
         <figure class="gal-item" data-name="scholarships"
@@ -629,7 +570,6 @@ body {
           <img alt="GFI Founder with Mogonjet sec. school students supported by GFI courtesy of Lift the Lid.">
           <figcaption>GFI Founder with Mogonjet sec. school students supported by GFI courtesy of Lift the Lid.</figcaption>
         </figure>
-
         <figure class="gal-item" data-name="photo6">
           <img alt="Community clean-up">
           <figcaption>Community clean-up</figcaption>
@@ -637,40 +577,32 @@ body {
       </div>
     </div>
   </section>
-
   <footer class="site-footer">
     <div class="container footer-ribbon">© 2025 Grace Foundation International</div>
   </footer>
-
   <!-- Lightbox overlay (only used if/when an image successfully loads) -->
   <div class="lightbox-overlay" id="lightbox" hidden>
     <img alt="">
   </div>
-
   <script>
     // Try to auto-resolve real image URLs by testing common folders & extensions.
     // This avoids 404s when you’re unsure whether it’s /assets/, /images/, etc.,
     // and whether it's .jpg/.JPG/.jpeg/.png/.webp
-
     const CANDIDATE_DIRS = [
       "assets/gallery/", "assets/images/", "assets/",
       "images/", "/assets/gallery/", "/assets/images/", "/assets/", "/images/"
     ];
     const CANDIDATE_EXTS = [".jpg", ".JPG", ".jpeg", ".png", ".webp"];
-
     function resolveImageForItem(figure) {
       const img = figure.querySelector("img");
       const name = figure.dataset.name;                 // e.g., "photo1"
       const exact = figure.dataset.exact?.trim();       // exact known URL (optional)
-
       // If an exact URL is provided, try it first and only.
       const queue = exact
         ? [exact]
         : CANDIDATE_DIRS.flatMap(d => CANDIDATE_EXTS.map(ext => d + name + ext));
-
       // Try each candidate until one loads.
       let resolved = null;
-
       const tryNext = () => {
         if (!queue.length) {
           // Mark as missing
@@ -680,7 +612,6 @@ body {
           return;
         }
         const candidate = queue.shift();
-
         const tester = new Image();
         tester.onload = () => {
           resolved = candidate;
@@ -691,22 +622,18 @@ body {
         tester.onerror = tryNext;
         tester.src = candidate;
       };
-
       tryNext();
     }
-
     function enableLightbox(figure, url) {
       // Click to open large view only when image truly exists; no broken links.
       figure.style.cursor = "zoom-in";
       figure.addEventListener("click", () => openLightbox(url), { once: true });
     }
-
     function openLightbox(url) {
       const overlay = document.getElementById("lightbox");
       const overlayImg = overlay.querySelector("img");
       overlayImg.src = url;
       overlay.hidden = false;
-
       const close = () => {
         overlay.hidden = true;
         overlayImg.removeAttribute("src");
@@ -714,11 +641,9 @@ body {
         document.removeEventListener("keydown", onEsc);
       };
       const onEsc = (e) => { if (e.key === "Escape") close(); };
-
       overlay.addEventListener("click", close);
       document.addEventListener("keydown", onEsc);
     }
-
     // Resolve all items on load
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".gal-item").forEach(resolveImageForItem);
@@ -728,7 +653,6 @@ body {
 </html>
 .gal-item { position: relative; }
 .gal-item img { width:100%; height:100%; object-fit:contain; display:block; }
-
 .gal-item figcaption{
   position:absolute; left:0; right:0; bottom:0;
   padding:12px 14px;
@@ -740,19 +664,16 @@ body {
 :root {
   --gfi-deep: #0e2d20;
 }
-
 .container {
   width: min(1100px, 92vw);
   margin-inline: auto;
 }
-
 .site-header {
   position: sticky;       /* stays at top while scrolling */
   top: 0;
   z-index: 1000;          /* above page content */
   background: var(--gfi-deep);
 }
-
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -760,18 +681,15 @@ body {
   align-items: center;
   padding: 0.9rem 0;
 }
-
 .nav a {
   color: #fff;
   text-decoration: none;
   font-weight: 500;
   opacity: 0.96;
 }
-
 .nav a[aria-current="page"] {
   border-bottom: 2px solid #fff;
 }
-
 /* Safety: ensure page sections don't overlap the header */
 body { margin: 0; }
 section, main { position: relative; z-index: 1; }
@@ -796,7 +714,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
 .section-title { font-size: 2rem; margin-bottom: .5rem; }
 .section-lead { color: #555; margin-bottom: 1.25rem; }
-
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -808,7 +725,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
 @media (max-width: 640px) {
   .gallery-grid { grid-template-columns: repeat(4, 1fr); }
 }
-
 .album-card {
   grid-column: span 4;
   display: flex;
@@ -827,7 +743,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
   outline: none;
 }
-
 .album-thumb {
   position: relative;
   aspect-ratio: 4 / 3;          /* consistent tiles */
@@ -839,7 +754,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   object-fit: contain;          /* <— shows the WHOLE photo (no cropping) */
   display: block;
 }
-
 .album-meta {
   padding: .75rem .9rem 1rem;
 }
@@ -851,7 +765,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   font-size: .9rem;
   color: #777;
 }
-
 /* --- Lightbox --- */
 .lightbox[aria-hidden="true"] { display: none; }
 .lightbox {
@@ -863,7 +776,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   grid-template-rows: 60px 1fr 60px;
   z-index: 9999;
 }
-
 .lb-close {
   grid-column: 3 / 4;
   grid-row: 1 / 2;
@@ -876,7 +788,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   line-height: 1;
   cursor: pointer;
 }
-
 .lb-nav {
   background: transparent;
   color: #fff;
@@ -891,7 +802,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
 }
 .lb-prev { grid-column: 1 / 2; grid-row: 2 / 3; }
 .lb-next { grid-column: 3 / 4; grid-row: 2 / 3; }
-
 .lb-stage {
   grid-column: 1 / 4;
   grid-row: 2 / 3;
@@ -912,7 +822,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   font-size: .95rem;
   text-align: center;
 }
-
 @media (max-width: 640px) {
   .lightbox {
     grid-template-columns: 48px 1fr 48px;
@@ -938,7 +847,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   object-fit: cover; /* crop for thumbnails for a neat grid */
   display: block;
 }
-
 /* Modal lightbox */
 .gallery-modal {
   position: fixed;
@@ -960,7 +868,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   font-size: 1.5rem; line-height: 1; background: transparent; border: 0; cursor: pointer;
 }
 .gallery-title { margin: 0 2rem 0.75rem 0.25rem; font-size: 1.1rem; }
-
 /* Rail shows full images without cutting people out */
 .gallery-rail {
   overflow: auto;
@@ -987,13 +894,11 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
 .gallery {
   padding: 2rem 0;
 }
-
 .album-grid {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
-
 .album-card {
   display: block;
   border: none;
@@ -1001,24 +906,20 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   text-align: left;
   cursor: pointer;
 }
-
 .album-thumb {
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 1rem;
 }
-
 .album-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover; /* neat cropped thumbnail */
   display: block;
 }
-
 .album-meta {
   margin-top: 0.5rem;
 }
-
 .album-meta h3 {
   margin: 0;
   font-size: 1rem;
@@ -1028,7 +929,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   font-size: 0.85rem;
   color: #666;
 }
-
 /* Modal viewer */
 .gallery-modal {
   position: fixed;
@@ -1042,7 +942,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   position: absolute; inset: 0;
   background: rgba(0,0,0,0.6);
 }
-
 .gallery-dialog {
   position: absolute;
   top: 5%; left: 5%; right: 5%;
@@ -1052,18 +951,15 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   max-height: 90vh;
   overflow: hidden;
 }
-
 .close-btn {
   position: absolute; top: .5rem; right: .75rem;
   font-size: 1.5rem; background: none; border: none;
   cursor: pointer;
 }
-
 .gallery-title {
   margin: 0 2rem 1rem 0.25rem;
   font-size: 1.2rem;
 }
-
 .gallery-rail {
   overflow: auto;
   display: grid;
@@ -1072,7 +968,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   padding: 0 0.5rem 1rem;
   max-height: calc(90vh - 3rem);
 }
-
 .gallery-item img {
   width: 100%;
   height: auto;
@@ -1086,14 +981,12 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
 .gallery-dialog { position: absolute; top:5%; left:5%; right:5%; background:#fff; border-radius:1rem; padding:1rem; max-height:90vh; overflow:hidden; }
 .gallery-rail { overflow:auto; display:grid; gap:1rem; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); padding:0 .5rem 1rem; max-height:calc(90vh - 3rem); }
 .gallery-item img { width:100%; height:auto; object-fit:contain; display:block; border-radius:.5rem; }
-
 /* Contrast fix: Gallery hero/ribbon */
 .gal .gal-header,
 .gal .gal-header h1,
 .gal .gal-header p {
   color: #fff;
 }
-
 /* In case your ribbon uses a background overlay */
 .gal .gal-header { 
   /* if you already have a maroon bg on this header, leave it; else uncomment next line */
@@ -1123,7 +1016,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   display: block;
   border-radius: 12px;
 }
-
 /* Overlay title on top of the image */
 .project-hero .hero-title {
   position: absolute;
@@ -1138,7 +1030,6 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   line-height: 1.2;
   border-radius: 8px;
 }
-
 /* Caption below the image: italic and smaller */
 .hero-caption {
   margin: 0.5rem 0 1.25rem;
@@ -1146,24 +1037,20 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
   font-size: 0.95rem;
   color: #374151; /* slate-700 */
 }
-
 /* Small screens tweak */
 @media (max-width: 480px) {
   .project-hero .hero-title { font-size: 1rem; }
 }
 /* Projects page: classic hero styles */
 .project-block.container { margin: 1.25rem auto 2rem; }
-
 .project-title {
   margin: 0 0 .5rem;
   font-size: clamp(1.25rem, 2.4vw, 1.5rem);
   line-height: 1.2;
 }
-
 .project-media {
   margin: 0; /* reset default figure margins */
 }
-
 .project-media img {
   width: 100%;
   height: auto;
@@ -1179,22 +1066,18 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
 }
 /* Projects page: clean hero styles */
 .project-block.container { margin: 1.25rem auto 2rem; }
-
 .project-title {
   margin: 0 0 .5rem;
   font-size: clamp(1.25rem, 2.4vw, 1.5rem);
   line-height: 1.2;
 }
-
 .project-media { margin: 0; }
-
 .project-media img {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 12px;
 }
-
 .project-caption {
   margin: .5rem 0 1.25rem;
   font-style: italic;
@@ -1208,13 +1091,9 @@ main { flex: 1 0 auto; }          /* main grows to push footer down */
 .gallery { padding: 2rem 0; }
 .gallery-header h1 { margin: 0 0 .25rem 0; }
 .gallery-header .muted { color: #777; font-size: .95rem; }
-
-
 .albums { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 @media (min-width: 640px) { .albums { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1024px) { .albums { grid-template-columns: 1fr 1fr 1fr; } }
-
-
 .album-card { display: grid; grid-template-rows: auto 1fr; gap: .5rem; padding: .75rem; border: 1px solid #e4e4e4; border-radius: 14px; background: #fff; cursor: pointer; text-align: left; }
 .album-card:focus-visible { outline: 3px solid #2a7; }
 .album-thumb { aspect-ratio: 4/3; overflow: hidden; border-radius: 10px; background: #f5f5f5; display:flex; align-items:center; justify-content:center; }
