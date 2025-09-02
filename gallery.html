@@ -1,84 +1,89 @@
-<!-- =========================
-GFI Gallery Fix (Drop-in)
-Files touched: gallery.html, style.css, /assets/js/gallery.js
-Assumes images live at /assets/gallery/education1.jpg and education2.jpg
-Root-relative paths throughout; ensure NO <base> tag exists in <head>.
-========================= -->
-
-<!-- ===== gallery.html (replace the <main>...</main> block on this page) ===== -->
 <main id="content" class="container">
-  <section id="gallery" class="gallery">
-    <header class="gallery-header">
-      <h1>Gallery</h1>
-      <p class="muted">Tap an album to view photos. Images are loaded from <code>/assets/gallery/</code>.</p>
-    </header>
+<section id="gallery" class="gallery">
+<header class="gallery-header">
+<h1>Gallery</h1>
+<p class="muted">Tap an album to view photos. Images are loaded from <code>/assets/gallery/</code>.</p>
+</header>
 
-    <div class="albums">
-      <!-- Album: Education Outreach -->
-      <button
+
+<div class="albums">
+<!-- Album: Education Outreach -->
 <button
-  class="album-card"
-  aria-label="Open Education Outreach album"
-  data-title="Education Outreach"
-  data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg">
-  <div class="album-thumb">
-    <img src="/assets/gallery/education1.jpg" alt="Education Outreach" loading="lazy">
-  </div>
-  <div class="album-meta">
-    <h3>Education Outreach</h3>
-    <span class="count">2 photos</span>
-  </div>
-</button>
-  class="album-card"
-  aria-label="Open Education Outreach album"
-  data-album="education-outreach"
-  data-title="Education Outreach"
-  data-images="/assets/gallery/education2.jpg"
+class="album-card"
+aria-label="Open Education Outreach album"
+data-album="education-outreach"
+data-title="Education Outreach"
+data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg"
 >
-  <div class="album-thumb">
- <img src="/assets/gallery/education1.jpg" alt="Education Outreach" loading="lazy">
-  </div>
-  <div class="album-meta">
-    <h3>Education Outreach</h3>
- <span class="count">2 photos</span>
-  </div>
+<div class="album-thumb">
+<img src="/assets/gallery/education1.jpg" alt="Education Outreach" loading="lazy">
+</div>
+<div class="album-meta">
+<h3>Education Outreach</h3>
+<span class="count">2 photos</span>
+</div>
 </button>
 
-      <button
-        class="album-card"
-        aria-label="Open Green Dignity Villages album"
-        data-album="green-dignity-villages"
-        data-title="Green Dignity Villages"
-        data-images="/assets/gallery/gdv1.jpg,/assets/gallery/gdv2.jpg"
-      >
-        <div class="album-thumb placeholder"></div>
-        <div class="album-meta">
-          <h3>Green Dignity Villages</h3>
-          <span class="count">2+ photos</span>
-        </div>
-      </button>
-    </div>
 
-    <!-- Lightbox Modal -->
-    <dialog id="lightbox" class="lightbox" aria-modal="true">
-      <div class="lightbox-header">
-        <h2 id="lightbox-title">Album</h2>
-        <button id="lightbox-close" class="close" aria-label="Close">×</button>
-      </div>
-      <div class="lightbox-body">
-        <button class="nav prev" aria-label="Previous">‹</button>
-        <img id="lightbox-image" alt="Album image" />
-        <button class="nav next" aria-label="Next">›</button>
-      </div>
-      <div class="lightbox-footer">
-        <span id="lightbox-counter" class="counter">1 / 1</span>
-      </div>
-    </dialog>
-  </section>
+<!-- Starter album cards (use real images later) -->
+<button
+class="album-card"
+aria-label="Open Sustainable Agriculture album"
+data-album="sustainable-agriculture"
+data-title="Sustainable Agriculture"
+data-images="/assets/gallery/agriculture1.jpg,/assets/gallery/agriculture2.jpg"
+>
+<div class="album-thumb placeholder"></div>
+<div class="album-meta">
+<h3>Sustainable Agriculture</h3>
+<span class="count">2+ photos</span>
+</div>
+</button>
+
+
+<button
+class="album-card"
+aria-label="Open Green Dignity Villages album"
+data-album="green-dignity-villages"
+data-title="Green Dignity Villages"
+data-images="/assets/gallery/gdv1.jpg,/assets/gallery/gdv2.jpg"
+>
+<div class="album-thumb placeholder"></div>
+<div class="album-meta">
+<h3>Green Dignity Villages</h3>
+<span class="count">2+ photos</span>
+</div>
+</button>
+</div>
+
+
+<!-- Lightbox Modal -->
+<dialog id="lightbox" class="lightbox" aria-modal="true">
+<div class="lightbox-header">
+<h2 id="lightbox-title">Album</h2>
+<button id="lightbox-close" class="close" aria-label="Close">×</button>
+</div>
+<div class="lightbox-body">
+<button class="nav prev" aria-label="Previous">‹</button>
+<img id="lightbox-image" alt="Album image" />
+<button class="nav next" aria-label="Next">›</button>
+</div>
+<div class="lightbox-footer">
+<span id="lightbox-counter" class="counter">1 / 1</span>
+</div>
+</dialog>
+</section>
 </main>
-
-<!-- Load gallery JS at end of body for best performance -->
 <script src="/assets/js/gallery.js" defer></script>
+</body>
+</html>
+<footer class="site-footer ribbon">
+<div class="container">© <span id="year"></span> Grace Foundation International. All Rights Reserved </div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
+
 
 
 <!-- ===== style.css (append these rules to the end of /style.css) ===== -->
