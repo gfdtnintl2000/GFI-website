@@ -129,6 +129,24 @@ document.querySelectorAll('.project-figure img').forEach(img => {
     show(0);
   });
 });
+     document.querySelectorAll('.project-figure img').forEach(img => {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', () => {
+    const dlg = document.getElementById('lightbox');
+    const imgEl = document.getElementById('lightbox-image');
+    const titleEl = document.getElementById('lightbox-title');
+    const counterEl = document.getElementById('lightbox-counter');
+
+    const section = img.closest('section');
+    titleEl.textContent = section?.querySelector('h2')?.textContent || 'Project Photo';
+
+    images = [img.currentSrc || img.src];  // show just this image
+    if (typeof dlg.showModal === 'function') dlg.showModal();
+    else dlg.setAttribute('open', '');
+    counterEl.textContent = 'Loading…';
+    show(0);
+  });
+});
     // Lightbox controls
     btnPrev && btnPrev.addEventListener('click', () => show(idx - 1));
     btnNext && btnNext.addEventListener('click', () => show(idx + 1));
