@@ -17,15 +17,16 @@
     .site-header .nav a { color: #fff; text-decoration: none; margin-right: 1rem; }
     .site-header .nav a[aria-current="page"] { text-decoration: underline; }
 
-    main { padding: 2rem 0 4rem; }
-    h1.page-title { font-size: clamp(1.8rem, 2.5vw, 2.4rem); margin: 0 0 1.25rem; }
+    main { padding: 2rem 0 4rem; } /* keep */
+    main h1, main h2 { text-decoration: none; }
+    h1.page-title { font-size: clamp(1.8rem, 2.5vw, 2.4rem); margin: 0 0 1.25rem; text-decoration: none; border-bottom: 3px solid #e6e6e6; padding-bottom: .4rem; }
     p.lede { color: #444; max-width: 70ch; }
 
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
 
     .project-card { background: #fff; border-radius: 1rem; box-shadow: 0 6px 18px rgba(0,0,0,.08); overflow: hidden; display: flex; flex-direction: column; }
     .project-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
-    .project-media img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; }
+    .project-media img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; pointer-events: auto; }
 
     .project-body { padding: 1rem 1rem 1.25rem; display: grid; gap: .5rem; }
     .project-body h2 { font-size: 1.2rem; margin: 0; }
@@ -38,7 +39,7 @@
     .list li { margin: .25rem 0; }
 
     /* Simple lightbox */
-    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.8); display: none; align-items: center; justify-content: center; z-index: 1000; }
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.8); display: none; align-items: center; justify-content: center; z-index: 10000; }
     .lightbox.open { display: flex; }
     .lightbox img { max-width: 92vw; max-height: 92vh; width: auto; height: auto; display: block; }
     .lightbox button { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; background: #fff; border: 0; border-radius: .5rem; padding: .35rem .6rem; cursor: pointer; }
@@ -70,7 +71,7 @@
 
       <!-- Project 1: Education Outreach -->
       <article class="project-card" id="education-outreach">
-        <figure class="project-media">
+        <figure class="project-media" data-lightbox="/assets/gallery/education1.jpg">
           <img src="/assets/gallery/education1.jpg" alt="GFI Founder presenting an electric wheelchair to a student" data-lightbox="/assets/gallery/education1.jpg" />
         </figure>
         <div class="project-body">
@@ -87,7 +88,7 @@
 
       <!-- Project 2: Sustainable Agriculture -->
       <article class="project-card" id="sustainable-agriculture">
-        <figure class="project-media">
+        <figure class="project-media" data-lightbox="/assets/gallery/education2.jpg">
           <!-- Replace the image below when your agriculture photo is ready -->
           <img src="/assets/gallery/education2.jpg" alt="Hands-on training with farmers on climate-smart practices" data-lightbox="/assets/gallery/education2.jpg" />
         </figure>
@@ -105,7 +106,7 @@
 
       <!-- Project 3: Green Dignity Villages -->
       <article class="project-card" id="green-dignity-villages">
-        <figure class="project-media">
+        <figure class="project-media" data-lightbox="/assets/gallery/education1.jpg">
           <!-- Placeholder image/path: update when GDV imagery is added to /assets/projects/ -->
           <img src="/assets/gallery/education1.jpg" alt="Illustration of eco-friendly homes with solar and rainwater harvesting" data-lightbox="/assets/gallery/education1.jpg" />
         </figure>
@@ -136,12 +137,13 @@
   </div>
 
   <script>
-    (function(){
+    document.addEventListener('DOMContentLoaded', function(){
       const lb = document.getElementById('lb');
       const lbImg = document.getElementById('lb-img');
       const lbClose = document.getElementById('lb-close');
 
       function openLb(src){
+        if(!src) return;
         lbImg.src = src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
       }
       function closeLb(){
@@ -149,15 +151,16 @@
       }
 
       document.addEventListener('click', (e) => {
-        const t = e.target;
-        if (t && t.matches('img[data-lightbox]')) {
+        const el = e.target.closest('[data-lightbox]');
+        if (el) {
           e.preventDefault();
-          openLb(t.getAttribute('data-lightbox'));
+          openLb(el.getAttribute('data-lightbox'));
+          return;
         }
-        if (t === lb || t === lbClose) closeLb();
+        if (e.target === lb || e.target === lbClose) closeLb();
       });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
-    })();
+    });
   </script>
 </body>
 </html>
