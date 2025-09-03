@@ -5,75 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Projects — Grace Foundation International</title>
 
-  <!-- Use your site stylesheet (cache-busted) -->
-  <link rel="stylesheet" href="/style.css?v=20250903c" />
+  <!-- Global stylesheet (cache-busted). OK if this 404s; page-scoped CSS below is sufficient. -->
+  <link rel="stylesheet" href="/style.css?v=20250903d" />
 
   <style>
-    /* ========= PAGE-SCOPED STYLES (won’t affect other pages) ========= */
-    .page-projects :root { --max-w: 1100px; }
+    /* ======================= PAGE-SCOPED (NAMESPACED) ======================= */
+    body.page-projects { --max-w: 1100px; }
     .page-projects .container { max-width: var(--max-w); margin-inline: auto; padding: 0 1rem; }
 
-    /* Kill any global heading underlines on this page */
-    .page-projects h1.page-title { 
-      text-decoration: none !important; 
-      border: 0 !important; 
-      margin: 0 0 1.25rem;
-      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
-    }
+    /* Header band + nav (self-contained so other pages aren't affected) */
+    .page-projects .site-header { background: #740f1a; color: #fff; }
+    .page-projects .site-header .nav { display:flex; gap:1rem; align-items:center; flex-wrap:wrap; padding:.75rem 0; }
+    .page-projects .site-header .nav a { color:#fff; text-decoration:none; }
+    .page-projects .site-header .nav a[aria-current="page"] { text-decoration: underline; }
 
     .page-projects main { padding: 2rem 0 4rem; }
+    .page-projects h1.page-title { font-size: clamp(1.8rem, 2.5vw, 2.4rem); margin: 0 0 1.25rem; text-decoration: none !important; border: 0 !important; }
     .page-projects p.lede { color: #444; max-width: 70ch; }
 
-    .page-projects .projects-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-      gap: 1.25rem; margin-top: 1.25rem;
-    }
+    .page-projects .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
 
-    .page-projects .project-card {
-      background: #fff; border-radius: 1rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
-      overflow: hidden; display: flex; flex-direction: column;
-    }
-
+    .page-projects .project-card { background: #fff; border-radius: 1rem; box-shadow: 0 6px 18px rgba(0,0,0,.08); overflow: hidden; display: flex; flex-direction: column; }
     .page-projects .project-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
     .page-projects .project-media img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; }
 
     .page-projects .project-body { padding: 1rem 1rem 1.25rem; display: grid; gap: .5rem; }
-    .page-projects .project-body h2 { font-size: 1.2rem; margin: 0; }
+    .page-projects .project-body h2 { font-size: 1.2rem; margin: 0; text-decoration:none !important; }
     .page-projects .project-body p { margin: 0; color: #333; }
+
+    .page-projects figure { margin: 0; }
     .page-projects figcaption { font-style: italic; font-size: .95rem; color: #555; margin-top: .35rem; }
+
     .page-projects .list { padding-left: 1.1rem; margin: .25rem 0 0; color: #333; }
     .page-projects .list li { margin: .25rem 0; }
 
-    /* Lightbox */
-    .page-projects .lightbox {
-      position: fixed; inset: 0; background: rgba(0,0,0,.85);
-      display: none; align-items: center; justify-content: center; z-index: 99999;
-    }
+    /* Lightbox (completely self-contained) */
+    .page-projects .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: none; align-items: center; justify-content: center; z-index: 99999; }
     .page-projects .lightbox.open { display: flex; }
     .page-projects .lightbox img { max-width: 92vw; max-height: 92vh; }
-    .page-projects .lightbox button {
-      position: absolute; top: 1rem; right: 1rem;
-      font-size: 1.5rem; background: #fff; border: 0; border-radius: .5rem;
-      padding: .35rem .6rem; cursor: pointer;
-    }
+    .page-projects .lightbox button { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; background: #fff; border: 0; border-radius: .5rem; padding: .35rem .6rem; cursor: pointer; }
 
-    /* Local footer ribbon */
+    /* Footer ribbon helper */
     .page-projects .site-footer { background: #0f7a2e; color: #fff; padding: .85rem 0; }
     .page-projects .site-footer .container { display: flex; justify-content: center; align-items: center; font-size: .95rem; }
   </style>
 </head>
 <body class="page-projects">
-  <!-- Keep your nav consistent -->
+  <!-- Shared site header/nav (kept self-contained here; doesn't alter other pages) -->
   <header class="site-header">
     <nav class="nav container" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="projects.html" aria-current="page">Projects</a>
-      <a href="partner.html">Partner With Us</a>
-      <a href="team.html">Meet Our Team</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
+      <a href="/">Home</a>
+      <a href="/about.html">About Us</a>
+      <a href="/projects.html" aria-current="page">Projects</a>
+      <a href="/partner.html">Partner With Us</a>
+      <a href="/team.html">Meet Our Team</a>
+      <a href="/gallery.html">Gallery</a>
+      <a href="/contact.html">Contact</a>
     </nav>
   </header>
 
@@ -83,12 +70,11 @@
 
     <section class="projects-grid" aria-label="Project list">
 
-      <!-- Education Outreach -->
+      <!-- Project 1: Education Outreach -->
       <article class="project-card" id="education-outreach">
         <figure class="project-media">
-          <!-- Anchor trigger ensures reliable lightbox clicks -->
-          <a href="/assets/gallery/education1.jpg" class="lb-link" aria-label="Open preview">
-            <img src="/assets/gallery/education1.jpg" alt="GFI Founder presenting an electric wheelchair to a student" loading="lazy">
+          <a href="/assets/gallery/education1.jpg" class="lb-link" aria-label="Open preview: Education Outreach">
+            <img src="/assets/gallery/education1.jpg" alt="GFI Founder presenting an electric wheelchair to a student" loading="lazy" />
           </a>
         </figure>
         <div class="project-body">
@@ -103,11 +89,11 @@
         </div>
       </article>
 
-      <!-- Sustainable Agriculture -->
+      <!-- Project 2: Sustainable Agriculture -->
       <article class="project-card" id="sustainable-agriculture">
         <figure class="project-media">
-          <a href="/assets/gallery/education2.jpg" class="lb-link" aria-label="Open preview">
-            <img src="/assets/gallery/education2.jpg" alt="Hands-on training with farmers on climate-smart practices" loading="lazy">
+          <a href="/assets/gallery/education2.jpg" class="lb-link" aria-label="Open preview: Sustainable Agriculture">
+            <img src="/assets/gallery/education2.jpg" alt="Hands-on training with farmers on climate-smart practices" loading="lazy" />
           </a>
         </figure>
         <div class="project-body">
@@ -122,11 +108,11 @@
         </div>
       </article>
 
-      <!-- Green Dignity Villages -->
+      <!-- Project 3: Green Dignity Villages -->
       <article class="project-card" id="green-dignity-villages">
         <figure class="project-media">
-          <a href="/assets/gallery/education1.jpg" class="lb-link" aria-label="Open preview">
-            <img src="/assets/gallery/education1.jpg" alt="Illustration of eco-friendly homes with solar and rainwater harvesting" loading="lazy">
+          <a href="/assets/gallery/education1.jpg" class="lb-link" aria-label="Open preview: Green Dignity Villages">
+            <img src="/assets/gallery/education1.jpg" alt="Illustration of eco-friendly homes with solar and rainwater harvesting" loading="lazy" />
           </a>
         </figure>
         <div class="project-body">
@@ -144,18 +130,19 @@
     </section>
   </main>
 
+  <!-- Footer ribbon (kept local to this file) -->
   <footer class="site-footer">
     <div class="container">© 2025 Grace Foundation International</div>
   </footer>
 
-  <!-- Lightbox -->
+  <!-- Lightweight lightbox logic -->
   <div class="lightbox" id="lb" aria-hidden="true" role="dialog" aria-label="Image preview">
     <button type="button" aria-label="Close preview" id="lb-close">✕</button>
     <img id="lb-img" alt="Expanded project image" />
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function(){
       const lb = document.getElementById('lb');
       const lbImg = document.getElementById('lb-img');
       const lbClose = document.getElementById('lb-close');
@@ -163,7 +150,7 @@
       function openLb(src){ if(!src) return; lbImg.src = src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); }
       function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); lbImg.removeAttribute('src'); }
 
-      // Reliable: anchor-based triggers
+      // Anchor-based handler (most reliable across layouts/overlays)
       document.addEventListener('click', (e) => {
         const link = e.target.closest('a.lb-link');
         if (link) { e.preventDefault(); openLb(link.getAttribute('href')); return; }
