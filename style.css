@@ -278,3 +278,48 @@ main { flex: 1; }
 .page-gallery .site-footer {
   margin-top: 0;                 /* overrides the default 2rem if you want it flush */
 }
+/* === Compact maroon page-heading ribbon (all pages) === */
+.page-heading {
+  background-color: #800000; /* maroon */
+  color: #ffffff;            /* white text */
+  text-align: center;
+}
+
+/* Keep content bottom-aligned, but shrink the band a lot */
+.page-heading .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* Much smaller min height now */
+  min-height: clamp(84px, 12vh, 140px);
+  /* Tight padding so the description hugs the bottom */
+  padding: 0.5rem 1rem 0.4rem;
+}
+
+.page-heading h1 {
+  margin: 0 0 0.25rem;
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.page-heading p {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  opacity: 0.98;
+}
+
+/* Header (nav) also slightly tighter */
+.site-header { padding: 0.5rem 0; }
+.site-header .nav { gap: 1rem; }
+.site-header .nav a { font-size: 0.95rem; }
+
+/* Optional: even more compact on small screens */
+@media (max-width: 640px) {
+  .page-heading .container {
+    min-height: 96px;
+    padding-bottom: 0.45rem;
+  }
+  .page-heading h1 { font-size: 1.5rem; }
+  .page-heading p  { font-size: 1rem;   }
+}
