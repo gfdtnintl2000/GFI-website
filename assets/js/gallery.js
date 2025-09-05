@@ -179,3 +179,75 @@ const images = imagesAttr
   .split(',')
   .map(s => s.trim())
   .filter(Boolean);
+// Utility: safely parse the data-images attribute into a clean array
+function parseImages(el) {
+  const raw = el.getAttribute('data-images') || '';
+  return raw
+    .split(',')
+    .map(s => s.trim())
+    .filter(s => s.length > 0);
+}
+
+// Build (or find) a single shared lightbox
+function ensureLightbox() {
+  let lb = document.querySelector('#lightbox');
+  if (!lb) {
+    lb = document.createElement('div');
+    lb.id = 'lightbox';
+    lb.style.position = 'fixed';
+    lb.style.inset = '0';
+    lb.style.background = 'rgba(0,0,0,0.9)';
+    lb.style.display = 'flex';
+    lb.style.alignItems = 'center';
+    lb.style.justifyContent = 'center';
+    lb.style.zIndex = '9999';
+    lb.style.padding = '2rem';
+    lb.style.cursor = 'zoom-out';
+    lb.innerHTML = `
+      <img id="lightbox-img" alt="" style="max-width:100%;max-height:100%;display:block">
+    `;
+    document.body.appendChild(lb);
+
+    // close on click or Esc
+    lb.addEventListener('click', () => lb.style.display = 'none');
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') lb.style.display = 'none';
+    });
+  }
+  return lb;
+}
+
+function openLightbox(src) {
+  const lb = ensureLightbox();
+  const img = lb.querySelector('#lightbox-img');
+  img.style.display = 'none'; // hide until loaded
+  img.removeAttribute('src'); // clear any old value first
+
+  // Show something if load fails
+  img.onerror = () => {
+    console.error('[Gallery] Failed to load image:', src);
+    img.alt = 'Image failed to load';
+    img.style.display = 'block';
+  };
+
+  img.onload = () => {
+    img.style.display = 'block';
+  };
+
+  img.src = src;
+  lb.style.display = 'flex';
+}
+
+// Wire up album cards
+document.querySelectorAll('.album-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    e.preventDefault();
+    const images = parseImages(card);
+    if (!images.length) {
+      console.error('[Gallery] No images found in data-images for', card);
+      return;
+    }
+    // Open the first image (you can extend to arrows later)
+    openLightbox(images[0]);
+  });
+});
