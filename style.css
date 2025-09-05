@@ -223,3 +223,18 @@ main { flex: 1; }
 
 /* Utility in case needed elsewhere */
 .hidden { display: none !important; }
+/* ===== Sticky footer (gallery page only) ===== */
+.page-gallery {
+  min-height: 100vh;            /* fill full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+.page-gallery main {
+  flex: 1 0 auto;               /* push footer to the bottom */
+}
+
+/* Optional: tighten spacing above footer on the gallery page */
+.page-gallery .site-footer {
+  margin-top: 0;                 /* overrides the default 2rem if you want it flush */
+}
