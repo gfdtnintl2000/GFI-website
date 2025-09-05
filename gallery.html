@@ -105,6 +105,14 @@
   <button class="lb-btn lb-next" aria-label="Next">›</button>
   <div class="lb-caption" aria-live="polite"></div>
 </div>
+  <div id="lightbox" class="lb hidden" aria-hidden="true" role="dialog" aria-label="Image viewer">
+  <button class="lb-btn lb-close" aria-label="Close">×</button>
+  <button class="lb-btn lb-prev"  aria-label="Previous">‹</button>
+  <img class="lb-img" alt="">
+  <button class="lb-btn lb-next"  aria-label="Next">›</button>
+  <div class="lb-caption" aria-live="polite"></div>
+</div>
+
 <script>
 (() => {
   const cards = document.querySelectorAll('.album-card');
