@@ -361,3 +361,46 @@ main { flex: 1; }
   .page-heading h1 { font-size: 1.25rem !important; }
   .page-heading p  { font-size: 0.95rem !important; }
 }
+/* === ULTRA-COMPACT NAV + PAGE-HEADING (global) === */
+
+/* Nav bar: slightly tighter */
+.site-header { padding: 0.35rem 0 !important; }
+.site-header .nav { gap: 0.8rem !important; }
+.site-header .nav a { font-size: 0.95rem !important; }
+
+/* Page heading ribbon: very short + bottom-aligned content */
+.page-heading { 
+  background: #800000 !important;  /* maroon */
+  color: #fff !important;
+  padding: 0 !important;            /* kill stray padding */
+  margin: 0 !important;             /* avoid margin stacking */
+}
+.page-heading > .container {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;   /* pin text to bottom */
+  row-gap: 0.15rem !important;            /* tiny space between title/desc */
+  min-height: 64px !important;            /* <<< super compact height */
+  padding: 0.25rem 0.75rem 0.3rem !important;
+}
+.page-heading h1 {
+  margin: 0 0 0.15rem !important; 
+  font-size: 1.2rem !important;
+  line-height: 1.15 !important;
+  font-weight: 700 !important;
+}
+.page-heading p {
+  margin: 0 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.2 !important;
+  opacity: 0.98 !important;
+}
+
+/* Optional: even tighter on small screens */
+@media (max-width: 640px) {
+  .page-heading > .container {
+    min-height: 58px !important;
+    padding-bottom: 0.28rem !important;
+  }
+  .site-header .nav a { font-size: 0.93rem !important; }
+}
