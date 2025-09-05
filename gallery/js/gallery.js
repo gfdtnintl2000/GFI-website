@@ -1,5 +1,3 @@
-// /js/gallery.js
-
 (function(){
   const grid = document.getElementById('galleryGrid');
   const lightbox = document.getElementById('lightbox');
@@ -21,20 +19,15 @@
   function show(index) {
     if (!currentImages.length) return;
     currentIndex = (index + currentImages.length) % currentImages.length;
-
     const src = currentImages[currentIndex];
-
-    // reset first to avoid stale frame flash
     imgEl.style.display = 'none';
     imgEl.removeAttribute('src');
-
     imgEl.onload = () => { imgEl.style.display = 'block'; };
     imgEl.onerror = () => {
       console.error('[Gallery] Failed to load image:', src);
       imgEl.alt = 'Image failed to load';
       imgEl.style.display = 'block';
     };
-
     imgEl.src = src;
   }
 
@@ -50,7 +43,6 @@
     document.body.style.overflow = '';
   }
 
-  // Wire albums
   grid.querySelectorAll('.album-card').forEach((card) => {
     card.addEventListener('click', () => {
       const images = parseImages(card.getAttribute('data-images'));
@@ -60,23 +52,18 @@
       }
       open(images, 0);
     });
-
-    // Allow "Enter" to open when focused
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') card.click();
     });
   });
 
-  // Lightbox controls
   nextBtn.addEventListener('click', () => show(currentIndex + 1));
   prevBtn.addEventListener('click', () => show(currentIndex - 1));
   closeBtn.addEventListener('click', close);
   lightbox.addEventListener('click', (e) => {
-    // click backdrop closes; ignore clicks directly on image or buttons
     if (e.target === lightbox) close();
   });
 
-  // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
     if (lightbox.style.display !== 'flex') return;
     if (e.key === 'Escape') close();
