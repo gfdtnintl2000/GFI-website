@@ -233,6 +233,46 @@ main { flex: 1; }
 .page-gallery main {
   flex: 1 0 auto;               /* push footer to the bottom */
 }
+/* ===== PAGE HEADING RIBBON (bottom-aligned content) ===== */
+.page-heading {
+  background-color: #800000;   /* maroon */
+  color: #ffffff;              /* white text */
+  text-align: center;
+}
+
+.page-heading .container {
+  /* Push the heading + description to the bottom of the ribbon */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* Control ribbon height; adjusts responsively */
+  min-height: clamp(120px, 18vw, 220px);
+  /* Tight lower padding so the description hugs the bottom nicely */
+  padding: 1rem 1rem 0.6rem;
+}
+
+.page-heading h1 {
+  margin: 0 0 0.4rem;          /* small gap above the description */
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.page-heading p {
+  margin: 0;                   /* hug the bottom edge */
+  font-size: 1.1rem;
+  opacity: 0.98;
+}
+
+/* Optional: slightly shorter band on small screens */
+@media (max-width: 640px) {
+  .page-heading .container {
+    min-height: 120px;
+    padding-bottom: 0.5rem;
+  }
+  .page-heading h1 { font-size: 1.75rem; }
+  .page-heading p  { font-size: 1rem;   }
+}
 
 /* Optional: tighten spacing above footer on the gallery page */
 .page-gallery .site-footer {
