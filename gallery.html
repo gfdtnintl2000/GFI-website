@@ -241,6 +241,74 @@
   }, { passive: true });
 })();
 </script>
+<script>
+(function () {
+  // Overlay structure expected in the page:
+  // <div id="albumOverlay" hidden>
+  //   <button class="close">×</button>
+  //   <button class="prev">‹</button>
+  //   <img alt="">
+  //   <button class="next">›</button>
+  //   <div class="count"><span class="i">1</span> / <span class="n">1</span></div>
+  // </div>
+
+  const overlay = document.getElementById('albumOverlay') || (function createOverlay(){
+    const o = document.createElement('div');
+    o.id = 'albumOverlay'; o.className = 'lightbox'; o.hidden = true;
+    o.innerHTML = `
+      <button class="close" aria-label="Close">×</button>
+      <button class="prev" aria-label="Previous">‹</button>
+      <img alt="">
+      <button class="next" aria-label="Next">›</button>
+      <div class="count"><span class="i">1</span> / <span class="n">1</span></div>
+    `;
+    document.body.appendChild(o);
+    return o;
+  })();
+
+  const imgEl = overlay.querySelector('img');
+  const closeBtn = overlay.querySelector('.close');
+  const prevBtn  = overlay.querySelector('.prev');
+  const nextBtn  = overlay.querySelector('.next');
+  const iSpan    = overlay.querySelector('.count .i');
+  const nSpan    = overlay.querySelector('.count .n');
+
+  let images = [];
+  let idx = 0;
+
+  function show(i) {
+    if (!images.length) return;
+    idx = (i + images.length) % images.length;
+    imgEl.src = images[idx];
+    iSpan.textContent = String(idx + 1);
+    nSpan.textContent = String(images.length);
+    overlay.hidden = false;
+  }
+
+  function parseImages(val) {
+    return (val || '')
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+  }
+
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.album-card');
+    if (!card) return;
+    images = parseImages(card.getAttribute('data-images'));
+    if (!images.length) { alert('No images found for this album.'); return; }
+    show(0);
+  });
+
+  closeBtn.addEventListener('click', () => overlay.hidden = true);
+  prevBtn .addEventListener('click', () => show(idx - 1));
+  nextBtn .addEventListener('click', () => show(idx + 1));
+
+  // Close on ESC / click outside image
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') overlay.hidden = true; });
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.hidden = true; });
+})();
+</script>
 
 </body>
 </html>
