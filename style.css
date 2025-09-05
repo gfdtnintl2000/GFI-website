@@ -513,3 +513,10 @@ main { flex: 1; }
   height: auto !important;
   visibility: visible !important;
 }
+.founder-grid {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 1.25rem 2rem;
+  align-items: center;
+}
+#founder img { float: none !important; }
