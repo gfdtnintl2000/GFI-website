@@ -591,3 +591,7 @@ small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
   position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
   color: #fff; font-size: 0.95rem; opacity: .85;
 }
+/* === PROJECT IMAGES & CAPTIONS — 2025-09-05 === */
+.project-figure { margin: 1rem 0 1.25rem; }
+.project-figure img { display: block; max-width: 100%; height: auto; border-radius: 10px; }
+.project-figure figcaption { font-style: italic; font-size: 0.95rem; margin-top: 0.5rem; opacity: .9; line-height: 1.5; }
