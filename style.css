@@ -454,3 +454,56 @@ main { flex: 1; }
   min-height: 48px !important;
   padding: 0.2rem 0.75rem 0.25rem !important;
 }
+/* ==== Founder section: text left, photo right ==== */
+.founder { padding: 2rem 0; }
+.founder-container { padding: 0 .5rem; } /* reduce left/right inset a bit */
+
+.founder-grid {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr; /* text wider than photo */
+  gap: 1.25rem 2rem;
+  align-items: center;
+}
+
+.founder-copy h2 {
+  margin: 0 0 .6rem;
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
+.founder-copy p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Photo block */
+.founder-photo { margin: 0; }
+.founder-photo img {
+  display: block;
+  width: 100%;
+  height: auto;              /* use this if your image is already well-cropped */
+  /* If you prefer a fixed-height crop, use the two lines below instead of height:auto
+     height: 360px;
+     object-fit: cover; */
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+/* Safety resets against legacy floats or styles */
+#founder img { float: none !important; }
+.founder-grid > * { min-width: 0; }
+
+/* Responsive: stack neatly on small screens */
+@media (max-width: 900px) {
+  .founder-grid {
+    grid-template-columns: 1fr;  /* single column */
+    gap: 1rem;
+  }
+  /* Put photo above or below the text — choose one of these: */
+
+  /* A) Photo above text on mobile: */
+  .founder-photo { order: -1; }
+
+  /* B) Photo below text on mobile:
+     .founder-photo { order: 1; } */
+}
