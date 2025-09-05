@@ -323,3 +323,41 @@ main { flex: 1; }
   .page-heading h1 { font-size: 1.5rem; }
   .page-heading p  { font-size: 1rem;   }
 }
+/* === FORCE-COMPACT PAGE HEADING (global) === */
+.page-heading { 
+  background-color: #800000;  /* maroon */
+  color: #fff;
+  padding: 0 !important;      /* kill any earlier padding */
+}
+
+.page-heading > .container {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;   /* bottom align */
+  min-height: 88px !important;            /* much shorter band */
+  padding: 0.4rem 1rem 0.35rem !important;/* tight bottom spacing */
+}
+
+.page-heading h1 {
+  margin: 0 0 0.2rem !important;          /* prevent tall margins */
+  font-size: 1.4rem !important;
+  line-height: 1.2 !important;
+  font-weight: 700;
+}
+
+.page-heading p {
+  margin: 0 !important;
+  font-size: 1rem !important;
+  line-height: 1.3 !important;
+  opacity: 0.98;
+}
+
+/* Even tighter on small screens */
+@media (max-width: 640px) {
+  .page-heading > .container {
+    min-height: 80px !important;
+    padding-bottom: 0.3rem !important;
+  }
+  .page-heading h1 { font-size: 1.25rem !important; }
+  .page-heading p  { font-size: 0.95rem !important; }
+}
