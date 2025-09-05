@@ -507,3 +507,9 @@ main { flex: 1; }
   /* B) Photo below text on mobile:
      .founder-photo { order: 1; } */
 }
+.founder-photo img {
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+  visibility: visible !important;
+}
