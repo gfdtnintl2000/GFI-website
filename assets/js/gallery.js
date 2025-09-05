@@ -174,3 +174,8 @@ document.querySelectorAll('.project-figure img').forEach(img => {
     imgEl.addEventListener('click', () => { if (images.length > 1) show(idx + 1); });
   }
 })();
+const imagesAttr = btn.getAttribute('data-images') || '';
+const images = imagesAttr
+  .split(',')
+  .map(s => s.trim())
+  .filter(Boolean);
