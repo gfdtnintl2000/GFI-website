@@ -438,3 +438,11 @@ main { flex: 1; }
   .page-gallery .page-heading h1 { font-size: 1.05rem !important; }
   .page-gallery .page-heading p  { font-size: 0.9rem  !important; }
 }
+/* Kill stray decorative dots or lines on the page-heading */
+.page-heading::before,
+.page-heading::after,
+.page-heading .container::before,
+.page-heading .container::after {
+  content: none !important;
+  display: none !important;
+}
