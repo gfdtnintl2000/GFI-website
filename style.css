@@ -617,3 +617,4 @@ small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
   line-height: 1.35;
 }
 .muted { opacity: .75; font-size: .95rem; }
+#lightbox { z-index: 9999; }
