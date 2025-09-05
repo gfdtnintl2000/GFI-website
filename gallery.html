@@ -38,65 +38,29 @@
   <section class="page-heading">…</section>
 
   <!-- Main content -->
-  <main class="container content">
-    <!-- your <section class="gallery">…</section> goes here -->
-  </main>
+ <main class="container">
+  <h1>Gallery</h1>
+  <p class="muted">Tap any photo to open full size.</p>
 
-  <!-- Footer -->
- <section class="gallery">
-  <div class="album-grid">
-    <!-- Album: Education Outreach -->
-<!-- Album: Education Outreach -->
-<!-- Album: Education Outreach -->
-<button
-  class="album-card"
-  aria-label="Open Education Outreach album"
-  data-album="education-outreach"
-  data-title="Education Outreach"
-  data-images="/assets/gallery/education1.jpg,/assets/gallery/education2.jpg"
->
-  <div class="album-thumb">
-    <img src="/assets/gallery/education1.jpg?v=20250905" alt="Education Outreach" loading="lazy">
-  </div>
-  <div class="album-meta">
-    <h3>Education Outreach</h3>
-    <span class="count">2 photos</span>
-  </div>
-</button>
+  <section class="gallery-lite">
+    <!-- Education Outreach -->
+    <figure>
+      <a href="/assets/gallery/education1.jpg">
+        <img src="/assets/gallery/education1.jpg?v=20250905" alt="Education Outreach 1" loading="lazy">
+      </a>
+      <figcaption><em>GFI Founder presents an electric wheelchair to Olivia Cheptoo of Mogonjet Sec. School courtesy of Lift the Lid.</em></figcaption>
+    </figure>
 
-    <!-- Duplicate this block for more albums; just change data-* and thumb src -->
-       <button type="button" class="album-card" data-album="agriculture"
-      data-title="Sustainable Agriculture"
-      data-images="/assets/gallery/agri1.jpg,/assets/gallery/agri2.jpg">
-      <div class="album-thumb">
-        <img src="/assets/gallery/agri1.jpg" alt="Sustainable Agriculture" loading="lazy">
-      </div>
-      <div class="album-meta">
-        <h3>Sustainable Agriculture</h3>
-        <span class="count">2+ photos</span>
-      </div>
-    </button>
-     </div>
-</section>
+    <figure>
+      <a href="/assets/gallery/education2.jpg">
+        <img src="/assets/gallery/education2.jpg?v=20250905" alt="Education Outreach 2" loading="lazy">
+      </a>
+      <figcaption><em>Education Outreach in action.</em></figcaption>
+    </figure>
 
-      </div>
-      <!-- Lightbox Modal (single instance) -->
-      <dialog id="lightbox" class="lightbox" aria-modal="true">
-        <div class="lightbox-header">
-          <h2 id="lightbox-title">Album</h2>
-          <button id="lightbox-close" class="close" aria-label="Close">×</button>
-        </div>
-        <div class="lightbox-body">
-          <button class="nav prev" aria-label="Previous">‹</button>
-          <img id="lightbox-image" alt="Album image" />
-          <button class="nav next" aria-label="Next">›</button>
-        </div>
-        <div class="lightbox-footer">
-          <span id="lightbox-counter" class="counter">1 / 1</span>
-        </div>
-      </dialog>
-    </section>
-  </main>
+    <!-- To add more photos later, copy a <figure> block and change the filename & caption -->
+  </section>
+</main>
 
   <!-- Footer (green ribbon styles will come from style.css we add later) -->
 
