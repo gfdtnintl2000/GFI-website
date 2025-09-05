@@ -595,3 +595,6 @@ small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
 .project-figure { margin: 1rem 0 1.25rem; }
 .project-figure img { display: block; max-width: 100%; height: auto; border-radius: 10px; }
 .project-figure figcaption { font-style: italic; font-size: 0.95rem; margin-top: 0.5rem; opacity: .9; line-height: 1.5; }
+.project-figure { margin: 1rem 0; text-align: center; }
+.project-figure img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+.project-figure figcaption { margin-top: .5rem; font-style: italic; }
