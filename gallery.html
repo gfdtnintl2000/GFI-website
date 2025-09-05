@@ -82,5 +82,89 @@
     © 2025 Grace Foundation International. All rights reserved.
   </div>
 </footer>
+  <!-- Lightbox Overlay -->
+<div id="lightbox" class="lb hidden" aria-hidden="true" role="dialog" aria-label="Image viewer">
+  <button class="lb-btn lb-close" aria-label="Close">×</button>
+  <button class="lb-btn lb-prev" aria-label="Previous">‹</button>
+  <img class="lb-img" alt="">
+  <button class="lb-btn lb-next" aria-label="Next">›</button>
+  <div class="lb-caption" aria-live="polite"></div>
+</div>
+
+<script>
+(() => {
+  const cards = document.querySelectorAll('.album-card');
+  const lb = document.getElementById('lightbox');
+  const imgEl = lb.querySelector('.lb-img');
+  const captionEl = lb.querySelector('.lb-caption');
+  const btnPrev = lb.querySelector('.lb-prev');
+  const btnNext = lb.querySelector('.lb-next');
+  const btnClose = lb.querySelector('.lb-close');
+
+  let images = [];
+  let index = 0;
+  let title = '';
+
+  function show(i) {
+    index = (i + images.length) % images.length;
+    const src = images[index];
+    imgEl.src = src;
+    imgEl.alt = title || 'Gallery image';
+    captionEl.textContent = `${title} • ${index + 1} / ${images.length}`;
+    // Preload neighbors
+    [index - 1, index + 1].forEach(j => {
+      const n = (j + images.length) % images.length;
+      const pre = new Image(); pre.src = images[n];
+    });
+  }
+
+  function openLightbox(arr, t) {
+    images = arr;
+    title = t || '';
+    lb.classList.remove('hidden');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    show(0);
+  }
+
+  function closeLightbox() {
+    lb.classList.add('hidden');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    imgEl.src = '';
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const list = (card.getAttribute('data-images') || '')
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean);
+      if (!list.length) return;
+      const t = card.getAttribute('data-title') || '';
+      openLightbox(list, t);
+    });
+  });
+
+  btnPrev.addEventListener('click', () => show(index - 1));
+  btnNext.addEventListener('click', () => show(index + 1));
+  btnClose.addEventListener('click', closeLightbox);
+
+  // Close on backdrop click
+  lb.addEventListener('click', (e) => {
+    if (e.target === lb) closeLightbox();
+  });
+
+  // Keyboard controls
+  document.addEventListener('keydown', (e) => {
+    if (lb.classList.contains('hidden')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') show(index + 1);
+    if (e.key === 'ArrowLeft') show(index - 1);
+  });
+})();
+</script>
+
 </body>
 </html>
