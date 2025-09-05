@@ -573,3 +573,21 @@ small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
   padding: 0.5rem 0 !important;
   line-height: 1.2 !important;
 }
+/* === LIGHTBOX MINIMAL === */
+.lightbox[hidden] { display: none !important; }
+.lightbox {
+  position: fixed; inset: 0; background: rgba(0,0,0,.85);
+  display: grid; place-items: center; z-index: 9999;
+}
+.lightbox img { max-width: 92vw; max-height: 88vh; display: block; }
+.lightbox .close, .lightbox .prev, .lightbox .next {
+  position: absolute; border: 0; background: transparent; font-size: 2rem; cursor: pointer;
+  color: #fff; line-height: 1;
+}
+.lightbox .close { top: 10px; right: 16px; }
+.lightbox .prev  { left: 16px; top: 50%; transform: translateY(-50%); }
+.lightbox .next  { right: 16px; top: 50%; transform: translateY(-50%); }
+.lightbox .count {
+  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+  color: #fff; font-size: 0.95rem; opacity: .85;
+}
