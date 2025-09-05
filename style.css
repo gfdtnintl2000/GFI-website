@@ -525,6 +525,27 @@ main { flex: 1; }
   font-size: clamp(18px, 1rem, 1.05rem);  /* never smaller than 14px; ~16px typical */
   line-height: 1.55;
 }
+/* === TYPOGRAPHY OVERRIDES — 2025-09-05 === */
+html { font-size: 16px; }            /* standard base */
+body { font-size: 1rem; line-height: 1.7; }
+
+/* General descriptive text */
+p, li, dd, figcaption { font-size: 1.0625rem; }  /* ~17px for comfy reading */
+
+/* Common “description/message” areas (safe even if some classes don’t exist) */
+.section-desc,
+.card p, .card li,
+.project-card p, .project-card .desc,
+.founder p,
+.album-meta, .gallery .album-meta,
+.team-card p, .team-card li,
+.footer, .footer p {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+/* Optional: slightly larger intro blurbs */
+.lead, .page-intro, .hero p { font-size: 1.125rem; } /* ~18px */
 
 /* Optional: make small UI notes/buttons not oversized */
 small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
