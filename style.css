@@ -166,3 +166,60 @@ main { flex: 1; }
 .lb-close { top: 1rem; right: 1rem; }
 .lb-prev  { left: 1rem;  top: 50%; transform: translateY(-50%); }
 .lb-next  { right: 1rem; top: 50%; transform: translateY(-50%); }
+/* ===== Gallery albums (grid + cards) ===== */
+.gallery { padding-top: 1rem; }
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.album-card {
+  appearance: none;
+  border: none;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.album-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+.album-thumb {
+  /* keep a consistent box for thumbnails even before image loads */
+  aspect-ratio: 16 / 10;
+  background: #f2f2f2;
+}
+
+.album-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* crop to fill the tile; lightbox shows full image */
+  display: block;
+}
+
+.album-meta {
+  padding: .75rem 1rem 1rem;
+}
+
+.album-meta h3 {
+  margin: 0 0 .25rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.album-meta .count {
+  font-size: .9rem;
+  color: #555;
+}
+
+/* Utility in case needed elsewhere */
+.hidden { display: none !important; }
