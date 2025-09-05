@@ -446,3 +446,11 @@ main { flex: 1; }
   content: none !important;
   display: none !important;
 }
+.page-gallery .page-heading > .container {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  row-gap: 0.12rem !important;
+  min-height: 48px !important;
+  padding: 0.2rem 0.75rem 0.25rem !important;
+}
