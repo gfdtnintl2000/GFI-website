@@ -1,79 +1,55 @@
-/* ==========================================================
-   Grace Foundation International — Global Stylesheet
-   FULL REPLACEMENT (clean). Save this as /style.css
-   ----------------------------------------------------------
-   - No <style> tags here — this is a pure CSS file.
-   - Uses root‑relative paths in HTML (e.g., /gallery.html).
-   - High‑contrast maroon header band + green footer ribbon.
-   - Clean layouts for Gallery grid/lightbox and Projects page.
-   ========================================================== */
-
-/* ----------------------
-   CSS Reset / Base
------------------------ */
-*, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu,
-               Cantarell, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
-  color: #111;
-  background: #fff;
-}
-img, picture { max-width: 100%; display: block; }
-img { height: auto; }
-h1, h2, h3, h4 { line-height: 1.25; margin: 0 0 .6rem 0; }
-p { margin: 0 0 1rem 0; }
-code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; background:#f7f7f7; padding:.05rem .35rem; border-radius:4px; }
-:focus-visible { outline: 3px solid #2aa770; outline-offset: 2px; }
-
-/* ----------------------
-   Color Tokens
------------------------ */
-:root {
-  --maroon: #7b1e1e;
-  --green:  #1c7c3a;
-  --white:  #ffffff;
-  --text:   #111111;
-  --muted:  #666666;
-  --border: #e4e4e4;
+/* ===== NAV PANEL (HEADER) ===== */
+.site-header {
+  background-color: #800000; /* maroon */
+  padding: 0.75rem 0;
 }
 
-/* ----------------------
-   Layout Helpers
------------------------ */
-.container { width: min(1100px, 92%); margin: 0 auto; }
-.muted { color: var(--muted); }
-
-/* ----------------------
-   Header / Navigation
------------------------ */
-.site-header.band { background: var(--maroon); color: var(--white); }
 .site-header .nav {
   display: flex;
-  gap: 1rem;
-  align-items: center;
-  padding: .75rem 0;
-  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
 }
+
 .site-header .nav a {
-  color: var(--white);
-  text-decoration: none;          /* remove default underline */
-  font-weight: 700;
-  letter-spacing: .2px;
-  padding: .4rem .25rem;
-  border-bottom: 3px solid transparent;  /* single indicator on hover/current */
+  color: #ffffff; /* white text */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
-.site-header .nav a:hover { border-bottom-color: rgba(255,255,255,.65); }
-.site-header .nav a[aria-current="page"] { border-bottom-color: var(--white); }
 
-/* ----------------------
-   Footer
------------------------ */
-.site-footer.ribbon { background: var(--green); color: var(--white); margin-top: 2rem; }
-.site-footer .container { padding: .75rem 0; font-size: .95rem; }
+.site-header .nav a:hover,
+.site-header .nav a[aria-current="page"] {
+  color: #ffcccb; /* light pink highlight for hover/current */
+}
 
+/* ===== PAGE HEADING RIBBON ===== */
+.page-heading {
+  background-color: #800000; /* maroon */
+  color: #ffffff; /* white text */
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.page-heading h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.page-heading p {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+/* ===== FOOTER RIBBON ===== */
+.site-footer {
+  background-color: #006400; /* dark green */
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
 /* ----------------------
    Gallery Page
 ----------------------- */
