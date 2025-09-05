@@ -598,3 +598,22 @@ small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
 .project-figure { margin: 1rem 0; text-align: center; }
 .project-figure img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
 .project-figure figcaption { margin-top: .5rem; font-style: italic; }
+.gallery-lite {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+.gallery-lite img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: .75rem;
+}
+.gallery-lite figcaption {
+  margin-top: .5rem;
+  font-size: .95rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+.muted { opacity: .75; font-size: .95rem; }
