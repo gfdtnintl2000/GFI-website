@@ -520,3 +520,13 @@ main { flex: 1; }
   align-items: center;
 }
 #founder img { float: none !important; }
+/* === Ensure descriptive text is comfortably readable (>= 14px) === */
+:where(p, li, figcaption, .album-meta, .page-heading p, .project-block p, .founder-copy p) {
+  font-size: clamp(14px, 1rem, 1.05rem);  /* never smaller than 14px; ~16px typical */
+  line-height: 1.55;
+}
+
+/* Optional: make small UI notes/buttons not oversized */
+small, .note, .helper-text { font-size: clamp(13px, .9rem, .95rem); }
+
+/* Keep headings as-is (no change) */
