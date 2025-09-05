@@ -551,3 +551,25 @@ p, li, dd, figcaption { font-size: 1.0625rem; }  /* ~17px for comfy reading */
 small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
 
 /* Keep headings as-is (no change) */
+/* === GALLERY PAGE TWEAKS — 2025-09-05 === */
+.page-heading,
+.page-title,
+.gallery .page-heading {
+  padding: 0.75rem 0 0.5rem !important;  /* trim height */
+  margin: 0 !important;
+}
+
+/* If any decorative dots were injected via ::after, kill them */
+.page-heading::after,
+.nav::after,
+.header::after,
+.gallery .page-heading::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* General nav padding so the maroon ribbon isn't too tall */
+.site-header .nav {
+  padding: 0.5rem 0 !important;
+  line-height: 1.2 !important;
+}
