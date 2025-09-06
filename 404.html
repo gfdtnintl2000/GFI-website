@@ -1,6 +1,28 @@
-<!doctype html><meta charset="utf-8">
-<title>Redirecting…</title>
-content="0; url=https://gfintl.org">
-('https://gfintl.org' + location.pathname.replace(/\/GFI-website/, '') + location.search + location.hash);
-
-
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>404 — Not Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 2rem; background:#fafafa; color:#222; }
+    .card { max-width: 700px; margin: 10vh auto; background:#fff; border:1px solid #eee; border-radius:12px; padding:2rem; box-shadow:0 2px 12px rgba(0,0,0,.06);}
+    h1 { margin:0 0 0.5rem; font-size:1.5rem; }
+    p { margin:0.25rem 0; line-height:1.5; }
+    a { color:#0b6cff; text-decoration:none; }
+    code { background:#f3f3f3; padding:.15rem .35rem; border-radius:6px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>404 — Page not found</h1>
+    <p>The requested URL doesn’t exist on this site.</p>
+    <p>Try the <a href="/">homepage</a> or check the path and filename (remember: it’s case-sensitive).</p>
+    <p>Requested: <code id="req"></code></p>
+  </div>
+  <script>
+    document.getElementById('req').textContent = location.pathname + location.search + location.hash;
+    // NOTE: Intentionally no redirects here.
+  </script>
+</body>
+</html>
