@@ -767,3 +767,30 @@ small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
 /* Compact nav so the two-band header stack feels tight */
 .top-nav ul{ gap:16px; margin:0; padding:0; list-style:none; }
 .top-nav a{ font-size:1rem; padding:.5rem .25rem; font-weight:600; }
+/* Reset page background (match About) */
+body { background:#fff; }
+
+/* Keep only header maroon */
+.page-projects .site-header { background:#4a0d0d; }
+
+/* Make sure child elements don't paint over everything */
+.page-projects .site-header * { background:transparent; }
+
+/* Red band under header for title + caption */
+.page-projects .page-ribbon{
+  background:#a32424;
+  margin:0;
+  padding:.45rem 0 .8rem;  /* tall enough for both lines */
+  text-align:center;
+  border:0; box-shadow:none;
+}
+.page-projects .page-ribbon h1{
+  color:#fff; margin:0 0 .2rem; font-size:1.25rem; line-height:1.25;
+}
+.page-projects .page-ribbon .subtitle{
+  color:#fff; margin:0; font-size:.95rem; line-height:1.35;
+  max-width:60ch; margin-left:auto; margin-right:auto;
+}
+
+/* Ensure main/content area isn't inheriting any background */
+main, .container { background:transparent; }
