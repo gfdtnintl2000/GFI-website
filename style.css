@@ -666,6 +666,10 @@ small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
 }
 .top-nav a:hover{ text-decoration:underline; }
 .top-nav a[aria-current="page"]{ text-decoration:underline; }
+/* Project image + caption */
+.project-photo { margin:1rem 0; background:#fafafa; border:1px solid #eee; padding:8px; }
+.project-photo img { width:100%; height:auto; display:block; }
+.project-photo figcaption { font-size:.95rem; color:#444; margin-top:.35rem; text-align:center; }
 
 /* If any page still has the page-ribbon under the nav, make it compact too */
 .page-ribbon{ text-align:center; color:#fff; padding:.25rem 0 .5rem; }
