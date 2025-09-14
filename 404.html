@@ -1,28 +1,45 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>404 — Not Found</title>
+  <meta charset="utf-8">
+  <title>Page Not Found • GFI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/style.css">
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 2rem; background:#fafafa; color:#222; }
-    .card { max-width: 700px; margin: 10vh auto; background:#fff; border:1px solid #eee; border-radius:12px; padding:2rem; box-shadow:0 2px 12px rgba(0,0,0,.06);}
-    h1 { margin:0 0 0.5rem; font-size:1.5rem; }
-    p { margin:0.25rem 0; line-height:1.5; }
-    a { color:#0b6cff; text-decoration:none; }
-    code { background:#f3f3f3; padding:.15rem .35rem; border-radius:6px; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    header, footer { padding: 1rem; background:#4a0d0d; color:#fff; }
+    main { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
+    h1 { margin: 0 0 .5rem; }
+    p { margin: .5rem 0 1rem; }
+    .links a { display:inline-block; margin-right:.75rem; }
+    code { background:#fff3cd; padding:.1rem .3rem; border:1px solid #ffeeba; border-radius:3px; }
   </style>
 </head>
 <body>
-  <div class="card">
+  <header>
+    <nav>
+      <a href="/" style="color:#fff;text-decoration:none;">Home</a> •
+      <a href="/projects.html" style="color:#fff;text-decoration:none;">Projects</a> •
+      <a href="/gallery.html" style="color:#fff;text-decoration:none;">Gallery</a>
+    </nav>
+  </header>
+
+  <main>
     <h1>404 — Page not found</h1>
     <p>The requested URL doesn’t exist on this site.</p>
-    <p>Try the <a href="/">homepage</a> or check the path and filename (remember: it’s case-sensitive).</p>
-    <p>Requested: <code id="req"></code></p>
-  </div>
-  <script>
-    document.getElementById('req').textContent = location.pathname + location.search + location.hash;
-    // NOTE: Intentionally no redirects here.
-  </script>
+    <p class="links">
+      <a href="/">Go to Home</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/gallery.html">Gallery</a>
+    </p>
+    <p>If you were trying to open an image, confirm the exact path and filename (case-sensitive), e.g.
+      <code>/assets/gallery/education1.jpg</code>.
+    </p>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Grace Foundation International
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
