@@ -855,3 +855,16 @@ body { background:#fff; }
 body { background:#fff; }
 .page-projects .site-header * { background:transparent; }
 main, .container { background:transparent; }
+/* Project media blocks */
+.project-media, .project-photo {
+  margin:1rem 0; background:#fafafa; border:1px solid #eee; padding:8px;
+}
+.project-media img, .project-photo img {
+  display:block; width:100%; height:auto;   /* full width, no cropping */
+}
+.project-media figcaption, .project-photo figcaption {
+  text-align:center; font-style:italic; color:#444; margin-top:.4rem;
+}
+
+/* If any image mistakenly has "thumb", neutralize it here on Projects */
+.page-projects img.thumb { width:100% !important; height:auto !important; object-fit:contain !important; }
