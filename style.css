@@ -684,3 +684,5 @@ small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
 .top-nav ul{ gap:16px; margin:0; padding:0; list-style:none; }
 .top-nav a{ font-size:1rem; padding:.5rem .25rem; font-weight:600; }
 .page-ribbon{ padding:.25rem 0 .5rem; }
+/* Remove the lower (reddish) ribbon under the nav, site-wide */
+.page-ribbon { display:none !important; height:0; padding:0; margin:0; border:0; }
