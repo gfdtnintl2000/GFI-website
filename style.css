@@ -740,3 +740,30 @@ small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
 /* Keep the nav compact so the whole header stack feels tight */
 .top-nav ul{ gap:16px; margin:0; padding:0; list-style:none; }
 .top-nav a{ font-size:1rem; padding:.5rem .25rem; font-weight:600; }
+/* Keep top band dark maroon (nav) */
+.page-projects .site-header { background:#4a0d0d; }
+
+/* Projects red ribbon (slim, holds title + caption, fully visible) */
+.page-projects .page-ribbon{
+  background:#a32424;
+  margin:0;
+  padding:.45rem 0 .8rem;         /* enough room for title + caption */
+  border:0; box-shadow:none;
+  text-align:center;
+}
+.page-projects .page-ribbon .container{ max-width:1100px; margin:0 auto; padding:0 1rem; }
+.page-projects .page-ribbon h1{
+  color:#fff; margin:0 0 .2rem; font-size:1.25rem; line-height:1.25;
+}
+.page-projects .page-ribbon .subtitle{
+  color:#fff; margin:0; font-size:.95rem; line-height:1.35; display:block;
+  /* optional: keep it neat on long lines */
+  max-width: 60ch; margin-left:auto; margin-right:auto;
+}
+
+/* If any leftover/duplicate ribbon is still inside the header, hide it */
+.page-projects header .page-ribbon{ display:none !important; }
+
+/* Compact nav so the two-band header stack feels tight */
+.top-nav ul{ gap:16px; margin:0; padding:0; list-style:none; }
+.top-nav a{ font-size:1rem; padding:.5rem .25rem; font-weight:600; }
