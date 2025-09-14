@@ -1,2 +1,56 @@
-<img src="/assets/gallery/education1.jpg" alt="Education Outreach">
-<img src="/assets/gallery/education2.jpg" alt="Education Outreach (2)">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Gallery • GFI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    header, footer { padding: 1rem; background:#4a0d0d; color:#fff; }
+    main { padding: 1rem; max-width: 1100px; margin: 0 auto; }
+    h1 { margin: .5rem 0 1rem; }
+    .albums { display:grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap:16px; }
+    .card { border:1px solid #eee; background:#fafafa; padding:12px; }
+    .thumb { width:100%; height:180px; object-fit:cover; background:#ddd; display:block; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 12px; margin-top:10px; }
+    figure { margin:0; border:1px solid #eee; padding:8px; background:#fff; }
+    figure img { width:100%; height:auto; display:block; }
+    figcaption { font-size:.9rem; color:#444; margin-top:.4rem; }
+    .note { background:#fffde7; border:1px solid #f3e5ab; padding:.75rem; margin:1rem 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/" style="color:#fff;text-decoration:none;">Home</a> •
+      <a href="/projects.html" style="color:#fff;text-decoration:none;">Projects</a> •
+      <strong>Gallery</strong>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Gallery</h1>
+    <p class="note">Use root-relative paths and exact filenames. Separate multiple images with commas.</p>
+
+    <div class="albums">
+      <article class="card"
+        data-title="Education Outreach"
+        data-images="/assets/gallery/education1.jpg, /assets/gallery/education2.jpg">
+        <img class="thumb" src="/assets/gallery/education1.jpg" alt="Education Outreach thumbnail">
+        <h2>Education Outreach</h2>
+        <div class="grid js-grid"></div>
+      </article>
+
+      <!-- Duplicate <article> for more albums, adjusting data-images and thumb -->
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Grace Foundation International
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="/assets/js/gallery.js"></script>
+</body>
+</html>
