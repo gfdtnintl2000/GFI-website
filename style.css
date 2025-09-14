@@ -868,3 +868,30 @@ main, .container { background:transparent; }
 
 /* If any image mistakenly has "thumb", neutralize it here on Projects */
 .page-projects img.thumb { width:100% !important; height:auto !important; object-fit:contain !important; }
+/* --- Projects header stack: maroon nav on top, slim red band below --- */
+.page-projects .site-header { position: static; background:#4a0d0d; }
+
+/* Red band holds the page title + caption and sits ABOVE main content */
+.page-projects .page-ribbon{
+  position: relative;
+  z-index: 2;
+  background:#a32424;
+  margin: 0;
+  padding: .50rem 0 .85rem;   /* enough room for both lines */
+  text-align: center;
+  border: 0; box-shadow: none;
+}
+.page-projects .page-ribbon h1{
+  color:#fff; margin:0 0 .2rem; font-size:1.25rem; line-height:1.25;
+}
+.page-projects .page-ribbon .subtitle{
+  color:#fff; margin:0; font-size:.95rem; line-height:1.35;
+  max-width:60ch; margin-left:auto; margin-right:auto;
+}
+
+/* Ensure the main body never overlaps the ribbon */
+.page-projects .page-ribbon + main{
+  margin-top: 14px;           /* pushes content down a bit */
+  position: relative; z-index: 1;
+}
+.page-projects main{ margin-top:0 !important; background:transparent; }
