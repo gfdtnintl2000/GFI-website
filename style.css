@@ -794,3 +794,31 @@ body { background:#fff; }
 
 /* Ensure main/content area isn't inheriting any background */
 main, .container { background:transparent; }
+/* Project cards: stacked on mobile, two-column feel on larger screens */
+.project-card { display:grid; gap:16px; margin:1.25rem 0 2rem; }
+@media (min-width: 900px){
+  .project-card { grid-template-columns: 1fr 1.2fr; align-items:start; }
+}
+
+/* Media and captions */
+.project-media { margin:0; background:#fafafa; border:1px solid #eee; padding:8px; }
+.project-media img { display:block; width:100%; height:auto; }
+.project-media figcaption { text-align:center; margin-top:.4rem; color:#444; font-style:italic; }
+
+/* Text area */
+.project-text h2 { margin:.25rem 0 .35rem; }
+.project-text p { margin:.35rem 0 .5rem; }
+
+/* Make sure no "thumbnail" class leaks in to shrink images here */
+.project-card img.thumb { width:auto; height:auto; object-fit:contain; }
+
+/* Header two-tone for Projects: slim red band */
+.page-projects .page-ribbon{
+  background:#a32424; padding:.45rem 0 .8rem; text-align:center;
+}
+.page-projects .page-ribbon h1{ color:#fff; margin:0 0 .15rem; font-size:1.25rem; }
+.page-projects .page-ribbon .subtitle{ color:#fff; margin:0; font-size:.95rem; line-height:1.35; }
+
+/* Body stays white (fix for the "all maroon" glitch) */
+body { background:#fff; }
+.page-projects .site-header * { background:transparent; }
