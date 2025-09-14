@@ -52,5 +52,35 @@
 
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
   <script src="/assets/js/gallery.js"></script>
+  <script>
+(function () {
+  function toList(str) {
+    return String(str || "")
+      .split(",")
+      .map(s => s.trim())
+      .filter(Boolean);
+  }
+  function renderAlbum(card) {
+    const images = toList(card.getAttribute("data-images"));
+    const grid = card.querySelector(".js-grid");
+    if (!grid) return;
+    grid.innerHTML = "";
+    images.forEach(src => {
+      const fig = document.createElement("figure");
+      const img = document.createElement("img");
+      img.loading = "lazy";
+      img.alt = card.getAttribute("data-title") || "Gallery image";
+      img.src = src;
+      fig.appendChild(img);
+      const cap = document.createElement("figcaption");
+      cap.textContent = img.alt;
+      fig.appendChild(cap);
+      grid.appendChild(fig);
+    });
+  }
+  document.querySelectorAll(".card[data-images]").forEach(renderAlbum);
+})();
+</script>
+
 </body>
 </html>
