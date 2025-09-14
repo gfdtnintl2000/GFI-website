@@ -649,3 +649,25 @@ small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
 .site-footer{ background:#0b8a3b; color:#fff; }
 .site-footer .container{ padding: .85rem 1rem; }
 .site-footer a{ color:#fff; text-decoration:underline; }
+/* Compact top nav (less tall, tighter spacing) */
+.site-header { background:#4a0d0d; color:#fff; }
+.top-nav { display:flex; justify-content:center; }
+.top-nav ul{ 
+  display:flex; flex-wrap:wrap; 
+  gap:16px;              /* smaller gap than before */
+  margin:0; padding:0; list-style:none;
+}
+.top-nav a{
+  color:#fff; text-decoration:none;
+  font-size:1rem;        /* slightly smaller */
+  font-weight:600; 
+  padding:.5rem .25rem;  /* tighter vertical padding */
+  display:inline-block;
+}
+.top-nav a:hover{ text-decoration:underline; }
+.top-nav a[aria-current="page"]{ text-decoration:underline; }
+
+/* If any page still has the page-ribbon under the nav, make it compact too */
+.page-ribbon{ text-align:center; color:#fff; padding:.25rem 0 .5rem; }
+.page-ribbon h1{ margin:.15rem 0 0; font-size:1.25rem; }
+.page-ribbon .subtitle{ margin:.15rem 0 0; font-size:.95rem; opacity:.9; }
