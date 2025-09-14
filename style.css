@@ -895,3 +895,18 @@ main, .container { background:transparent; }
   position: relative; z-index: 1;
 }
 .page-projects main{ margin-top:0 !important; background:transparent; }
+/* Project images: always full-width with an italic caption */
+.project-media, .project-photo{
+  margin:1rem 0; background:#fafafa; border:1px solid #eee; padding:8px;
+}
+.project-media img, .project-photo img{
+  display:block; width:100% !important; height:auto !important; object-fit:contain !important;
+}
+.project-media figcaption, .project-photo figcaption{
+  text-align:center; font-style:italic; color:#444; margin-top:.4rem;
+}
+
+/* If any "thumb" class is on Projects images, neutralize it here */
+.page-projects img.thumb, .page-projects .thumb{
+  width:100% !important; height:auto !important; object-fit:contain !important; max-width:100% !important;
+}
