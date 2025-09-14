@@ -637,6 +637,13 @@ small, .note, .helper-text { font-size: clamp(16px, .9rem, .95rem); }
 .page-ribbon{ text-align:center; color:#fff; padding:.35rem 0 .75rem; }
 .page-ribbon h1{ margin:.25rem 0 0; font-size:1.5rem; }
 .page-ribbon .subtitle{ margin:.25rem 0 0; font-size:1rem; opacity:.9; }
+/* Footer: centered text, green ribbon (site-wide) */
+.site-footer { background:#0b8a3b; color:#fff; }
+.site-footer .container { 
+  padding:.85rem 1rem; 
+  text-align:center;     /* center the words */
+}
+.site-footer a{ color:#fff; text-decoration:underline; }
 
 /* --- Footer ribbon (green) --- */
 .site-footer{ background:#0b8a3b; color:#fff; }
