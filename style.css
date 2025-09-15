@@ -1889,12 +1889,6 @@ footer.site-footer, footer.site-footer *,
   display:block;       /* ensure text-align works */
   margin:0 auto;
 }
-/* ===== Projects page: remove ANY band directly under the nav unless it's the maroon page-ribbon ===== */
-
-/* Hide the first thing under the header if it's not the page-ribbon */
-.projects-page header.site-header + *:not(.page-ribbon){
-  display: none !important;
-}
 
 /* Extra safety: hide common “green/top strip” variants that might sneak in */
 .projects-page .green-ribbon,
@@ -1962,4 +1956,54 @@ footer.site-footer, footer.site-footer *,
 .projects-page .page-ribbon .subtitle,
 .projects-page .page-ribbon a{
   color:#fff !important; text-decoration-color: currentColor !important;
+}
+/* ========== PROJECTS: restore layout + kill the stray green band ========== */
+
+/* 1) Make sure common wrappers and content are visible */
+.projects-page header.site-header + .page,
+.projects-page header.site-header + .wrapper,
+.projects-page header.site-header + #page,
+.projects-page header.site-header + .content,
+.projects-page header.site-header + #content,
+.projects-page header.site-header + section,
+.projects-page header.site-header + div,
+.projects-page header.site-header + main,
+.projects-page .page,
+.projects-page .wrapper,
+.projects-page #page,
+.projects-page .content,
+.projects-page #content,
+.projects-page main {
+  display: block !important;
+}
+
+/* 2) Hide ONLY the unwanted band directly under the header if it isn't the maroon ribbon */
+.projects-page header.site-header + *:not(.page-ribbon) {
+  display: none !important;
+}
+
+/* 3) Strengthen the maroon page ribbon (title + subtitle visible) */
+.projects-page .page-ribbon{
+  background: var(--maroon) !important;
+  color:#fff !important;
+  padding: 1.25rem 0 1.6rem !important;
+  margin: 0 !important;
+  border: 0 !important;
+  box-shadow: 0 2px 0 rgba(0,0,0,.06) !important;
+  position: relative; z-index: 900;
+}
+.projects-page .page-ribbon .container{ display:grid; gap:.4rem; }
+.projects-page .page-ribbon h1,
+.projects-page .page-ribbon .subtitle,
+.projects-page .page-ribbon a{
+  color:#fff !important; text-decoration-color: currentColor !important;
+}
+
+/* 4) Nix tiny leftover borders/gradients from the header that can look like a skinny green line */
+.projects-page header.site-header,
+.projects-page header.site-header::before,
+.projects-page header.site-header::after{
+  border: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
 }
