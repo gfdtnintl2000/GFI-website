@@ -1183,3 +1183,269 @@ main#content > *:first-child{
 .page, .content, .wrapper{
   background: transparent;
 }
+/* ================================
+   COLOR TOKENS (centralize colors)
+   ================================ */
+:root{
+  --ink: #111;           /* default body text (black-ish) */
+  --ink-muted: #444;
+  --paper: #fff;         /* default page background */
+
+  --maroon: #7b002c;     /* nav headings ONLY */
+  --red:    #d40000;     /* page ribbon under nav */
+  --green:  #0f7a3f;     /* footer band */
+}
+
+/* ================================
+   GLOBAL RESET (stop maroon spillage)
+   ================================ */
+html, body{
+  color: var(--ink);
+  background: var(--paper);
+}
+a{
+  color: inherit;                 /* stop default blue links in body */
+  text-decoration-color: currentColor;
+}
+
+/* Headings shouldn’t inherit maroon accidentally */
+h1, h2, h3, h4, h5, h6{
+  color: var(--ink);
+}
+
+/* Common components shouldn’t be maroon unless asked */
+.card, .project, .section, main, .container{
+  color: var(--ink);
+  background: transparent;
+}
+
+/* If you previously set a site-wide maroon anywhere, neutralize it */
+*{
+  /* remove accidental site-wide color/filters */
+  filter: none !important;
+}
+body, main, .container, .content{
+  transform: none !important;     /* prevent stray stacking contexts */
+}
+
+/* ================================
+   NAV: maroon confined to headings
+   ================================ */
+.site-header{
+  background: #fff;               /* nav bar stays white (or your light bg) */
+  border-bottom: 1px solid #eee;  /* subtle divider */
+  position: sticky; top: 0; z-index: 100;
+}
+
+.site-nav a{
+  color: var(--maroon);           /* maroon TEXT only here */
+  font-weight: 600;
+}
+.site-nav a[aria-current="page"]{
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* If nav items were wrapped in "nav panel headings" */
+.nav-panel .heading, .nav-panel a{
+  color: var(--maroon);
+}
+
+/* ================================
+   PAGE RIBBON (RED band under nav)
+   ================================ */
+.page-ribbon{
+  background: var(--red);
+  color: #fff;
+  position: relative;
+  z-index: 10;
+  padding: 1.25rem 0 1.5rem;      /* space for sub-heading/caption */
+  box-shadow: 0 2px 0 rgba(0,0,0,.06);
+  margin-top: 0;                  /* if header is sticky & tall, see next rule */
+}
+.page-ribbon .container{
+  display: grid;
+  gap: .35rem;
+}
+.page-ribbon h1{
+  margin: 0; line-height: 1.2; color: #fff;
+}
+.page-ribbon .subtitle{
+  margin: 0;
+  font-size: 1.05rem;
+  opacity: .95;
+  font-style: italic;
+  color: #fff;
+}
+/* If sticky header is tall (e.g., 64px), nudge ribbon down slightly */
+.site-header.is-tall + .page-ribbon{ margin-top: 64px; }
+
+/* Keep links on ribbon white */
+.page-ribbon a{ color: #fff; }
+
+/* ================================
+   MAIN LAYOUT (no overlap)
+   ================================ */
+main#content{
+  position: relative; z-index: 0;
+  margin-top: 0;                  /* ensure no negative margins */
+}
+main#content > *:first-child{
+  margin-top: 1rem;               /* gentle spacing below ribbon */
+}
+
+/* ================================
+   FOOTER (GREEN band with caption)
+   ================================ */
+.site-footer{
+  background: var(--green);
+  color: #fff;
+  padding: 1.25rem 0;
+  margin-top: 2rem;
+}
+.site-footer a{ color: #fff; text-decoration: underline; }
+.site-footer .caption{
+  font-size: .95rem; opacity: .95;
+}
+
+/* ================================
+   OVERRIDE ANY LEGACY MAROON BACKGROUNDS
+   (in case earlier CSS painted whole sections maroon)
+   ================================ */
+.section--light, .page-section, .projects-grid, .project,
+.page, .content, .wrapper{
+  background: transparent;
+}
+/* ================================
+   COLOR TOKENS (centralize colors)
+   ================================ */
+:root{
+  --ink: #111;           /* default body text (black-ish) */
+  --ink-muted: #444;
+  --paper: #fff;         /* default page background */
+
+  --maroon: #7b002c;     /* nav headings ONLY */
+  --red:    #d40000;     /* page ribbon under nav */
+  --green:  #0f7a3f;     /* footer band */
+}
+
+/* ================================
+   GLOBAL RESET (stop maroon spillage)
+   ================================ */
+html, body{
+  color: var(--ink);
+  background: var(--paper);
+}
+a{
+  color: inherit;                 /* stop default blue links in body */
+  text-decoration-color: currentColor;
+}
+
+/* Headings shouldn’t inherit maroon accidentally */
+h1, h2, h3, h4, h5, h6{
+  color: var(--ink);
+}
+
+/* Common components shouldn’t be maroon unless asked */
+.card, .project, .section, main, .container{
+  color: var(--ink);
+  background: transparent;
+}
+
+/* If you previously set a site-wide maroon anywhere, neutralize it */
+*{
+  /* remove accidental site-wide color/filters */
+  filter: none !important;
+}
+body, main, .container, .content{
+  transform: none !important;     /* prevent stray stacking contexts */
+}
+
+/* ================================
+   NAV: maroon confined to headings
+   ================================ */
+.site-header{
+  background: #fff;               /* nav bar stays white (or your light bg) */
+  border-bottom: 1px solid #eee;  /* subtle divider */
+  position: sticky; top: 0; z-index: 100;
+}
+
+.site-nav a{
+  color: var(--maroon);           /* maroon TEXT only here */
+  font-weight: 600;
+}
+.site-nav a[aria-current="page"]{
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* If nav items were wrapped in "nav panel headings" */
+.nav-panel .heading, .nav-panel a{
+  color: var(--maroon);
+}
+
+/* ================================
+   PAGE RIBBON (RED band under nav)
+   ================================ */
+.page-ribbon{
+  background: var(--red);
+  color: #fff;
+  position: relative;
+  z-index: 10;
+  padding: 1.25rem 0 1.5rem;      /* space for sub-heading/caption */
+  box-shadow: 0 2px 0 rgba(0,0,0,.06);
+  margin-top: 0;                  /* if header is sticky & tall, see next rule */
+}
+.page-ribbon .container{
+  display: grid;
+  gap: .35rem;
+}
+.page-ribbon h1{
+  margin: 0; line-height: 1.2; color: #fff;
+}
+.page-ribbon .subtitle{
+  margin: 0;
+  font-size: 1.05rem;
+  opacity: .95;
+  font-style: italic;
+  color: #fff;
+}
+/* If sticky header is tall (e.g., 64px), nudge ribbon down slightly */
+.site-header.is-tall + .page-ribbon{ margin-top: 64px; }
+
+/* Keep links on ribbon white */
+.page-ribbon a{ color: #fff; }
+
+/* ================================
+   MAIN LAYOUT (no overlap)
+   ================================ */
+main#content{
+  position: relative; z-index: 0;
+  margin-top: 0;                  /* ensure no negative margins */
+}
+main#content > *:first-child{
+  margin-top: 1rem;               /* gentle spacing below ribbon */
+}
+
+/* ================================
+   FOOTER (GREEN band with caption)
+   ================================ */
+.site-footer{
+  background: var(--green);
+  color: #fff;
+  padding: 1.25rem 0;
+  margin-top: 2rem;
+}
+.site-footer a{ color: #fff; text-decoration: underline; }
+.site-footer .caption{
+  font-size: .95rem; opacity: .95;
+}
+
+/* ================================
+   OVERRIDE ANY LEGACY MAROON BACKGROUNDS
+   (in case earlier CSS painted whole sections maroon)
+   ================================ */
+.section--light, .page-section, .projects-grid, .project,
+.page, .content, .wrapper{
+  background: transparent;
+}
