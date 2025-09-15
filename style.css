@@ -1044,6 +1044,7 @@ main#content, .page-ribbon, body, html{
   transform:none !important;
   filter:none !important;
 }
+.page-ribbon{ margin-top:64px; }  /* tweak to your exact header height */
 
 /* Keep text on the ribbon white (even if links) */
 .page-ribbon a, .page-ribbon{
