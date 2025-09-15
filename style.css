@@ -2062,4 +2062,22 @@ footer.site-footer, footer.site-footer *,
 
 .founder-text h2 { margin: 0 0 .5rem; }
 .founder-text p  { margin: 0; color: var(--ink); }
+.founder-grid{ display:grid; grid-template-columns:1.7fr 1fr; gap:1.25rem; align-items:start; }
+@media (max-width: 900px){ .founder-grid{ grid-template-columns:1fr; } }
+
+.founder-photo img{
+  max-width:100%; height:auto; display:block;
+  border-radius:1rem; box-shadow:0 6px 18px rgba(0,0,0,.12);
+  object-fit:cover;
+}
+.founder-figure{ margin:0; }
+.founder-figure figcaption{
+  margin-top:.5rem;
+  font-style:italic;
+  font-size:.95rem;
+  color: var(--ink-muted, #444);
+  text-align:center;
+}
+.founder-text h2{ margin:0 0 .5rem; }
+.founder-text p{ margin:0 0 .8rem; color: var(--ink); }
 
