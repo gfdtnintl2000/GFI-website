@@ -29,6 +29,10 @@
   <!-- Red band (subtitle area) -->
    <!-- Red band (subtitle area) -->
 <header class="site-header">…maroon nav…</header>
+<header class="site-header">
+  <!-- maroon nav with white text -->
+  <!-- ... -->
+</header>
 
 <section class="page-ribbon">
   <div class="container">
@@ -153,6 +157,9 @@
   </div>
 </footer>
 
-
+<script>
+  document.querySelectorAll('.copyright-year')
+    .forEach(el => el.textContent = new Date().getFullYear());
+</script>
 </body>
 </html>
