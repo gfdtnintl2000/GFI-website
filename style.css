@@ -1639,3 +1639,42 @@ main#content > *:first-child{ margin-top: 1rem; }
 
 /* Safety: neutralize any old “red ribbon” styles */
 .page-ribbon.red, .page-ribbon--red{ background: var(--maroon) !important; }
+/* ====== Blow 1: White text on maroon areas + green footer ====== */
+
+/* Maroon NAV: ensure any subheadings/captions/links inside are white */
+.site-header,
+.site-header a,
+.site-header .subheading,
+.site-header .caption,
+.site-header .note,
+.site-nav a,
+.site-nav .subheading,
+.site-nav .caption {
+  color: #fff !important;
+  text-decoration-color: currentColor !important; /* white underlines */
+}
+
+/* Maroon PAGE RIBBON (title + subtitle/caption) */
+.page-ribbon,
+.page-ribbon h1,
+.page-ribbon .subtitle,
+.page-ribbon .caption,
+.page-ribbon a {
+  color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+
+/* Green FOOTER: copyright + links in white */
+.site-footer,
+.site-footer a,
+.site-footer .caption,
+.site-footer .copyright {
+  color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+
+/* If you use SVG icons in these bars, make them white too */
+.site-header svg, .page-ribbon svg, .site-footer svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
