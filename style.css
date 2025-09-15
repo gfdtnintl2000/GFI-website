@@ -2038,9 +2038,20 @@ footer.site-footer, footer.site-footer *,
   color: #fff !important;
   text-decoration-color: currentColor !important;
 }
-.founder-photo {
-  /* ... */
-  background-image: url("/assets/founder.jpg?v=2025-09-15");
-  background-size: cover;
-  background-position: center;
+#founder img, .founder-photo img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+  object-fit: cover;
 }
+.founder-grid { /* already set, but ensure two columns on desktop */
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 1.25rem;
+}
+@media (max-width: 900px){
+  .founder-grid { grid-template-columns: 1fr; }
+}
+
