@@ -1796,3 +1796,52 @@ footer.site-footer, footer.site-footer *,
   color: inherit !important;        /* inherit the forced white from their parents */
   -webkit-text-fill-color: inherit !important;
 }
+/* ===== Projects Top Cleanup (scoped) ===== */
+
+/* 1) Kill any extra bands/lines under the nav on the Projects page */
+.projects-page header.site-header + hr,
+.projects-page header.site-header + .thin-line,
+.projects-page header.site-header + .subhead-bar,
+.projects-page header.site-header + .page-subtitle,
+.projects-page header.site-header + .page-heading-line {
+  display: none !important;
+}
+
+/* 2) Remove the stray GREEN ribbon and its captions (top of Projects page) */
+.projects-page .green-ribbon,
+.projects-page .ribbon--green,
+.projects-page .top-green,
+.projects-page .preheader,
+.projects-page .announcement,
+.projects-page .site-subtitle,
+.projects-page .subheader-band,
+.projects-page .mini-footer,
+.projects-page .pre-footer {
+  display: none !important;
+}
+
+/* 3) Strengthen the single MAROON page ribbon for visibility */
+.projects-page .page-ribbon{
+  background: var(--maroon) !important;
+  color: #fff !important;
+  padding: 1.25rem 0 1.6rem !important; /* taller so subtitle/caption is visible */
+  margin: 0 !important;
+  border: 0 !important;
+  box-shadow: 0 2px 0 rgba(0,0,0,.06) !important;
+  position: relative; z-index: 900;
+}
+.projects-page .page-ribbon .container{ display: grid; gap: .4rem; }
+.projects-page .page-ribbon h1,
+.projects-page .page-ribbon .subtitle,
+.projects-page .page-ribbon a{
+  color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+
+/* 4) Make sure the main content starts clean under the ribbon */
+.projects-page main#content{
+  position: relative; z-index: 0; margin-top: 0 !important;
+}
+.projects-page main#content > *:first-child{
+  margin-top: 1rem !important;
+}
