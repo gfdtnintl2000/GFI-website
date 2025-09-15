@@ -1004,3 +1004,48 @@ main#content, .page-ribbon, body, html{
 .page-ribbon a, .page-ribbon{
   color:#fff;
 }
+/* --- Page Ribbon (Projects) --- */
+.page-ribbon{
+  background:#d40000;          /* red (not maroon) */
+  color:#fff;
+  position:relative;
+  z-index:10;                   /* sit above main */
+  padding:1.25rem 0 1.5rem;     /* space for subtitle/caption */
+  box-shadow:0 2px 0 rgba(0,0,0,.06);
+}
+.page-ribbon .container{
+  display:grid;
+  gap:.35rem;
+}
+.page-ribbon h1{
+  margin:0;
+  line-height:1.2;
+}
+.page-ribbon .subtitle{
+  margin:0;
+  font-size:1.05rem;
+  opacity:.95;
+  font-style:italic;
+}
+
+/* Keep nav above the ribbon if it's sticky */
+.site-header{
+  position:sticky; top:0; z-index:20;
+}
+
+/* Prevent main content from covering the ribbon */
+main#content{
+  position:relative; z-index:0;
+  margin-top:0;                  /* ensure no negative margins */
+}
+
+/* In case any parent created a stacking context via transform/filter */
+main#content, .page-ribbon, body, html{
+  transform:none !important;
+  filter:none !important;
+}
+
+/* Keep text on the ribbon white (even if links) */
+.page-ribbon a, .page-ribbon{
+  color:#fff;
+}
