@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Projects — Grace Foundation International</title>
   <link rel="stylesheet" href="/style.css?v=projfix-1" />
+  <style id="proj-top-kill-2">
+  /* Hide ANY element after the header until we hit .page-ribbon or main */
+  body.projects-page header.site-header ~ :not(.page-ribbon):not(main):not(script):not(style):not(link) {
+    display: none !important;
+  }
+  /* Strengthen the maroon ribbon visibility */
+  body.projects-page .page-ribbon {
+    background: var(--maroon) !important;
+    color: #fff !important;
+    padding: 1.25rem 0 1.6rem !important;
+    margin: 0 !important;
+    box-shadow: 0 2px 0 rgba(0,0,0,.06) !important;
+    position: relative; z-index: 900;
+  }
+  body.projects-page .page-ribbon h1,
+  body.projects-page .page-ribbon .subtitle,
+  body.projects-page .page-ribbon a {
+    color: #fff !important;
+    text-decoration-color: currentColor !important;
+  }
+</style>
+
 </head>
 <style id="proj-top-kill">
   .projects-page header.site-header + *:not(.page-ribbon){display:none!important}
@@ -161,5 +183,19 @@
   document.querySelectorAll('.copyright-year')
     .forEach(el => el.textContent = new Date().getFullYear());
 </script>
+<script id="proj-top-scrub">
+  (function () {
+    if (!document.body.classList.contains('projects-page')) return;
+    const header = document.querySelector('header.site-header');
+    if (!header) return;
+    // Hide every sibling after header until we reach .page-ribbon or main
+    let el = header.nextElementSibling;
+    while (el && !el.matches('.page-ribbon, main')) {
+      el.style.setProperty('display', 'none', 'important');
+      el = el.nextElementSibling;
+    }
+  })();
+</script>
+      
 </body>
 </html>
