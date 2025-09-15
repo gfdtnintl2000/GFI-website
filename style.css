@@ -1678,3 +1678,56 @@ main#content > *:first-child{ margin-top: 1rem; }
   fill: currentColor !important;
   stroke: currentColor !important;
 }
+/* ===== Blow A: Force white text on MAROON bars (nav + page ribbon) ===== */
+.site-header,
+.site-header *,
+.nav-panel,
+.nav-panel *,
+.page-ribbon,
+.page-ribbon * {
+  color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+
+/* Make sure links in these bars are white in ALL states */
+.site-header a:link,
+.site-header a:visited,
+.site-header a:hover,
+.site-header a:active,
+.nav-panel a:link,
+.nav-panel a:visited,
+.nav-panel a:hover,
+.nav-panel a:active,
+.page-ribbon a:link,
+.page-ribbon a:visited,
+.page-ribbon a:hover,
+.page-ribbon a:active {
+  color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+
+/* If icons/SVGs are used inside the bars, make them white too */
+.site-header svg,
+.nav-panel svg,
+.page-ribbon svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* ===== Blow B: Force white text on the GREEN footer ===== */
+.site-footer,
+.site-footer * {
+  color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+.site-footer a:link,
+.site-footer a:visited,
+.site-footer a:hover,
+.site-footer a:active {
+  color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+.site-footer svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
