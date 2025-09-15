@@ -5,6 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Projects — Grace Foundation International</title>
   <link rel="stylesheet" href="/style.css?v=tidy-4" />
+  <style id="projects-green-killer">
+  /* Kill the usual suspects */
+  .projects-page .green-ribbon,
+  .projects-page .ribbon--green,
+  .projects-page .top-green,
+  .projects-page .preheader,
+  .projects-page .announcement,
+  .projects-page .site-subtitle,
+  .projects-page .subheader-band,
+  .projects-page .mini-footer,
+  .projects-page .pre-footer {
+    display: none !important;
+  }
+
+  /* If the green strip is injected via header pseudo-elements */
+  .projects-page header.site-header::before,
+  .projects-page header.site-header::after {
+    content: none !important;
+    background: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    height: 0 !important;
+  }
+
+  /* Ensure our one maroon ribbon is visible and tall enough */
+  .projects-page .page-ribbon{
+    background: var(--maroon) !important;
+    color: #fff !important;
+    padding: 1.25rem 0 1.6rem !important;
+    margin: 0 !important;
+    box-shadow: 0 2px 0 rgba(0,0,0,.06) !important;
+    position: relative; z-index: 900;
+  }
+  .projects-page .page-ribbon h1,
+  .projects-page .page-ribbon .subtitle { color:#fff !important; }
+</style>
+
   <style id="proj-top-kill-2">
   /* Hide ANY element after the header until we hit .page-ribbon or main */
   body.projects-page header.site-header ~ :not(.page-ribbon):not(main):not(script):not(style):not(link) {
@@ -196,6 +233,60 @@
     }
   })();
 </script>
-      
+ <script id="projects-green-scrub">
+  (function () {
+    if (!document.body.classList.contains('projects-page')) return;
+
+    // helper: rgb distance
+    function rgbDist(a, b){ return Math.sqrt(
+      Math.pow(a[0]-b[0],2)+Math.pow(a[1]-b[1],2)+Math.pow(a[2]-b[2],2)
+    );}
+    function parseRgb(c){ var m=c.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i); return m? [+m[1],+m[2],+m[3]]:null;}
+    // our GFI green ~ #0f7a3f -> [15,122,63]
+    var G = [15,122,63];
+
+    // 1) inside header: hide any green-looking bars
+    var header = document.querySelector('header.site-header');
+    if (header){
+      header.querySelectorAll('*').forEach(function(el){
+        var bg = getComputedStyle(el).backgroundColor;
+        var rgb = parseRgb(bg);
+        if (rgb && rgbDist(rgb, G) < 35) { // tolerant match
+          el.style.setProperty('display','none','important');
+        }
+        // class-name safety net
+        if (/\b(green|green-ribbon|ribbon--green|top-green|preheader|announcement|site-subtitle|subheader)\b/i.test(el.className||'')) {
+          el.style.setProperty('display','none','important');
+        }
+      });
+    }
+
+    // 2) between header and the maroon page-ribbon: hide everything until .page-ribbon or main
+    var el = header ? header.nextElementSibling : null;
+    while (el && !el.matches('.page-ribbon, main')) {
+      el.style.setProperty('display','none','important');
+      el = el.nextElementSibling;
+    }
+
+    // 3) content-based cleanup (old captions)
+    var killPhrases = [
+      'Education, sustainable livelihoods, health, and peace-building.',
+      'Grace Foundation International • Building dignity through education, livelihoods, health, and peace.'
+    ];
+    document.querySelectorAll('body.projects-page *').forEach(function(node){
+      if (!node || node.children && node.children.length) return;
+      var t = (node.textContent||'').trim();
+      if (!t) return;
+      for (var i=0;i<killPhrases.length;i++){
+        if (t.includes(killPhrases[i])){
+          (node.closest('section,div,header,nav,aside')||node)
+            .style.setProperty('display','none','important');
+          break;
+        }
+      }
+    });
+  })();
+</script>
+     
 </body>
 </html>
