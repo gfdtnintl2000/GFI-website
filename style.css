@@ -1731,3 +1731,68 @@ main#content > *:first-child{ margin-top: 1rem; }
   fill: currentColor !important;
   stroke: currentColor !important;
 }
+/* ===== WHITE-TEXT HOTFIX: maroon bars (nav + page ribbon) & green footer ===== */
+
+/* NAV (maroon) — force white on everything inside */
+header.site-header, header.site-header *,
+.site-header, .site-header *,
+.nav-panel, .nav-panel *,
+nav.site-nav, nav.site-nav * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+.site-header a:link, .site-header a:visited, .site-header a:hover, .site-header a:active,
+.nav-panel a:link, .nav-panel a:visited, .nav-panel a:hover, .nav-panel a:active {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+.site-header svg, .nav-panel svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* PAGE RIBBON (maroon band under nav) — force white */
+.page-ribbon, .page-ribbon *,
+.page-banner, .page-banner *,
+.page-heading, .page-heading *,
+.ribbon, .ribbon * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+.page-ribbon a:link, .page-ribbon a:visited, .page-ribbon a:hover, .page-ribbon a:active,
+.page-banner a:link, .page-banner a:visited, .page-banner a:hover, .page-banner a:active,
+.page-heading a:link, .page-heading a:visited, .page-heading a:hover, .page-heading a:active {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+.page-ribbon svg, .page-banner svg, .page-heading svg, .ribbon svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* FOOTER (green) — force white */
+footer.site-footer, footer.site-footer *,
+.site-footer, .site-footer * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+.site-footer a:link, .site-footer a:visited, .site-footer a:hover, .site-footer a:active {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
+.site-footer svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* Make sure the usual “subtitle/caption” class names get flipped to white too */
+.subheading, .subtitle, .caption, .tagline, .lead, .page-subtitle {
+  color: inherit !important;        /* inherit the forced white from their parents */
+  -webkit-text-fill-color: inherit !important;
+}
