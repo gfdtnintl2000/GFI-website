@@ -1928,3 +1928,38 @@ footer.site-footer, footer.site-footer *,
 /* Ensure content begins cleanly below the ribbon */
 .projects-page main#content{ position:relative; z-index:0; margin-top:0 !important; }
 .projects-page main#content > *:first-child{ margin-top:1rem !important; }
+/* ==== PROJECTS: wipe all bands between header and the ribbon, allow only .page-ribbon + main ==== */
+.projects-page header.site-header ~ * {
+  display: none !important;
+}
+
+/* restore only the maroon page ribbon and the main content */
+.projects-page .page-ribbon,
+.projects-page main {
+  display: block !important;
+}
+
+/* kill any header borders/shadows/psuedo that could leave a thin green line */
+.projects-page header.site-header,
+.projects-page header.site-header::before,
+.projects-page header.site-header::after {
+  border: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* make the ribbon tall & readable */
+.projects-page .page-ribbon{
+  background: var(--maroon) !important;
+  color:#fff !important;
+  padding: 1.25rem 0 1.6rem !important;
+  margin: 0 !important;
+  position: relative; z-index: 900;
+  box-shadow: 0 2px 0 rgba(0,0,0,.06) !important;
+}
+.projects-page .page-ribbon .container{ display:grid; gap:.4rem; }
+.projects-page .page-ribbon h1,
+.projects-page .page-ribbon .subtitle,
+.projects-page .page-ribbon a{
+  color:#fff !important; text-decoration-color: currentColor !important;
+}
