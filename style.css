@@ -1889,3 +1889,42 @@ footer.site-footer, footer.site-footer *,
   display:block;       /* ensure text-align works */
   margin:0 auto;
 }
+/* ===== Projects page: remove ANY band directly under the nav unless it's the maroon page-ribbon ===== */
+
+/* Hide the first thing under the header if it's not the page-ribbon */
+.projects-page header.site-header + *:not(.page-ribbon){
+  display: none !important;
+}
+
+/* Extra safety: hide common “green/top strip” variants that might sneak in */
+.projects-page .green-ribbon,
+.projects-page .ribbon--green,
+.projects-page .top-green,
+.projects-page .preheader,
+.projects-page .announcement,
+.projects-page header.site-header + hr,
+.projects-page header.site-header + .thin-line {
+  display: none !important;
+}
+
+/* Make the SINGLE maroon page-ribbon tall & readable */
+.projects-page .page-ribbon{
+  background: var(--maroon) !important;
+  color:#fff !important;
+  padding: 1.25rem 0 1.6rem !important;  /* room for subtitle */
+  margin: 0 !important;
+  border: 0 !important;
+  box-shadow: 0 2px 0 rgba(0,0,0,.06) !important;
+  position: relative; z-index: 900;
+}
+.projects-page .page-ribbon .container{ display:grid; gap:.4rem; }
+.projects-page .page-ribbon h1,
+.projects-page .page-ribbon .subtitle,
+.projects-page .page-ribbon a{
+  color:#fff !important; text-decoration-color: currentColor !important;
+}
+.projects-page .page-ribbon .subtitle{ opacity: 1 !important; }
+
+/* Ensure content begins cleanly below the ribbon */
+.projects-page main#content{ position:relative; z-index:0; margin-top:0 !important; }
+.projects-page main#content > *:first-child{ margin-top:1rem !important; }
