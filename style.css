@@ -2007,3 +2007,34 @@ footer.site-footer, footer.site-footer *,
   box-shadow: none !important;
   background-image: none !important;
 }
+/* ===== Below-nav caption inside header (white on maroon) ===== */
+.site-header .below-nav-caption{
+  background: var(--maroon);   /* header is maroon, keep it consistent */
+  color: #fff;
+  padding: .65rem 0 .85rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.site-header .below-nav-caption .container{
+  display: grid;
+  gap: .25rem;
+}
+.site-header .below-nav-caption .subtitle{
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  color: #fff;
+}
+.site-header .below-nav-caption .caption{
+  margin: 0;
+  font-size: .98rem;
+  font-style: italic;
+  opacity: .96;
+  color: #fff;
+}
+
+/* Ensure all header text stays white (matches your “magic” fix) */
+.site-header, .site-header *{
+  color: #fff !important;
+  text-decoration-color: currentColor !important;
+}
