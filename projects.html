@@ -335,6 +335,48 @@
     });
   })();
 </script>
+<script>
+// ---------- DFDU Slideshow ----------
+let dfduIndex = 0;
+function showSlidesDfdu() {
+  const slides = document.getElementsByClassName("dfdu-slide");
+  const dots = document.getElementsByClassName("dfdu-dot");
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  dfduIndex++;
+  if (dfduIndex > slides.length) { dfduIndex = 1; }
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[dfduIndex - 1].style.display = "block";
+  dots[dfduIndex - 1].className += " active";
+  setTimeout(showSlidesDfdu, 4000);
+}
+
+// ---------- CADU Slideshow ----------
+let caduIndex = 0;
+function showSlidesCadu() {
+  const slides = document.getElementsByClassName("cadu-slide");
+  const dots = document.getElementsByClassName("cadu-dot");
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  caduIndex++;
+  if (caduIndex > slides.length) { caduIndex = 1; }
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[caduIndex - 1].style.display = "block";
+  dots[caduIndex - 1].className += " active";
+  setTimeout(showSlidesCadu, 4000);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  showSlidesDfdu();
+  showSlidesCadu();
+});
+</script>
      
 </body>
 </html>
