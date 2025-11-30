@@ -2139,4 +2139,63 @@ footer.site-footer, footer.site-footer *,
 .cadu-slide {
   display: none;
 }
+/* ---------- PROJECT SLIDESHOWS ---------- */
+
+.slideshow-container {
+  max-width: 900px;
+  margin: 1.5rem auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.slideshow-container img {
+  width: 100%;
+  display: block;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.2s;
+}
+
+@keyframes fade {
+  from { opacity: 0.4; }
+  to   { opacity: 1;   }
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.5rem 0.75rem;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.dots {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 3px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.4s ease;
+}
+
+.dot.active {
+  background-color: #333;
+}
+
+.dfdu-slide,
+.cadu-slide {
+  display: none;
+}
 
