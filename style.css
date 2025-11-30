@@ -2110,10 +2110,14 @@ footer.site-footer, footer.site-footer *,
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem 1rem;
   background: rgba(0, 0, 0, 0.55);
-  color: #fff;
-  font-size: 0.9rem;
+  color: #F0C75E !important;   /* gold text for strong contrast */
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 600;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7); /* makes text glow */
+}
 }
 
 .dots {
