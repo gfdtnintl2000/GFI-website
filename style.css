@@ -2202,4 +2202,78 @@ footer.site-footer, footer.site-footer *,
 .cadu-slide {
   display: none;
 }
+/* ===== Projects: Education Outreach Add-on ===== */
 
+.project-block{
+  margin: 1.25rem 0;
+  padding: 1rem;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.project-block h3, .project-block h4{
+  margin-top: 0;
+}
+
+.project-meta{
+  margin: .35rem 0 0;
+  opacity: .85;
+  font-size: .95rem;
+}
+
+.project-media{
+  margin: .85rem 0 1rem;
+}
+
+.project-media img{
+  width: 100%;
+  max-width: 820px;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+.project-caption{
+  margin-top: .45rem;
+  font-size: .9rem;
+  opacity: .8;
+  line-height: 1.35;
+}
+
+/* Budget table: readable on mobile */
+.budget-table{
+  width: 100%;
+  max-width: 820px;
+  border-collapse: collapse;
+  margin: .75rem 0 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+.budget-table th,
+.budget-table td{
+  padding: .65rem .75rem;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  text-align: left;
+}
+
+.budget-table th{
+  font-weight: 700;
+  background: rgba(0,0,0,.03);
+}
+
+.budget-table tr:last-child td{
+  border-bottom: none;
+}
+
+/* Optional: “callout” line for totals */
+.callout-total{
+  margin-top: .85rem;
+  padding: .75rem;
+  border-left: 4px solid #1f6b3a; /* deep green */
+  background: rgba(31,107,58,.06);
+  border-radius: 10px;
+}
