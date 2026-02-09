@@ -2276,4 +2276,94 @@ footer.site-footer, footer.site-footer *,
   border-left: 4px solid #1f6b3a; /* deep green */
   background: rgba(31,107,58,.06);
   border-radius: 10px;
+.education-micro-sponsorship .table-wrap {
+  overflow-x: auto;
+  margin: 0.75rem 0 1rem;
 }
+
+.education-micro-sponsorship .budget-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.education-micro-sponsorship .budget-table th,
+.education-micro-sponsorship .budget-table td {
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 10px 12px;
+  vertical-align: top;
+}
+
+.education-micro-sponsorship .budget-table th {
+  font-weight: 700;
+}
+
+.education-micro-sponsorship .pledge-form {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 10px;
+}
+
+.education-micro-sponsorship .pledge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.education-micro-sponsorship label span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.education-micro-sponsorship input,
+.education-micro-sponsorship textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 8px;
+}
+
+.education-micro-sponsorship .pledge-fieldset {
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin: 10px 0;
+}
+
+.education-micro-sponsorship .pledge-fieldset label {
+  display: block;
+  margin: 8px 0;
+}
+
+.education-micro-sponsorship .other-amount {
+  margin-top: 10px;
+}
+
+.education-micro-sponsorship .pledge-notes {
+  display: block;
+  margin-top: 10px;
+}
+
+.education-micro-sponsorship .pledge-btn {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .education-micro-sponsorship .pledge-grid {
+    grid-template-columns: 1fr;
+  }
+  .education-micro-sponsorship .budget-table {
+    min-width: 420px;
+  }
+
+
+}
+
