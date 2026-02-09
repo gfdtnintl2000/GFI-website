@@ -106,62 +106,128 @@
 <a class="btn" href="/projects.html#community-health-initiatives">Community Health Initiatives</a>
 <a class="btn" href="/projects.html#education-outreach">Education Outreach </a>
  
-<!-- Project Briefs (centered) -->  
-<section id="project-briefs" style="padding: 2.5rem 1rem;">
+<!-- Partner With Us: Clean + Focused -->
+<section id="partner-with-us" style="padding: 2.5rem 1rem;">
   <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-    <h2 style="margin: 0 0 .5rem; font-size: 2rem;">Project Briefs</h2>
-    <!-- Short green accent line under the heading -->
+    <h2 style="margin: 0 0 .5rem; font-size: 2rem;">Partner With Us</h2>
     <div style="width: 140px; height: 4px; background: #198754; border-radius: 999px; margin: .5rem auto 1.25rem;"></div>
 
-    <div style="display: grid; gap: .65rem; justify-items: center;">
-      <a class="btn" target="_blank"
-         href="https://gfdtnintl2000.github.io/GFI-website/GFI_OnePager_GDV_Branded.pdf">📄 Green Dignity Villages (GDV)</a>
+    <p style="max-width: 760px; margin: 0 auto 1.25rem;">
+      Thank you for your interest in partnering with Grace Foundation International (GFI).
+      Use the brief links below to understand our flagship projects, then complete the partnership form to tell us how you’d like to support.
+      For education sponsorship, you may pledge support for one or more students through the Education Micro-Sponsorship section in the form.
+    </p>
 
-      <a class="btn" target="_blank"
-         href="https://gfdtnintl2000.github.io/GFI-website/GFI_OnePager_CPC_Branded.pdf">📄 Champions for Peaceful Community (CPC)</a>
+    <!-- Project Briefs (Updated links) -->
+    <div id="project-briefs" style="margin: 1.25rem 0 1.75rem;">
+      <h3 style="margin: 0 0 .35rem;">Project Briefs (PDF)</h3>
+      <p class="small" style="margin: 0 0 .85rem;">Updated contacts: <strong>info@gfintl.org</strong> | <strong>www.gfintl.org</strong></p>
 
-      <a class="btn" target="_blank"
-         href="https://gfdtnintl2000.github.io/GFI-website/GFI_OnePager_Health_Branded.pdf">📄 Community Health Initiatives</a>
+      <div style="display: grid; gap: .65rem; justify-items: center;">
+        <a class="btn" target="_blank" rel="noopener"
+           href="/assets/briefs/GFI_OnePager_GDV_Branded.pdf">📄 Green Dignity Villages (GDV)</a>
 
-      <a class="btn" target="_blank"
-         href="https://gfdtnintl2000.github.io/GFI-website/GFI_OnePager_Scholarships_Branded.pdf">📄 Education Outreach </a>
-      <article id="education-outreach" class="project-block">
+        <a class="btn" target="_blank" rel="noopener"
+           href="/assets/briefs/GFI_OnePager_CPC_Branded.pdf">📄 Champions for Peaceful Community (CPC)</a>
 
+        <a class="btn" target="_blank" rel="noopener"
+           href="/assets/briefs/GFI_OnePager_Health_Branded.pdf">📄 Community Health Initiatives</a>
+
+        <a class="btn" target="_blank" rel="noopener"
+           href="/assets/briefs/GFI_OnePager_Scholarships_Branded.pdf">📄 Education Outreach</a>
+      </div>
+
+      <p class="small" style="margin-top: .75rem;">
+        If a PDF link does not open, please refresh the page or contact us at
+        <a href="mailto:info@gfintl.org">info@gfintl.org</a>.
+      </p>
+    </div>
+
+    <!-- Partnership / Education Sponsorship Form -->
+    <div style="text-align: left; max-width: 760px; margin: 0 auto;">
+      <h3 style="margin: 0 0 .35rem;">Education Micro-Sponsorship / Partnership Form</h3>
+      <p class="small" style="margin-top: 0;">
+        Complete the form below and we will follow up to confirm your pledge or partnership interest.
+        (Secondary sponsorship benchmark: <strong>USD 1,200 per student per year</strong>.)
+      </p>
+
+      <!-- IMPORTANT: Replace YOUR_FORMSPREE_ID with your real Formspree endpoint -->
+      <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <label>Your Name</label>
+        <input type="text" name="name" required />
+
+        <label>Organization (optional)</label>
+        <input type="text" name="organization" />
+
+        <label>Email</label>
+        <input type="email" name="email" required />
+
+        <label>Country (optional)</label>
+        <input type="text" name="country" />
+
+        <label>Area of Interest</label>
+        <select name="interest">
+          <option>Education Micro-Sponsorship</option>
+          <option>Education Outreach (General)</option>
+          <option>Green Dignity Villages (GDV)</option>
+          <option>Champions for Peaceful Community (CPC)</option>
+          <option>Community Health Initiatives</option>
+          <option>Other</option>
+        </select>
+
+        <fieldset style="border: 1px solid rgba(0,0,0,.15); border-radius: 10px; padding: 10px 12px; margin: 12px 0;">
+          <legend><strong>Education Micro-Sponsorship Pledge (optional)</strong></legend>
+
+          <label style="display:block; margin: 8px 0;">
+            <input type="radio" name="sponsorship_commitment" value="USD 1,200 – Sponsor 1 student for 1 year" />
+            USD 1,200 – Sponsor 1 student for 1 year
+          </label>
+
+          <label style="display:block; margin: 8px 0;">
+            <input type="radio" name="sponsorship_commitment" value="USD 6,000 – Sponsor 5 students for 1 year" />
+            USD 6,000 – Sponsor 5 students for 1 year
+          </label>
+
+          <label style="display:block; margin: 8px 0;">
+            <input type="radio" name="sponsorship_commitment" value="USD 12,000 – Sponsor 10 students (cohort anchor)" />
+            USD 12,000 – Sponsor 10 students (cohort anchor)
+          </label>
+
+          <label style="display:block; margin: 10px 0 0;">
+            Other amount (USD)
+            <input type="number" name="other_amount_usd" min="1" placeholder="e.g., 2400" />
+          </label>
+
+          <div style="margin-top: 10px;">
+            <strong>Sponsorship Preference (optional)</strong><br />
+            <label style="display:block; margin: 6px 0;">
+              <input type="checkbox" name="preference" value="General cohort" /> General cohort
+            </label>
+            <label style="display:block; margin: 6px 0;">
+              <input type="checkbox" name="preference" value="Priority to girl-child" /> Priority to girl-child
+            </label>
+            <label style="display:block; margin: 6px 0;">
+              <input type="checkbox" name="preference" value="Anonymous sponsorship" /> Anonymous sponsorship
+            </label>
+            <label style="display:block; margin: 6px 0;">
+              <input type="checkbox" name="preference" value="Named sponsorship (impact updates shared)" /> Named sponsorship (impact updates shared)
+            </label>
+          </div>
+        </fieldset>
+
+        <label>Message</label>
+        <textarea name="message" rows="6" placeholder="Tell us how you’d like to partner or sponsor (e.g., number of students, duration, preferred focus, questions)…"></textarea>
+
+        <input type="submit" value="Send Partnership / Sponsorship Inquiry" />
+      </form>
+
+      <p class="small" style="margin-top: .85rem;">
+        You can also reach us directly at <a href="mailto:info@gfintl.org">info@gfintl.org</a>.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- Minimal button styling (keep or move into style.css) -->
-<style>
-  .btn{
-    display:inline-block; padding:.65rem .95rem; border-radius:.5rem;
-    text-decoration:none; background:#198754; color:#fff;
-  }
-  .btn:hover{ filter:brightness(1.05); }
-</style>
-
-
-
-  <h2>Be Our Partner</h2>
-  <p class="small">Complete the form below and we’ll schedule a follow-up call.</p>
-  <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-    <label>Your Name</label>
-    <input type="text" name="name" required />
-    <label>Organization</label>
-    <input type="text" name="organization" />
-    <label>Email</label>
-    <input type="email" name="email" required />
-    <label>Area of Interest</label>
-    <select name="interest">
-      <option>Green Dignity Villages (GDV)</option>
-      <option>Champions for Peaceful Community (CPC)</option>
-      <option>Education Outreach</option>
-      <option>Community Health Initiatives</option>
-    </select>
-    <label>Message</label>
-    <textarea name="message" rows="5" placeholder="Tell us how you’d like to collaborate…"></textarea>
-    <input type="submit" value="Send Partnership Inquiry" />
-  </form>
 </main>
 <footer class="site-footer">
   <div class="container">
