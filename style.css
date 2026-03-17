@@ -2363,7 +2363,41 @@ footer.site-footer, footer.site-footer *,
   .education-micro-sponsorship .budget-table {
     min-width: 420px;
   }
-
-
+.resource-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:1.25rem;
+  margin-top:1rem;
 }
+
+.resource-card{
+  background:#fff;
+  border:1px solid #e5e5e5;
+  border-radius:16px;
+  padding:1.25rem;
+  box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.resource-card h3{
+  margin-top:0;
+  margin-bottom:.5rem;
+}
+
+.resource-card p{
+  margin-bottom:1rem;
+}
+
+.btn{
+  display:inline-block;
+  padding:.7rem 1rem;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.btn:hover{
+  opacity:.92;
+}
+
+
 
