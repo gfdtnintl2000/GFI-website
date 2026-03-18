@@ -2465,3 +2465,23 @@ footer.site-footer, footer.site-footer *,
 .page-heading p {
   margin: 0;
 }
+/* === FORCE CENTER NAV (FINAL FIX) === */
+
+.site-header .container {
+  display: flex;
+  justify-content: center !important;
+}
+
+.site-nav {
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  width: 100%;
+  text-align: center;
+}
+
+.site-nav a {
+  display: inline-block;
+}
