@@ -2398,6 +2398,20 @@ footer.site-footer, footer.site-footer *,
 .btn:hover{
   opacity:.92;
 }
+.site-header {
+  text-align: center;
+}
 
+.site-header nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.site-header nav a {
+  text-decoration: none;
+  font-weight: 600;
+}
 
 
