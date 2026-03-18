@@ -2485,3 +2485,25 @@ footer.site-footer, footer.site-footer *,
 .site-nav a {
   display: inline-block;
 }
+/* === ABSOLUTE CENTER FIX === */
+
+.site-header {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.site-header .container {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100%;
+}
+
+.site-header nav,
+.site-header .site-nav {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  text-align: center;
+}
