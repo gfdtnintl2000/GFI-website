@@ -2420,4 +2420,48 @@ footer.site-footer, footer.site-footer *,
 .page-heading .container {
   text-align: center;
 }
+.site-header {
+  width: 100%;
+  background: #6f1d1b;
+}
 
+.site-header .container {
+  display: flex;
+  justify-content: center;
+}
+
+.site-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 14px 0;
+  width: 100%;
+}
+
+.site-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-nav a[aria-current="page"] {
+  text-decoration: underline;
+}
+
+.page-heading {
+  text-align: center;
+  padding: 36px 20px;
+}
+
+.page-heading .container {
+  text-align: center;
+}
+
+.page-heading h1 {
+  margin: 0 0 8px;
+}
+
+.page-heading p {
+  margin: 0;
+}
