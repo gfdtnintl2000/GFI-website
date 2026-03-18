@@ -2413,5 +2413,11 @@ footer.site-footer, footer.site-footer *,
   text-decoration: none;
   font-weight: 600;
 }
+.page-heading {
+  text-align: center;
+}
 
+.page-heading .container {
+  text-align: center;
+}
 
