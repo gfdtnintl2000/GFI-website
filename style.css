@@ -2550,3 +2550,20 @@ footer.site-footer, footer.site-footer *,
 .gr-quick-links {
   margin-top: 0;
 }
+.gr-cta-banner {
+  background: linear-gradient(135deg, #6f1d1b, #8d2b24);
+  color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.gr-cta-banner h2 {
+  margin-top: 0;
+}
+
+.gr-cta-banner a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+}
