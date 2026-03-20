@@ -2536,3 +2536,14 @@ footer.site-footer, footer.site-footer *,
   gap: 20px;
   margin-top: 20px;
 }
+.gr-feature {
+  background: linear-gradient(135deg, #f7f7f7, #ffffff);
+  border-left: 6px solid #6f1d1b;
+  padding: 28px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.gr-feature h2 {
+  margin-top: 0;
+}
